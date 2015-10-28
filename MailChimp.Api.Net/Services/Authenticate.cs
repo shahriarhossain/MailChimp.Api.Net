@@ -62,8 +62,9 @@ namespace MailChimp.Api.Net.Services
         /// <param name="type">v3.0 Mailchimp EndPoint targetType, example: reports, lists etc</param>
         /// <param name="subType" optional>Expects id for particular list/campaign etc</param>
         /// <param name="id" optional>Expects id for particular list/campaign etc</param>
+        /// <param name="linkId" optional>NOT IMPLEMENTED YET</param>
         /// </summary>
-        public static string EndPoint(TargetTypes type, SubTargetType subType, string id="")
+        public static string EndPoint(TargetTypes type, SubTargetType subType, string id="", string linkId="")
         {
             string subCategory = EnumMapper.Map(subType);
 

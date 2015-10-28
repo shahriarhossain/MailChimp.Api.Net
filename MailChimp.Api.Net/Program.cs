@@ -30,8 +30,11 @@ namespace MailChimp.Api.Net
             //MCReportsLocation loc = new MCReportsLocation();
             //var x4 = loc.GetTopLocation("YourCampaignID").Result;
 
-            MCReportsSubReport sub = new MCReportsSubReport();
-            var x5 = sub.GetDomainPerformanceAsync("e6e1eb2be8").Result;
+            //MCReportsSubReport sub = new MCReportsSubReport();
+            //var x5 = sub.GetDomainPerformanceAsync("YourCampaignID").Result;
+
+            MCReportsClickDetails cd = new MCReportsClickDetails();
+            var x6 = cd.GetClickDetailsAsync("YourCampaignID").Result;
 
             Console.Read();
         }
