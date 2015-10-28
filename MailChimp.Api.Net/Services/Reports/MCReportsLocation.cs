@@ -10,15 +10,15 @@ using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Reports
 {
-    public class MCReportsDomainPerformance
+    public class MCReportsLocation
     {
         /// <summary>
-        /// Return statistics for the top-performing domains from a campaign
+        /// Return top open locations for a specific campaign.
         /// <param name="campaignId">Campaign Id</param>
         /// </summary>
-        public async Task<DomainPerformance> GetDomainPerformanceAsync(string campaignId)
+        public async Task<RootLocation> GetTopLocation(string campaignId)
         {
-            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.domain_performance, campaignId);
+            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.locations, campaignId);
 
             string content;
             using (var client = new HttpClient())
@@ -28,7 +28,8 @@ namespace MailChimp.Api.Net.Services.Reports
                 content = await client.GetStringAsync(endpoint);
             }
 
-            return JsonConvert.DeserializeObject<DomainPerformance>(content);
+            return JsonConvert.DeserializeObject<RootLocation>(content);
         }
     }
+
 }
