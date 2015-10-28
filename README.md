@@ -5,7 +5,9 @@ As the name says **MailChimp.Api.Net** is a .Net wrapper that expose a very simp
 
 Current Status:
 ====
-Reports Section:
+Reports:
+---
+The following sections are done so far
 - Reports Overview
 - Campaign Advice
 - Click Reports
