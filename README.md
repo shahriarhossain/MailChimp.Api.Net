@@ -1,7 +1,13 @@
 # MailChimp.Api.Net
-MailChimp v 3.0 .Net wrapper 
+MailChimp v3.0 .Net wrapper 
 
 Current Status:
-Working on REPORT Overview Section
-
-
+====
+Reports Section:
+- Reports Overview
+- Campaign Advice
+- Click Reports
+- - Click Reports Members
+- Domain Performance
+- Location
+- Sub-Reports
