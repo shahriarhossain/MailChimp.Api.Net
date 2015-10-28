@@ -13,7 +13,7 @@ namespace MailChimp.Api.Net.Services.Reports
     public class MCReportsDomainPerformance
     {
         /// <summary>
-        /// Return statistics for the top-performing domains from a campaign
+        /// Return statistics for the top-performing domains from a campaign.
         /// <param name="campaignId">Campaign Id</param>
         /// </summary>
         public async Task<DomainPerformance> GetDomainPerformanceAsync(string campaignId)
