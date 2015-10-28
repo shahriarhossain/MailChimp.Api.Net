@@ -10,15 +10,15 @@ using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Reports
 {
-    public class MCReportsCampaignAdvice
+    public class MCReportsDomainPerformance
     {
         /// <summary>
         /// Return recent feedback based on a campaign’s statistics
         /// <param name="campaignId">Campaign Id</param>
         /// </summary>
-        public async Task<CampaignAdvice> GetAdviceAsync(string campaignId)
+        public async Task<DomainPerformance> GetDomainPerformanceAsync(string campaignId)
         {
-            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.advice, campaignId);
+            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.domain_performance, campaignId);
 
             string content;
             using (var client = new HttpClient())
@@ -28,8 +28,7 @@ namespace MailChimp.Api.Net.Services.Reports
                 content = await client.GetStringAsync(endpoint);
             }
 
-            return JsonConvert.DeserializeObject<CampaignAdvice>(content);
+            return JsonConvert.DeserializeObject<DomainPerformance>(content);
         }
-
     }
 }

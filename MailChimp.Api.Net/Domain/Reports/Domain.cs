@@ -15,7 +15,7 @@ namespace MailChimp.Api.Net.Domain.Reports
         public int clicks { get; set; }
         public int unsubs { get; set; }
         public int delivered { get; set; }
-        public int emails_pct { get; set; }
+        public double emails_pct { get; set; }
         public int bounces_pct { get; set; }
         public int opens_pct { get; set; }
         public int clicks_pct { get; set; }

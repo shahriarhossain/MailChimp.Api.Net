@@ -90,6 +90,7 @@
     <Compile Include="Services\Authenticate.cs" />
     <Compile Include="Services\MailChimpWorker.cs" />
     <Compile Include="Services\Reports\MCReportsCampaignAdvice.cs" />
+    <Compile Include="Services\Reports\MCReportsDomainPerformance.cs" />
     <Compile Include="Services\Reports\ReportsOverview.cs" />
   </ItemGroup>
   <ItemGroup>
