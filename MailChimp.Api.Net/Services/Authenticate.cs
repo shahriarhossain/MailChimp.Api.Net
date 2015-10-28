@@ -10,6 +10,8 @@ using MailChimp.Api.Net.Enum;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
+using MailChimp.Api.Net.Mapper;
+
 namespace MailChimp.Api.Net.Services
 {
     public static class Authenticate
@@ -58,14 +60,24 @@ namespace MailChimp.Api.Net.Services
         /// <summary>
         /// Return the endpoint to caller method
         /// <param name="type">v3.0 Mailchimp EndPoint targetType, example: reports, lists etc</param>
+        /// <param name="subType" optional>Expects id for particular list/campaign etc</param>
         /// <param name="id" optional>Expects id for particular list/campaign etc</param>
         /// </summary>
-        public static string EndPoint(TargetTypes type, string id="")
+        public static string EndPoint(TargetTypes type, SubTargetType subType, string id="")
         {
+            string subCategory = EnumMapper.Map(subType);
+
             var dataCenter = GetDatacenterPrefix();
             if (id != "")
             {
-                return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}", dataCenter, type, id);
+                if (subCategory != "")
+                {
+                    return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}/{3}", dataCenter, type, id, subCategory);
+                }
+                else
+                {
+                    return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}", dataCenter, type, id);
+                }
             }
             else
             {

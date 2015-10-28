@@ -74,8 +74,10 @@
     <Compile Include="Domain\Reports\UrlsClicked.cs" />
     <Compile Include="Enum\CommandProperty.cs" />
     <Compile Include="Enum\Method.cs" />
+    <Compile Include="Enum\SubTargetType.cs" />
     <Compile Include="Enum\TargetTypes.cs" />
     <Compile Include="ErrorMessages\MailChimpExceptionMessage.cs" />
+    <Compile Include="Mapper\EnumMapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Reports\CampaignAdvice.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="Domain\Reports\ReportOverview.cs" />
     <Compile Include="Services\Authenticate.cs" />
     <Compile Include="Services\MailChimpWorker.cs" />
+    <Compile Include="Services\Reports\MCReportsCampaignAdvice.cs" />
     <Compile Include="Services\Reports\ReportsOverview.cs" />
   </ItemGroup>
   <ItemGroup>
