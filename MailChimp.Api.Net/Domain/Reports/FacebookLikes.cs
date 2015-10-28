@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MailChimp.Api.Net.Domain.Reports
 {
-    public class Location
+    public class FacebookLikes
     {
-        public string country_code { get; set; }
-        public string region { get; set; }
-        public int opens { get; set; }
+        public int recipient_likes { get; set; }
+        public int unique_likes { get; set; }
+        public int facebook_likes { get; set; }
     }
 }

@@ -46,10 +46,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Reports\Activity.cs" />
+    <Compile Include="Domain\Reports\Advice.cs" />
+    <Compile Include="Domain\Reports\Bounces.cs" />
+    <Compile Include="Domain\Reports\Clicks.cs" />
+    <Compile Include="Domain\Reports\DeliveryStatus.cs" />
+    <Compile Include="Domain\Reports\Domain.cs" />
+    <Compile Include="Domain\Reports\Email.cs" />
+    <Compile Include="Domain\Reports\FacebookLikes.cs" />
+    <Compile Include="Domain\Reports\Forwards.cs" />
+    <Compile Include="Domain\Reports\IndustryStats.cs" />
+    <Compile Include="Domain\Reports\Link.cs" />
+    <Compile Include="Domain\Reports\Link2.cs" />
+    <Compile Include="Domain\Reports\ListStats.cs" />
+    <Compile Include="Domain\Reports\Member.cs" />
+    <Compile Include="Domain\Reports\Opens.cs" />
+    <Compile Include="Domain\Reports\Report.cs" />
     <Compile Include="Domain\Reports\ReportOverview_CampaignSpecific.cs" />
+    <Compile Include="Domain\Reports\RootLocation.cs" />
+    <Compile Include="Domain\Reports\RootSentTo.cs" />
+    <Compile Include="Domain\Reports\RootUnsubscribe.cs" />
     <Compile Include="Domain\Reports\SentTo.cs" />
-    <Compile Include="Domain\Reports\Sub-Reports.cs" />
+    <Compile Include="Domain\Reports\ShareReport.cs" />
+    <Compile Include="Domain\Reports\Sub_Reports.cs" />
+    <Compile Include="Domain\Reports\Timesery.cs" />
     <Compile Include="Domain\Reports\Unsubscribed.cs" />
+    <Compile Include="Domain\Reports\UrlsClicked.cs" />
     <Compile Include="Enum\CommandProperty.cs" />
     <Compile Include="Enum\Method.cs" />
     <Compile Include="Enum\TargetTypes.cs" />

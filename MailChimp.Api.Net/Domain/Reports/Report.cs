@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MailChimp.Api.Net.Domain.Reports
-{   
-    public class ReportOverview_CampaignSpecific
+{
+    public class Report
     {
         public string id { get; set; }
         public string campaign_title { get; set; }

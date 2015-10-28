@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace MailChimp.Api.Net.Domain.Reports
 {
-    public class Location
+    public class Advice
     {
-        public string country_code { get; set; }
-        public string region { get; set; }
-        public int opens { get; set; }
+        public string type { get; set; }
+        public string message { get; set; }
     }
 }

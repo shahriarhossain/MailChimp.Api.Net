@@ -6,20 +6,6 @@ using System.Threading.Tasks;
 
 namespace MailChimp.Api.Net.Domain.Reports
 {
-    public class Advice
-    {
-        public string type { get; set; }
-        public string message { get; set; }
-    }
-
-    //public class Link
-    //{
-    //    public string rel { get; set; }
-    //    public string href { get; set; }
-    //    public string method { get; set; }
-    //    public string targetSchema { get; set; }
-    //}
-
     public class CampaignAdvice
     {
         public List<Advice> advice { get; set; }
