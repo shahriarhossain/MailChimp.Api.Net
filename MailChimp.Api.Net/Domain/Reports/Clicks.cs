@@ -11,7 +11,7 @@ namespace MailChimp.Api.Net.Domain.Reports
         public int clicks_total { get; set; }
         public int unique_clicks { get; set; }
         public int unique_subscriber_clicks { get; set; }
-        public int click_rate { get; set; }
+        public double click_rate { get; set; }
         public string last_click { get; set; }
     }
 }
