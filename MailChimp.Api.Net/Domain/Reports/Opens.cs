@@ -10,7 +10,7 @@ namespace MailChimp.Api.Net.Domain.Reports
     {
         public int opens_total { get; set; }
         public int unique_opens { get; set; }
-        public int open_rate { get; set; }
+        public double open_rate { get; set; }
         public string last_open { get; set; }
     }
 }
