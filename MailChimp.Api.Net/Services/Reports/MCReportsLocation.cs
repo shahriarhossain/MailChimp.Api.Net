@@ -16,7 +16,7 @@ namespace MailChimp.Api.Net.Services.Reports
         /// Return top open locations for a specific campaign.
         /// <param name="campaignId">Unique id for the campaign</param>
         /// </summary>
-        public async Task<RootLocation> GetTopLocation(string campaignId)
+        public async Task<RootLocation> GetTopLocationAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.locations, SubTargetType.not_applicable, campaignId);
 

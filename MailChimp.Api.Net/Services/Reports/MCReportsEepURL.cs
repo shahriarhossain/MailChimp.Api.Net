@@ -16,7 +16,7 @@ namespace MailChimp.Api.Net.Services.Reports
         /// Return a summary of social activity for the campaign, tracked by EepURL.
         /// <param name="campaignId">Unique id for campaign</param>
         /// </summary>
-        public async Task<Eepurl> GetEepUrlActivity(string campaignId)
+        public async Task<Eepurl> GetEepUrlActivityAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.eepurl, SubTargetType.not_applicable, campaignId);
 
