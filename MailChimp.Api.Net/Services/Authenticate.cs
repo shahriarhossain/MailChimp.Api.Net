@@ -69,7 +69,6 @@ namespace MailChimp.Api.Net.Services
             string subCategory = EnumMapper.Map(subType);
             string subChildCategory = EnumMapper.Map(childSubType);
 
-
             var dataCenter = GetDatacenterPrefix();
             if (id != "")
             {
