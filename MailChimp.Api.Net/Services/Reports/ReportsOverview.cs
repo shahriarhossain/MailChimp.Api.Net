@@ -16,7 +16,7 @@ namespace MailChimp.Api.Net.Services.Reports
     {
         public ReportOverview Overview()
         {
-            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.not_applicable);
+            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.not_applicable, SubTargetType.not_applicable);
 
             string content = MailChimpWorker.Execute(Method.Get, endpoint).Result;
 
@@ -25,7 +25,7 @@ namespace MailChimp.Api.Net.Services.Reports
 
         public async Task<ReportOverview_CampaignSpecific> CampaignSpecificOverviewAsync(string campaignId)
         {
-            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.not_applicable, campaignId);
+            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.not_applicable, SubTargetType.not_applicable, campaignId);
 
             string content;
             using (var client = new HttpClient())

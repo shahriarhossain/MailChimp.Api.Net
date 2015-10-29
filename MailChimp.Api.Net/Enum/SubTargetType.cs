@@ -17,7 +17,12 @@ namespace MailChimp.Api.Net.Enum
         locations,
         sent_to,
         sub_reports,
-        unsubscribed
+        unsubscribed,
+        action1,
+        action2,
+        action3,
+        action4,
+        action5
 
     }
 }

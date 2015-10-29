@@ -18,7 +18,7 @@ namespace MailChimp.Api.Net.Services.Reports
         /// </summary>
         public async Task<ClickReports> GetClickDetailsAsync(string campaignId)
         {
-            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.click_details, campaignId);
+            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.click_details, SubTargetType.not_applicable, campaignId);
 
             string content;
             using (var client = new HttpClient())
@@ -37,7 +37,7 @@ namespace MailChimp.Api.Net.Services.Reports
         /// </summary>
         public async Task<ClickReports> GetLinkSpecificClickDetailsAsync(string campaignId, string linkId)
         {
-            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.click_details, campaignId);
+            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.click_details, SubTargetType.not_applicable, campaignId);
             endpoint = endpoint + "/" + linkId;
 
             string content;

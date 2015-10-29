@@ -18,7 +18,7 @@ namespace MailChimp.Api.Net.Services.Reports
         /// </summary>
         public async Task<RootLocation> GetTopLocation(string campaignId)
         {
-            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.locations, campaignId);
+            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.locations, SubTargetType.not_applicable, campaignId);
 
             string content;
             using (var client = new HttpClient())

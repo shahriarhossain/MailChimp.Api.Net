@@ -18,7 +18,7 @@ namespace MailChimp.Api.Net.Services.Reports
         /// </summary>
         public async Task<Sub_Reports> GetDomainPerformanceAsync(string campaignId)
         {
-            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.sub_reports, campaignId);
+            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.sub_reports, SubTargetType.not_applicable, campaignId);
 
             string content;
             using (var client = new HttpClient())

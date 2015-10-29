@@ -18,7 +18,7 @@ namespace MailChimp.Api.Net.Services.Reports
         /// </summary>
         public async Task<CampaignAdvice> GetAdviceAsync(string campaignId)
         {
-            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.advice, campaignId);
+            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.advice, SubTargetType.not_applicable, campaignId);
 
             string content;
             using (var client = new HttpClient())
