@@ -37,7 +37,5 @@ namespace MailChimp.Api.Net.Services.Reports
 
             return JsonConvert.DeserializeObject<ReportOverview_CampaignSpecific>(content);
         }
-
-
     }
 }
