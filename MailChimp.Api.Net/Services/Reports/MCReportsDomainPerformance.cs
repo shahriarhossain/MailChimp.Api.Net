@@ -14,7 +14,7 @@ namespace MailChimp.Api.Net.Services.Reports
     {
         /// <summary>
         /// Return statistics for the top-performing domains from a campaign.
-        /// <param name="campaignId">Campaign Id</param>
+        /// <param name="campaignId">Unique id for campaign</param>
         /// </summary>
         public async Task<DomainPerformance> GetDomainPerformanceAsync(string campaignId)
         {
