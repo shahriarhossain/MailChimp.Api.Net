@@ -20,3 +20,11 @@ The Reports sections are good to go!
 - Sent To
 - Sub-Reports
 - Unsubscribes
+
+
+HOW TO USE
+===
+You can download it via nuget package.
+
+**PM> Install-Package MailChimp.Api.Net**
+
