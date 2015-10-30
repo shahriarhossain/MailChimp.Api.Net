@@ -23,7 +23,7 @@ The Reports sections are good to go!
 
 Templates:
 ---
-Exposing two method to featch *All Template* and also fetch *Get information for specific Template*
+The Templates sections are good to go! 
 
 HOW TO USE
 ===
