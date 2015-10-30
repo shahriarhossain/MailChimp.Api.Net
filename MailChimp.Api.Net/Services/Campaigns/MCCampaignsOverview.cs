@@ -38,7 +38,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         /// Get information about a specific campaign
         /// <param name="campaignId">Unique id for the campaign</param>
         /// </summary>
-        public async Task<Campaign> GetCampaignsByIdAsync(string campaignId)
+        public async Task<Campaign> GetCampaignByIdAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.not_applicable, SubTargetType.not_applicable, campaignId);
 
@@ -57,7 +57,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         /// Delete a campaign
         /// <param name="campaignId">Unique id for the campaign</param>
         /// </summary>
-        public async Task<HttpResponseMessage> DeleteCampaignsByIdAsync(string campaignId)
+        public async Task<HttpResponseMessage> DeleteCampaignByIdAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.not_applicable, SubTargetType.not_applicable, campaignId);
 
@@ -76,7 +76,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         /// Cancel a campaign
         /// <param name="campaignId">Unique id for the campaign</param>
         /// </summary>
-        public async Task<HttpResponseMessage> CancelCampaignsByIdAsync(string campaignId)
+        public async Task<HttpResponseMessage> CancelCampaignByIdAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.action3, SubTargetType.not_applicable, campaignId);
 
