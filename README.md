@@ -21,6 +21,9 @@ The Reports sections are good to go!
 - Sub-Reports
 - Unsubscribes
 
+Templates:
+---
+Exposing two method to featch *All Template* and also fetch *Get information for specific Template*
 
 HOW TO USE
 ===
