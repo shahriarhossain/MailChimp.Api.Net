@@ -14,7 +14,7 @@ namespace MailChimp.Api.Net.Services.Reports
 {
     public class MCReportsOverview
     {
-        public async Task<ReportOverview> OverviewAsync()
+        public async Task<ReportOverview> GetOverviewAsync()
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.not_applicable, SubTargetType.not_applicable);
 
@@ -30,7 +30,7 @@ namespace MailChimp.Api.Net.Services.Reports
             return JsonConvert.DeserializeObject<ReportOverview>(content);
         }
 
-        public async Task<ReportOverview_CampaignSpecific> CampaignSpecificOverviewAsync(string campaignId)
+        public async Task<ReportOverview_CampaignSpecific> GetCampaignSpecificOverviewAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.not_applicable, SubTargetType.not_applicable, campaignId);
 
