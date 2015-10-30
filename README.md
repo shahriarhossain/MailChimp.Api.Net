@@ -30,6 +30,12 @@ Campaigns:
 - Right now you can READ and DELETE Campaign Info. However *Cancel a campaign* feature is not implemented yet.
 - You can READ and DELETE Campaign feedback. However *Create Feedback* and *Edit Feedback* feature is not implemented yet.
 
+Conversations:
+====
+- Conversation section is implemented except one feature. *Post a new conversation message* feature is not implemented yet.
+
+
+
 HOW TO USE
 ===
 You can download it via nuget package.
