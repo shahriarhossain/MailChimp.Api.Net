@@ -25,6 +25,11 @@ Templates:
 ---
 The Templates sections are good to go! 
 
+Campaigns: 
+---
+- Right now you can READ and DELETE Campaign Info. However *Cancel a campaign* feature is not implemented yet.
+- You can READ and DELETE Campaign feedback. However *Create Feedback* and *Edit Feedback* feature is not implemented yet.
+
 HOW TO USE
 ===
 You can download it via nuget package.
