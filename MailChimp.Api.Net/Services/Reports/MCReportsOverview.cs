@@ -12,13 +12,20 @@ using MailChimp.Api.Net.Domain.Reports;
 
 namespace MailChimp.Api.Net.Services.Reports
 {
-    public class ReportsOverview
+    public class MCReportsOverview
     {
-        public ReportOverview Overview()
+        public async Task<ReportOverview> OverviewAsync()
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.not_applicable, SubTargetType.not_applicable);
 
-            string content = MailChimpWorker.Execute(Method.Get, endpoint).Result;
+            //string content = MailChimpWorker.Execute(Method.Get, endpoint).Result;
+            string content;
+            using (var client = new HttpClient())
+            {
+                Authenticate.ClientAuthentication(client);
+
+                content = await client.GetStringAsync(endpoint);
+            }
 
             return JsonConvert.DeserializeObject<ReportOverview>(content);
         }
