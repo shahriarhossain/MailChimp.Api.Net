@@ -10,10 +10,10 @@ using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Templates
 {
-    // =====================================================
+    // ====================================================================================================================================
     // AUTHOR      : Shahriar Hossain
     // PURPOSE     : Manage your MailChimp templates. A template is an HTML file used to create the layout and basic design for a campaign.
-    // =====================================================
+    // ====================================================================================================================================
 
     public class MCTemplatesOverview
     {
@@ -54,5 +54,22 @@ namespace MailChimp.Api.Net.Services.Templates
             return JsonConvert.DeserializeObject<Template>(content);
         }
 
+        /// <summary>
+        /// Delete a specific template
+        /// <param name="template_id">The unique id for the template</param>
+        /// </summary>
+        public async Task<HttpResponseMessage> DeleteTemplatesByIdAsync(string template_id)
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.templates, SubTargetType.not_applicable, SubTargetType.not_applicable, template_id);
+
+            HttpResponseMessage result;
+            using (var client = new HttpClient())
+            {
+                Authenticate.ClientAuthentication(client);
+
+                result = await client.DeleteAsync(endpoint);
+            }
+            return result;
+        }
     }
 }
