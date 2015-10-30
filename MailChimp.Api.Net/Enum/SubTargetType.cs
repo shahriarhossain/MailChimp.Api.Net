@@ -24,7 +24,8 @@ namespace MailChimp.Api.Net.Enum
         action4,
         action5,
         members,
-        feedback
+        feedback,
+        messages
 
     }
 }

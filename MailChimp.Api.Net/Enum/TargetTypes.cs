@@ -10,6 +10,7 @@ namespace MailChimp.Api.Net.Enum
     {
         reports,
         templates,
-        campaigns
+        campaigns,
+        conversations
     }
 }
