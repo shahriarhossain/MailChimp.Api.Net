@@ -40,7 +40,7 @@ namespace MailChimp.Api.Net.Services.Conversations
         /// Get information about a conversation
         /// <param name="conversation_id">Unique id for the campaign</param>
         /// </summary>
-        public async Task<Conversation> GetConversationsByIdAsync(string conversation_id)
+        public async Task<Conversation> GetConversationByIdAsync(string conversation_id)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.conversations, SubTargetType.not_applicable, SubTargetType.not_applicable, conversation_id);
 
