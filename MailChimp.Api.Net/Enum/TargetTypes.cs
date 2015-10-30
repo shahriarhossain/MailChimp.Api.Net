@@ -8,6 +8,7 @@ namespace MailChimp.Api.Net.Enum
 {
     public enum TargetTypes
     {
-        reports
+        reports,
+        templates
     }
 }
