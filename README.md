@@ -7,11 +7,16 @@ Current Status:
 ====
 Reports:
 ---
-The following sections are done so far
+The Reports sections are good to go! 
+
 - Reports Overview
 - Campaign Advice
 - Click Reports
 - - Click Reports Members
 - Domain Performance
+- EepURL Reports
+- Email Activity
 - Location
+- Sent To
 - Sub-Reports
+- Unsubscribes
