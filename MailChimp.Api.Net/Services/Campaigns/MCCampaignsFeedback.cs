@@ -60,7 +60,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         /// <param name="campaignId">Unique id for the campaign</param>
         /// <param name="feedback_id">Unique id for the feedback message.</param>
         /// </summary>
-        public async Task<Feedback> DeleteSpecificFeedbackAsync(string campaignId, string feedback_id)
+        public async Task<HttpResponseMessage> DeleteSpecificFeedbackAsync(string campaignId, string feedback_id)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.feedback, SubTargetType.not_applicable, campaignId, feedback_id);
 
