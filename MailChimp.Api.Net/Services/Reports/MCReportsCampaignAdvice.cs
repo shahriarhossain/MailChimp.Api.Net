@@ -10,13 +10,18 @@ using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Reports
 {
-    public class MCReportsCampaignAdvice
+    // ============================================================================
+    // AUTHOR      : Shahriar Hossain
+    // PURPOSE     : Get recent feedback based on a campaign’s statistics. 
+    // ============================================================================
+
+    internal class MCReportsCampaignAdvice
     {
         /// <summary>
         /// Return recent feedback based on a campaign’s statistics
         /// <param name="campaignId">Campaign Id</param>
         /// </summary>
-        public async Task<CampaignAdvice> GetAdviceAsync(string campaignId)
+        internal async Task<CampaignAdvice> GetAdviceAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.advice, SubTargetType.not_applicable, campaignId);
 
@@ -25,7 +30,7 @@ namespace MailChimp.Api.Net.Services.Reports
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false) ;
             }
 
             return JsonConvert.DeserializeObject<CampaignAdvice>(content);

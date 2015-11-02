@@ -15,13 +15,13 @@ namespace MailChimp.Api.Net.Services.Reports
     // PURPOSE     : Get details about campaign recipients
     // =====================================================
 
-    public class MCReportsSentTo
+    internal class MCReportsSentTo
     {
         /// <summary>
         /// Return top open locations for a specific campaign.
         /// <param name="campaignId">Unique id for the campaign</param>
         /// </summary>
-        public async Task<RootSentTo> GetRecipientsInfoAsync(string campaignId)
+        internal async Task<RootSentTo> GetRecipientsInfoAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.sent_to, SubTargetType.not_applicable, campaignId);
 
@@ -30,7 +30,7 @@ namespace MailChimp.Api.Net.Services.Reports
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
             }
 
             return JsonConvert.DeserializeObject<RootSentTo>(content);
@@ -41,7 +41,7 @@ namespace MailChimp.Api.Net.Services.Reports
         /// <param name="campaignId">Unique id for the campaign</param>
         /// <param name="subscriber_hash">The MD5 hash of the lowercase version of the list member’s email address</param>
         /// </summary>
-        public async Task<SentTo> GetSpecificCampaignRecipientAsync(string campaignId, string subscriber_hash)
+        internal async Task<SentTo> GetSpecificCampaignRecipientAsync(string campaignId, string subscriber_hash)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.sent_to, SubTargetType.not_applicable, campaignId, subscriber_hash);
 
@@ -50,7 +50,7 @@ namespace MailChimp.Api.Net.Services.Reports
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
             }
 
             return JsonConvert.DeserializeObject<SentTo>(content);

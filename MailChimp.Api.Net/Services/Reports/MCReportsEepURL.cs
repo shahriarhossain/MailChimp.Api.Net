@@ -10,13 +10,18 @@ using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Reports
 {
-    public class MCReportsEepURL
+    // ===================================================================================
+    // AUTHOR      : Shahriar Hossain
+    // PURPOSE     : Get a summary of social activity for the campaign, tracked by EepURL. 
+    // ====================================================================================
+
+    internal class MCReportsEepURL
     {
         /// <summary>
         /// Return a summary of social activity for the campaign, tracked by EepURL.
         /// <param name="campaignId">Unique id for campaign</param>
         /// </summary>
-        public async Task<Eepurl> GetEepUrlActivityAsync(string campaignId)
+        internal async Task<Eepurl> GetEepUrlActivityAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.eepurl, SubTargetType.not_applicable, campaignId);
 
@@ -25,7 +30,7 @@ namespace MailChimp.Api.Net.Services.Reports
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
             }
 
             return JsonConvert.DeserializeObject<Eepurl>(content);

@@ -10,13 +10,19 @@ using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Reports
 {
-    public class MCReportsLocation
+    // =============================================================
+    // AUTHOR      : Shahriar Hossain
+    // PURPOSE     : Get top open locations for a specific campaign 
+    // =============================================================
+
+
+    internal class MCReportsLocation
     {
         /// <summary>
         /// Return top open locations for a specific campaign.
         /// <param name="campaignId">Unique id for the campaign</param>
         /// </summary>
-        public async Task<RootLocation> GetTopLocationAsync(string campaignId)
+        internal async Task<RootLocation> GetTopLocationAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.locations, SubTargetType.not_applicable, campaignId);
 
@@ -25,7 +31,7 @@ namespace MailChimp.Api.Net.Services.Reports
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
             }
 
             return JsonConvert.DeserializeObject<RootLocation>(content);

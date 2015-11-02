@@ -10,13 +10,18 @@ using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Reports
 {
-    public class MCReportsDomainPerformance
+    // ============================================================================
+    // AUTHOR      : Shahriar Hossain
+    // PURPOSE     : Get statistics for the top-performing domains from a campaign. 
+    // ============================================================================
+
+    internal class MCReportsDomainPerformance
     {
         /// <summary>
         /// Return statistics for the top-performing domains from a campaign.
         /// <param name="campaignId">Unique id for campaign</param>
         /// </summary>
-        public async Task<DomainPerformance> GetDomainPerformanceAsync(string campaignId)
+        internal async Task<DomainPerformance> GetDomainPerformanceAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.domain_performance, SubTargetType.not_applicable, campaignId);
 
@@ -25,7 +30,7 @@ namespace MailChimp.Api.Net.Services.Reports
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false) ;
             }
 
             return JsonConvert.DeserializeObject<DomainPerformance>(content);

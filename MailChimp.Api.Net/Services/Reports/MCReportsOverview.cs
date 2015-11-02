@@ -12,9 +12,18 @@ using MailChimp.Api.Net.Domain.Reports;
 
 namespace MailChimp.Api.Net.Services.Reports
 {
-    public class MCReportsOverview
+    // ==================================================================
+    // AUTHOR      : Shahriar Hossain
+    // PURPOSE     : Manage campaign reports for your MailChimp account. 
+    // ==================================================================
+
+    internal class MCReportsOverview
     {
-        public async Task<ReportOverview> OverviewAsync()
+        /// <summary>
+        /// Get campaign reports
+        /// <param name="campaignId">Campaign Id</param>
+        /// </summary>
+        internal async Task<ReportOverview> OverviewAsync()
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.not_applicable, SubTargetType.not_applicable);
 
@@ -24,13 +33,17 @@ namespace MailChimp.Api.Net.Services.Reports
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
             }
 
             return JsonConvert.DeserializeObject<ReportOverview>(content);
         }
 
-        public async Task<ReportOverview_CampaignSpecific> CampaignSpecificOverviewAsync(string campaignId)
+        /// <summary>
+        /// Get a specific campaign report
+        /// <param name="campaignId">Campaign Id</param>
+        /// </summary>
+        internal async Task<ReportOverview_CampaignSpecific> CampaignSpecificOverviewAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.not_applicable, SubTargetType.not_applicable, campaignId);
 
@@ -39,7 +52,7 @@ namespace MailChimp.Api.Net.Services.Reports
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
             }
 
             return JsonConvert.DeserializeObject<ReportOverview_CampaignSpecific>(content);

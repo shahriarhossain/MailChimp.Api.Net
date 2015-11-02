@@ -10,13 +10,18 @@ using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Reports
 {
-    public class MCReportsSubReport
+    // ===========================================================================================
+    // AUTHOR      : Shahriar Hossain
+    // PURPOSE     : Get list of reports for child campaigns of a specific parent campaign. 
+    // ===========================================================================================
+
+    internal class MCReportsSubReport
     {
         /// <summary>
         /// Return A list of reports for child campaigns of a specific parent campaign. 
         /// <param name="campaignId">Campaign Id</param>
         /// </summary>
-        public async Task<Sub_Reports> GetDomainPerformanceAsync(string campaignId)
+        internal async Task<Sub_Reports> GetReportForChildCampaignAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.sub_reports, SubTargetType.not_applicable, campaignId);
 
@@ -25,7 +30,7 @@ namespace MailChimp.Api.Net.Services.Reports
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false) ;
             }
 
             return JsonConvert.DeserializeObject<Sub_Reports>(content);
