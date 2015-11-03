@@ -28,9 +28,16 @@ namespace MailChimp.Api.Net.Services.Reports
             string content;
             using (var client = new HttpClient())
             {
-                Authenticate.ClientAuthentication(client);
+                try
+                {
+                    Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint).ConfigureAwait(false) ;
+                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }  
             }
 
             return JsonConvert.DeserializeObject<EmailActivity>(content);
@@ -48,9 +55,16 @@ namespace MailChimp.Api.Net.Services.Reports
             string content;
             using (var client = new HttpClient())
             {
-                Authenticate.ClientAuthentication(client);
+                try
+                {
+                    Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
+                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                } 
             }
 
             return JsonConvert.DeserializeObject<EmailActivity>(content);

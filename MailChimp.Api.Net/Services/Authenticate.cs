@@ -44,9 +44,6 @@ namespace MailChimp.Api.Net.Services
             {
                 throw new MailChimpExceptions(ex.Message.ToString());
             }
-
-
-
         }
 
 

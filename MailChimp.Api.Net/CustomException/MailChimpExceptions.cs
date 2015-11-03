@@ -14,5 +14,12 @@ namespace MailChimp.Api.Net.CustomException
         {
             
         }
+
+        //public MailChimpExceptions(string msg, NullReferenceException ex)
+        //    : base(msg, ex)
+        //{
+        //    return String.Format("MailChimp API Key missing! To resolve Add a key named 'MailChimpApiKey' in your config and SET its value with your mailchimp API key!");
+        //}
+
     }
 }
