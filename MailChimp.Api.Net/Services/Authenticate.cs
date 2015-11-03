@@ -38,7 +38,12 @@ namespace MailChimp.Api.Net.Services
             }
             catch (Exception ex)
             {
-                //return MailChimpExceptionMessage.UnknownExceptionMessage(ex);
+                string message;
+                if (ex.Message.ToString() == "Object reference not set to an instance of an object.")
+                {
+                    message = String.Format("MailChimp API Key missing! To resolve Add a key named 'MailChimpApiKey' in your config and SET its value with your mailchimp API key!");
+                    throw new MailChimpExceptions(message);
+                }
                 throw new MailChimpExceptions(ex.Message.ToString());
             }
         }

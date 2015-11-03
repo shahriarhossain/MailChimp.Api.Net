@@ -12,6 +12,7 @@ namespace MailChimp.Api.Net.CustomException
     {
         public MailChimpExceptions(string msg): base(msg)
         {
+            
         }
     }
 }
