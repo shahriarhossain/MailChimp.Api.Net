@@ -7,7 +7,7 @@ using MailChimp.Api.Net.Enum;
 
 namespace MailChimp.Api.Net.Mapper
 {
-    public static class EnumMapper
+    internal static class EnumMapper
     {
         public static string Map(SubTargetType subType)
         {

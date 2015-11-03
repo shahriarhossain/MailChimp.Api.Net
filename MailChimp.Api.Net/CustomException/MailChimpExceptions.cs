@@ -8,7 +8,7 @@ using MailChimp.Api.Net.ErrorMessages;
 
 namespace MailChimp.Api.Net.CustomException
 {
-    public class MailChimpExceptions : Exception
+    internal class MailChimpExceptions : Exception
     {
         public MailChimpExceptions(string msg): base(msg)
         {

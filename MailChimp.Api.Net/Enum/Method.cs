@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MailChimp.Api.Net.Enum
 {
-    public enum Method
+    internal enum Method
     {
         Get,
         Post,

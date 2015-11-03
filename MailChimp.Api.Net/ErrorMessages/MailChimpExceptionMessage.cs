@@ -8,7 +8,7 @@ using MailChimp.Api.Net.Enum;
 
 namespace MailChimp.Api.Net.ErrorMessages
 {
-    public static class MailChimpExceptionMessage
+    internal static class MailChimpExceptionMessage
     {
         public static string NullOrEmptyMessage(CommandProperty command)
         {

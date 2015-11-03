@@ -9,7 +9,7 @@ using MailChimp.Api.Net.Enum;
 
 namespace MailChimp.Api.Net.Services
 {
-    public static class MailChimpWorker
+    internal static class MailChimpWorker
     {
         public static async Task<string> Execute(Method method, string endpoint)
         {

@@ -15,7 +15,7 @@ using MailChimp.Api.Net.CustomException;
 
 namespace MailChimp.Api.Net.Services
 {
-    public static class Authenticate
+    internal static class Authenticate
     {
         /// <summary>
         /// Retrieve the API key from App.Config and check if its valid

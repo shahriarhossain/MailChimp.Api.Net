@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MailChimp.Api.Net.Enum
 {
-    public enum CommandProperty
+    internal enum CommandProperty
     {
         apikey
 
