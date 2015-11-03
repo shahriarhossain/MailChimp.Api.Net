@@ -14,13 +14,13 @@ namespace MailChimp.Api.Net.Services.Conversations
     // AUTHOR      : Shahriar Hossain
     // PURPOSE     : Manage messages in a specific campaign conversation.
     // ===================================================================================================================================================
-    public class MCConversationsMessages
+    internal class MCConversationsMessages
     {
         /// <summary>
         /// Get conversation messages
         /// <param name="conversation_id">Unique id for the campaign</param>
         /// </summary>
-        public async Task<RootConversationMessage> GetALLMessagesAsync(string conversation_id)
+        internal async Task<RootConversationMessage> GetALLMessagesAsync(string conversation_id)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.conversations, SubTargetType.messages, SubTargetType.not_applicable, conversation_id);
 
@@ -29,7 +29,7 @@ namespace MailChimp.Api.Net.Services.Conversations
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
             }
 
             return JsonConvert.DeserializeObject<RootConversationMessage>(content);
@@ -41,7 +41,7 @@ namespace MailChimp.Api.Net.Services.Conversations
         /// <param name="conversation_id">Unique id for the campaign</param>
         /// <param name="message_id">The unique id for the conversation message</param>
         /// </summary>
-        public async Task<ConversationMessage> GetMessageByIdAsync(string conversation_id, string message_id)
+        internal async Task<ConversationMessage> GetMessageByIdAsync(string conversation_id, string message_id)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.conversations, SubTargetType.messages, SubTargetType.not_applicable, conversation_id, message_id);
 
@@ -50,7 +50,7 @@ namespace MailChimp.Api.Net.Services.Conversations
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
             }
 
             return JsonConvert.DeserializeObject<ConversationMessage>(content);

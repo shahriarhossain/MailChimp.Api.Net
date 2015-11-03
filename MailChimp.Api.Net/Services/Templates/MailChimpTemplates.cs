@@ -15,7 +15,7 @@ namespace MailChimp.Api.Net.Services.Templates
     // PURPOSE     : Manage your MailChimp templates. A template is an HTML file used to create the layout and basic design for a campaign.
     // ====================================================================================================================================
 
-    public class MCTemplatesOverview
+    public class MailChimpTemplates
     {
         /// <summary>
         /// Get all templates
@@ -27,9 +27,16 @@ namespace MailChimp.Api.Net.Services.Templates
             string content;
             using (var client = new HttpClient())
             {
-                Authenticate.ClientAuthentication(client);
+                try
+                {
+                    Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
 
             return JsonConvert.DeserializeObject<RootTemplate>(content);
@@ -46,9 +53,17 @@ namespace MailChimp.Api.Net.Services.Templates
             string content;
             using (var client = new HttpClient())
             {
-                Authenticate.ClientAuthentication(client);
+                try
+                {
+                    Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
+                }
+                catch (Exception ex)
+                {
+                    
+                    throw ex;
+                }
             }
 
             return JsonConvert.DeserializeObject<Template>(content);
@@ -65,9 +80,17 @@ namespace MailChimp.Api.Net.Services.Templates
             HttpResponseMessage result;
             using (var client = new HttpClient())
             {
-                Authenticate.ClientAuthentication(client);
+                try
+                {
+                    Authenticate.ClientAuthentication(client);
 
-                result = await client.DeleteAsync(endpoint);
+                    result = await client.DeleteAsync(endpoint).ConfigureAwait(false);
+                }
+                catch (Exception ex)
+                {
+                    
+                    throw ex;
+                }
             }
             return result;
         }

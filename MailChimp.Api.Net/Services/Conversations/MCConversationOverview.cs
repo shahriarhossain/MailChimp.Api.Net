@@ -15,12 +15,12 @@ namespace MailChimp.Api.Net.Services.Conversations
     // PURPOSE     : Conversation tracking is a paid feature that lets you view subscribers’ replies to your campaigns in your MailChimp account.
     // ============================================================================================================================================
 
-    public class MCConversationOverview
+    internal class MCConversationOverview
     {
         /// <summary>
         /// Get a list of conversations
         /// </summary>
-        public async Task<RootConversation> GetConversationsAsync()
+        internal async Task<RootConversation> GetConversationsAsync()
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.conversations, SubTargetType.not_applicable, SubTargetType.not_applicable);
 
@@ -29,7 +29,7 @@ namespace MailChimp.Api.Net.Services.Conversations
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
             }
 
             return JsonConvert.DeserializeObject<RootConversation>(content);
@@ -40,7 +40,7 @@ namespace MailChimp.Api.Net.Services.Conversations
         /// Get information about a conversation
         /// <param name="conversation_id">Unique id for the campaign</param>
         /// </summary>
-        public async Task<Conversation> GetConversationByIdAsync(string conversation_id)
+        internal async Task<Conversation> GetConversationByIdAsync(string conversation_id)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.conversations, SubTargetType.not_applicable, SubTargetType.not_applicable, conversation_id);
 
@@ -49,7 +49,7 @@ namespace MailChimp.Api.Net.Services.Conversations
             {
                 Authenticate.ClientAuthentication(client);
 
-                content = await client.GetStringAsync(endpoint);
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
             }
 
             return JsonConvert.DeserializeObject<Conversation>(content);
