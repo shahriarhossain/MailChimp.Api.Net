@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 
 using MailChimp.Api.Net.Mapper;
+using MailChimp.Api.Net.CustomException;
 
 namespace MailChimp.Api.Net.Services
 {
@@ -30,13 +31,15 @@ namespace MailChimp.Api.Net.Services
                 }
                 else
                 {
-                    return MailChimpExceptionMessage.NullOrEmptyMessage(CommandProperty.apikey);
+                    string msg = MailChimpExceptionMessage.NullOrEmptyMessage(CommandProperty.apikey);
+                    throw new MailChimpExceptions(msg);
                 }
 
             }
             catch (Exception ex)
             {
-                return MailChimpExceptionMessage.UnknownExceptionMessage(ex);
+                //return MailChimpExceptionMessage.UnknownExceptionMessage(ex);
+                throw new MailChimpExceptions(ex.Message.ToString());
             }
         }
 
@@ -64,7 +67,7 @@ namespace MailChimp.Api.Net.Services
         /// <param name="id" optional>Expects id for particular list/campaign etc</param>
         /// <param name="linkId" optional>NOT IMPLEMENTED YET</param>
         /// </summary>
-        public static string EndPoint(TargetTypes type, SubTargetType subType, SubTargetType childSubType, string id="", string param2="")
+        public static string EndPoint(TargetTypes type, SubTargetType subType, SubTargetType childSubType, string id = "", string param2 = "")
         {
             string subCategory = EnumMapper.Map(subType);
             string subChildCategory = EnumMapper.Map(childSubType);
@@ -83,13 +86,13 @@ namespace MailChimp.Api.Net.Services
                         else
                         {
                             return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}/{3}/{4}", dataCenter, type, id, subCategory, param2);
-                        }                        
+                        }
                     }
                     else
                     {
                         return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}/{3}", dataCenter, type, id, subCategory);
                     }
-                    
+
                 }
                 else
                 {
@@ -99,7 +102,7 @@ namespace MailChimp.Api.Net.Services
             else
             {
                 return String.Format("https://{0}.api.mailchimp.com/3.0/{1}", dataCenter, type);
-            }        
+            }
         }
 
         /// <summary>
@@ -108,9 +111,11 @@ namespace MailChimp.Api.Net.Services
         /// </summary>
         public static void ClientAuthentication(HttpClient client)
         {
+            //HEADS UP!!!! THIS PORTION NEEDS TO REFACTOR !
+            //Method name have to change
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Authorization =
-                 new AuthenticationHeaderValue("Basic", Authenticate.FeatchApiKey());  
+                 new AuthenticationHeaderValue("Basic", Authenticate.FeatchApiKey());
         }
 
     }
