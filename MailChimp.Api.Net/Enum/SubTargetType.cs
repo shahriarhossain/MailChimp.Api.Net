@@ -30,7 +30,8 @@ namespace MailChimp.Api.Net.Enum
         queue,
         abuse_reports,
         activity,
-        clients
+        clients,
+        growth_history
 
     }
 }
