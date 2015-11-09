@@ -27,7 +27,10 @@ namespace MailChimp.Api.Net.Enum
         feedback,
         messages,
         emails,
-        queue
+        queue,
+        abuse_reports,
+        activity,
+        clients
 
     }
 }
