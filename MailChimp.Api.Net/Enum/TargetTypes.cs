@@ -11,6 +11,7 @@ namespace MailChimp.Api.Net.Enum
         reports,
         templates,
         campaigns,
-        conversations
+        conversations,
+        automations
     }
 }
