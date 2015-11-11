@@ -34,7 +34,8 @@ namespace MailChimp.Api.Net.Enum
         growth_history,
         interest_categories,
         interests,
-        merge_fields
+        merge_fields,
+        segments
 
     }
 }
