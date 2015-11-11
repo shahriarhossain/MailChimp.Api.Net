@@ -55,5 +55,49 @@ namespace MailChimp.Api.Net.Services.Lists
 
             return JsonConvert.DeserializeObject<Category>(content);
         }
+
+        /// <summary>
+        /// Get all interests in a specific category
+        /// <param name="list_id">Unique id for the list</param>
+        /// <param name="interest_category_id">Unique id for the interest category</param>
+        /// </summary>
+        internal async Task<RootInterest> GetAllInterestsForSpecifiedCategoryAsync(string list_id, string interest_category_id)
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.interest_categories, SubTargetType.interests, list_id, interest_category_id);
+
+            string content;
+            using (var client = new HttpClient())
+            {
+                Authenticate.ClientAuthentication(client);
+
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
+            }
+
+            return JsonConvert.DeserializeObject<RootInterest>(content);
+        }
+
+        /// <summary>
+        /// Get interests in a specific category
+        /// <param name="list_id">Unique id for the list</param>
+        /// <param name="interest_category_id">Unique id for the interest category</param>
+        /// <param name="interest_id">The specific interest or ‘group name</param>
+        /// </summary>
+        internal async Task<Interest> GetInterestsForSpecifiedCategoryAsync(string list_id, string interest_category_id, string interest_id)
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.interest_categories, SubTargetType.interests, list_id, interest_category_id);
+
+            string content;
+            using (var client = new HttpClient())
+            {
+                Authenticate.ClientAuthentication(client);
+
+                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
+            }
+
+            return JsonConvert.DeserializeObject<Interest>(content);
+        }
+
+
+
     }
 }
