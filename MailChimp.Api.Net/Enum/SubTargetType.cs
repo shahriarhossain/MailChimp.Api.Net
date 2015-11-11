@@ -33,7 +33,8 @@ namespace MailChimp.Api.Net.Enum
         clients,
         growth_history,
         interest_categories,
-        interests
+        interests,
+        merge_fields
 
     }
 }
