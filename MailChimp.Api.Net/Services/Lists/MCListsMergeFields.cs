@@ -57,5 +57,35 @@ namespace MailChimp.Api.Net.Services.Lists
 
             return JsonConvert.DeserializeObject<MergeField>(content);
         }
+
+
+        /// <summary>
+        /// Delete a merge field
+        /// <param name="list_id">Unique id for the list</param>
+        /// <param name="merge_id">The id for the merge field</param>
+        /// </summary>
+        internal async Task<HttpResponseMessage> DeleteListMemberAsync(string list_id, string merge_id)
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.merge_fields, SubTargetType.not_applicable, list_id, merge_id);
+
+            HttpResponseMessage result;
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    Authenticate.ClientAuthentication(client);
+
+                    result = await client.DeleteAsync(endpoint).ConfigureAwait(false);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+            return result;
+        }
+
+
     }
 }

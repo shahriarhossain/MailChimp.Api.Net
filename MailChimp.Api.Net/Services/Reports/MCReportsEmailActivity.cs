@@ -24,6 +24,10 @@ namespace MailChimp.Api.Net.Services.Reports
         internal async Task<EmailActivity> GetEmailActivityAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.email_activity, SubTargetType.not_applicable, campaignId);
+            
+            //Temporary start
+            endpoint = String.Format("{0}?count={1}", endpoint, 423);
+            //Temporary end 
 
             string content;
             using (var client = new HttpClient())

@@ -54,6 +54,30 @@ namespace MailChimp.Api.Net.Services.Lists
             return JsonConvert.DeserializeObject<MCLists>(content);
         }
 
+        /// <summary>
+        /// Delete a list
+        /// <param name="list_id">Unique id for the list</param>
+        /// </summary>
+        internal async Task<HttpResponseMessage> DeleteTemplateByIdAsync(string list_id)
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.not_applicable, SubTargetType.not_applicable, list_id);
 
+            HttpResponseMessage result;
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    Authenticate.ClientAuthentication(client);
+
+                    result = await client.DeleteAsync(endpoint).ConfigureAwait(false);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+            return result;
+        }
     }
 }

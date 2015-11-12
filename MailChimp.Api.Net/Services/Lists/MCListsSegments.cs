@@ -55,5 +55,33 @@ namespace MailChimp.Api.Net.Services.Lists
 
             return JsonConvert.DeserializeObject<RootSegment>(content);
         }
+
+        /// <summary>
+        /// Delete a segment
+        /// <param name="list_id">Unique id for the list</param>
+        /// <param name="subscriber_hash">The MD5 hash of the lowercase version of the list member’s email address</param>
+        /// </summary>
+        internal async Task<HttpResponseMessage> DeleteSegmentAsync(string list_id, string segment_id)
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.segments, SubTargetType.not_applicable, list_id, segment_id);
+
+            HttpResponseMessage result;
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    Authenticate.ClientAuthentication(client);
+
+                    result = await client.DeleteAsync(endpoint).ConfigureAwait(false);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+            return result;
+        }
+
     }
 }
