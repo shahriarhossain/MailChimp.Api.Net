@@ -38,7 +38,8 @@ namespace MailChimp.Api.Net.Enum
         segments,
         goals,
         notes,
-        removed_subscribers
+        removed_subscribers,
+        content
 
     }
 }

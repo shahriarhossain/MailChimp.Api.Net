@@ -38,5 +38,10 @@ namespace MailChimp.Api.Net.Mapper
 
             return actionMapper.TryGetValue(actionType, out mapValue) ? mapValue : actionType.ToString(); 
         }
+
+        public static string MapTarget(TargetTypes type)
+        {
+            return type.ToString().Replace("_", "-");
+        }
     }
 }

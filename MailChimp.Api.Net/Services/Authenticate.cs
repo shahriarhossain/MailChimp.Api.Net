@@ -72,6 +72,7 @@ namespace MailChimp.Api.Net.Services
         /// </summary>
         public static string EndPoint(TargetTypes type, SubTargetType subType, SubTargetType childSubType, string id = "", string param2 = "")
         {
+            string targetType = EnumMapper.MapTarget(type);
             string subCategory = EnumMapper.Map(subType);
             string subChildCategory = EnumMapper.Map(childSubType);
 
@@ -84,27 +85,27 @@ namespace MailChimp.Api.Net.Services
                     {
                         if (subChildCategory != "")
                         {
-                            return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}/{3}/{4}/{5}", dataCenter, type, id, subCategory, param2, childSubType);
+                            return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}/{3}/{4}/{5}", dataCenter, targetType, id, subCategory, param2, childSubType);
                         }
                         else
                         {
-                            return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}/{3}/{4}", dataCenter, type, id, subCategory, param2);
+                            return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}/{3}/{4}", dataCenter, targetType, id, subCategory, param2);
                         }
                     }
                     else
                     {
-                        return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}/{3}", dataCenter, type, id, subCategory);
+                        return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}/{3}", dataCenter, targetType, id, subCategory);
                     }
 
                 }
                 else
                 {
-                    return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}", dataCenter, type, id);
+                    return String.Format("https://{0}.api.mailchimp.com/3.0/{1}/{2}", dataCenter, targetType, id);
                 }
             }
             else
             {
-                return String.Format("https://{0}.api.mailchimp.com/3.0/{1}", dataCenter, type);
+                return String.Format("https://{0}.api.mailchimp.com/3.0/{1}", dataCenter, targetType);
             }
         }
 
