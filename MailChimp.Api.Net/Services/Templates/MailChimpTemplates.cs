@@ -46,7 +46,7 @@ namespace MailChimp.Api.Net.Services.Templates
         /// Get information about a specific template
         /// <param name="template_id">The unique id for the template.</param>
         /// </summary>
-        public async Task<Template> GetTemplateByIdAsync(string template_id)
+        public async Task<Template> GetSpecificTemplateAsync(string template_id)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.templates, SubTargetType.not_applicable, SubTargetType.not_applicable, template_id);
 
@@ -73,7 +73,7 @@ namespace MailChimp.Api.Net.Services.Templates
         /// Delete a specific template
         /// <param name="template_id">The unique id for the template</param>
         /// </summary>
-        public async Task<HttpResponseMessage> DeleteTemplateByIdAsync(string template_id)
+        public async Task<HttpResponseMessage> DeleteATemplateAsync(string template_id)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.templates, SubTargetType.not_applicable, SubTargetType.not_applicable, template_id);
 
