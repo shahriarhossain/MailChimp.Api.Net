@@ -37,7 +37,8 @@ namespace MailChimp.Api.Net.Enum
         merge_fields,
         segments,
         goals,
-        notes
+        notes,
+        removed_subscribers
 
     }
 }

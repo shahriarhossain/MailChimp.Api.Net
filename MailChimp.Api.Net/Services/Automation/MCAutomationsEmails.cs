@@ -48,7 +48,7 @@ namespace MailChimp.Api.Net.Services.Automation
         /// <param name="workflow_id">Unique id for the Automation workflow</param>
         /// <param name="workflow_email_id">Unique id for the Automation workflow email</param>
         /// </summary>
-        internal async Task<AutomationsEmail> GetInfoForSpecificWorkflowAsync(string workflow_id, string workflow_email_id)
+        internal async Task<AutomationsEmail> GetInfoForSpecificWorkflowEmailAsync(string workflow_id, string workflow_email_id)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.automations, SubTargetType.emails, SubTargetType.not_applicable, workflow_id, workflow_email_id);
 
