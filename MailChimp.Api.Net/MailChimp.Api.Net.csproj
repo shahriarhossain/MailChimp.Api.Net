@@ -84,9 +84,11 @@
     <Compile Include="Domain\CampaignFolder\RootCampaignFolder.cs" />
     <Compile Include="Domain\Campaigns\Campaign.cs" />
     <Compile Include="Domain\Campaigns\Condition.cs" />
+    <Compile Include="Domain\Campaigns\Item.cs" />
     <Compile Include="Domain\Campaigns\Recipients.cs" />
     <Compile Include="Domain\Campaigns\ReportSummary.cs" />
     <Compile Include="Domain\Campaigns\RootCampaign.cs" />
+    <Compile Include="Domain\Campaigns\RootCheckList.cs" />
     <Compile Include="Domain\Campaigns\RootContent.cs" />
     <Compile Include="Domain\Campaigns\SegmentOpts.cs" />
     <Compile Include="Domain\Campaigns\Settings.cs" />
@@ -190,6 +192,7 @@
     <Compile Include="Services\Campaigns\MCCampaignFolder.cs" />
     <Compile Include="Services\Campaigns\MCCampaignsFeedback.cs" />
     <Compile Include="Services\Campaigns\MCCampaignsOverview.cs" />
+    <Compile Include="Services\Campaigns\MCCampaignsCheckList.cs" />
     <Compile Include="Services\Conversations\MailChimpConversation.cs" />
     <Compile Include="Services\Conversations\MCConversationOverview.cs" />
     <Compile Include="Services\Conversations\MCConversationsMessages.cs" />
