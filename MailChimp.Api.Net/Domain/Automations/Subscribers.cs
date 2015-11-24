@@ -12,7 +12,7 @@ namespace MailChimp.Api.Net.Domain.Automations
         public string id { get; set; }
         public string workflow_id { get; set; }
         public string list_id { get; set; }
-        public string emails_sent { get; set; }
+        public string email_address { get; set; }
         public List<Link> _links { get; set; }
     }
 }
