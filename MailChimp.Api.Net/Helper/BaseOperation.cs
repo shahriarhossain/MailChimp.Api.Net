@@ -15,7 +15,7 @@ namespace MailChimp.Api.Net.Helper
         /// Get some result 
         /// <param name="endpoint">The url where we want to hit to get result</param>
         /// </summary>
-        public static async Task<T> GetAsync<T>(string endpoint)
+        public static async Task<T> GetAsync<T>(string endpoint) where T:class
         {
             string content;
             using (var client = new HttpClient())

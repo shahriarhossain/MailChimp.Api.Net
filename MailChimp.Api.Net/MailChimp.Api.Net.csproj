@@ -87,6 +87,7 @@
     <Compile Include="Domain\Campaigns\Recipients.cs" />
     <Compile Include="Domain\Campaigns\ReportSummary.cs" />
     <Compile Include="Domain\Campaigns\RootCampaign.cs" />
+    <Compile Include="Domain\Campaigns\RootContent.cs" />
     <Compile Include="Domain\Campaigns\SegmentOpts.cs" />
     <Compile Include="Domain\Campaigns\Settings.cs" />
     <Compile Include="Domain\Campaigns\Tracking.cs" />
