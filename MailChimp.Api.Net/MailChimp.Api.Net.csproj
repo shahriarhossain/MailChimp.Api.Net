@@ -11,6 +11,21 @@
     <AssemblyName>MailChimp.Api.Net</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,6 +45,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -39,6 +58,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,12 +66,80 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomException\MailChimpExceptions.cs" />
+    <Compile Include="Domain\Automations\Delay.cs" />
+    <Compile Include="Domain\Automations\AutomationsEmail.cs" />
+    <Compile Include="Domain\Automations\MCAutomation.cs" />
+    <Compile Include="Domain\Automations\Hours.cs" />
+    <Compile Include="Domain\Automations\MCAutomationQueue.cs" />
+    <Compile Include="Domain\Automations\Recipients.cs" />
+    <Compile Include="Domain\Automations\RemovedSubscriber.cs" />
+    <Compile Include="Domain\Automations\RootAutomation.cs" />
+    <Compile Include="Domain\Automations\RootAutomationsEmail.cs" />
+    <Compile Include="Domain\Automations\RootAutomationsEmailQueue.cs" />
+    <Compile Include="Domain\Automations\Runtime.cs" />
+    <Compile Include="Domain\Automations\Subscribers.cs" />
+    <Compile Include="Domain\Automations\TriggerSettings.cs" />
+    <Compile Include="Domain\CampaignFolder\CampaignFolder.cs" />
+    <Compile Include="Domain\CampaignFolder\RootCampaignFolder.cs" />
+    <Compile Include="Domain\Campaigns\Campaign.cs" />
+    <Compile Include="Domain\Campaigns\Condition.cs" />
+    <Compile Include="Domain\Campaigns\Recipients.cs" />
+    <Compile Include="Domain\Campaigns\ReportSummary.cs" />
+    <Compile Include="Domain\Campaigns\RootCampaign.cs" />
+    <Compile Include="Domain\Campaigns\SegmentOpts.cs" />
+    <Compile Include="Domain\Campaigns\Settings.cs" />
+    <Compile Include="Domain\Campaigns\Tracking.cs" />
+    <Compile Include="Domain\Conversations\Conversation.cs" />
+    <Compile Include="Domain\Conversations\ConversationMessage.cs" />
+    <Compile Include="Domain\Conversations\LastMessage.cs" />
+    <Compile Include="Domain\Conversations\RootConversation.cs" />
+    <Compile Include="Domain\Conversations\RootConversationMessage.cs" />
+    <Compile Include="Domain\Feedback\Feedback.cs" />
+    <Compile Include="Domain\Feedback\RootFeedback.cs" />
+    <Compile Include="Domain\Lists\AbuseReport.cs" />
+    <Compile Include="Domain\Lists\Category.cs" />
+    <Compile Include="Domain\Lists\Goal.cs" />
+    <Compile Include="Domain\Lists\History.cs" />
+    <Compile Include="Domain\Lists\Interest.cs" />
+    <Compile Include="Domain\Lists\Interests.cs" />
+    <Compile Include="Domain\Lists\LastNote.cs" />
+    <Compile Include="Domain\Lists\MCClient.cs" />
+    <Compile Include="Domain\Lists\ListsActivity.cs" />
+    <Compile Include="Domain\Lists\CampaignDefaults.cs" />
+    <Compile Include="Domain\Lists\Contact.cs" />
+    <Compile Include="Domain\Lists\MCLists.cs" />
+    <Compile Include="Domain\Lists\MCListsMemberActivity.cs" />
+    <Compile Include="Domain\Lists\MCListStats.cs" />
+    <Compile Include="Domain\Lists\MCLocation.cs" />
+    <Compile Include="Domain\Lists\MCMember.cs" />
+    <Compile Include="Domain\Lists\MergeField.cs" />
+    <Compile Include="Domain\Lists\MergeFields.cs" />
+    <Compile Include="Domain\Lists\Note.cs" />
+    <Compile Include="Domain\Lists\Options.cs" />
+    <Compile Include="Domain\Lists\RootAbuseReport.cs" />
+    <Compile Include="Domain\Lists\RootGoal.cs" />
+    <Compile Include="Domain\Lists\RootInterest.cs" />
+    <Compile Include="Domain\Lists\RootListsCategory.cs" />
+    <Compile Include="Domain\Lists\RootListsClient.cs" />
+    <Compile Include="Domain\Lists\RootListsActivity.cs" />
+    <Compile Include="Domain\Lists\RootListsGrowth.cs" />
+    <Compile Include="Domain\Lists\RootListsGrowthHistory.cs" />
+    <Compile Include="Domain\Lists\RootMCLists.cs" />
+    <Compile Include="Domain\Lists\RootMCListsMemberActivity.cs" />
+    <Compile Include="Domain\Lists\RootMember.cs" />
+    <Compile Include="Domain\Lists\RootMergeField.cs" />
+    <Compile Include="Domain\Lists\RootNote.cs" />
+    <Compile Include="Domain\Lists\RootSegment.cs" />
+    <Compile Include="Domain\Lists\Segment.cs" />
+    <Compile Include="Domain\Lists\Stats.cs" />
     <Compile Include="Domain\Reports\Activity.cs" />
     <Compile Include="Domain\Reports\Advice.cs" />
     <Compile Include="Domain\Reports\Bounces.cs" />
     <Compile Include="Domain\Reports\Clicks.cs" />
     <Compile Include="Domain\Reports\DeliveryStatus.cs" />
     <Compile Include="Domain\Reports\Domain.cs" />
+    <Compile Include="Domain\Reports\Eepurl.cs" />
     <Compile Include="Domain\Reports\Email.cs" />
     <Compile Include="Domain\Reports\FacebookLikes.cs" />
     <Compile Include="Domain\Reports\Forwards.cs" />
@@ -72,11 +160,14 @@
     <Compile Include="Domain\Reports\Timesery.cs" />
     <Compile Include="Domain\Reports\Unsubscribed.cs" />
     <Compile Include="Domain\Reports\UrlsClicked.cs" />
+    <Compile Include="Domain\Templates\RootTemplate.cs" />
+    <Compile Include="Domain\Templates\Template.cs" />
     <Compile Include="Enum\CommandProperty.cs" />
     <Compile Include="Enum\Method.cs" />
     <Compile Include="Enum\SubTargetType.cs" />
     <Compile Include="Enum\TargetTypes.cs" />
     <Compile Include="ErrorMessages\MailChimpExceptionMessage.cs" />
+    <Compile Include="Helper\BaseOperation.cs" />
     <Compile Include="Mapper\EnumMapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,16 +179,68 @@
     <Compile Include="Domain\Reports\Location.cs" />
     <Compile Include="Domain\Reports\ReportOverview.cs" />
     <Compile Include="Services\Authenticate.cs" />
+    <Compile Include="Services\Automation\MailChimpAutomation.cs" />
+    <Compile Include="Services\Automation\MCAutomationsEmails.cs" />
+    <Compile Include="Services\Automation\MCAutomationsEmailsQueue.cs" />
+    <Compile Include="Services\Automation\MCAutomationsOverview.cs" />
+    <Compile Include="Services\Automation\MCAutomationsRemoveSubscriber.cs" />
+    <Compile Include="Services\Campaigns\MailChimpCampaigns.cs" />
+    <Compile Include="Services\Campaigns\MCCampaignContent.cs" />
+    <Compile Include="Services\Campaigns\MCCampaignFolder.cs" />
+    <Compile Include="Services\Campaigns\MCCampaignsFeedback.cs" />
+    <Compile Include="Services\Campaigns\MCCampaignsOverview.cs" />
+    <Compile Include="Services\Conversations\MailChimpConversation.cs" />
+    <Compile Include="Services\Conversations\MCConversationOverview.cs" />
+    <Compile Include="Services\Conversations\MCConversationsMessages.cs" />
+    <Compile Include="Services\Lists\MCListsAbuseReports.cs" />
+    <Compile Include="Services\Lists\MCListsActivity.cs" />
+    <Compile Include="Services\Lists\MCListsClient.cs" />
+    <Compile Include="Services\Lists\MCListsGrowthHistory.cs" />
+    <Compile Include="Services\Lists\MCListsInterestCategories.cs" />
+    <Compile Include="Services\Lists\MCListsMemberActivity.cs" />
+    <Compile Include="Services\Lists\MCListsMemberGoals.cs" />
+    <Compile Include="Services\Lists\MCListsMemberNote.cs" />
+    <Compile Include="Services\Lists\MCListsMembers.cs" />
+    <Compile Include="Services\Lists\MCListsMergeFields.cs" />
+    <Compile Include="Services\Lists\MCListsOverview.cs" />
+    <Compile Include="Services\Lists\MCListsSegments.cs" />
     <Compile Include="Services\MailChimpWorker.cs" />
+    <Compile Include="Services\Reports\MailChimpReports.cs" />
     <Compile Include="Services\Reports\MCReportsCampaignAdvice.cs" />
+    <Compile Include="Services\Reports\MCReportsClickDetails.cs" />
     <Compile Include="Services\Reports\MCReportsDomainPerformance.cs" />
+    <Compile Include="Services\Reports\MCReportsEepURL.cs" />
+    <Compile Include="Services\Reports\MCReportsEmailActivity.cs" />
+    <Compile Include="Services\Reports\MCReportsExtension.cs" />
     <Compile Include="Services\Reports\MCReportsLocation.cs" />
+    <Compile Include="Services\Reports\MCReportsSentTo.cs" />
     <Compile Include="Services\Reports\MCReportsSubReport.cs" />
-    <Compile Include="Services\Reports\ReportsOverview.cs" />
+    <Compile Include="Services\Reports\MCReportsUnsubscribes.cs" />
+    <Compile Include="Services\Reports\MCReportsOverview.cs" />
+    <Compile Include="Services\Templates\MailChimpTemplates.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

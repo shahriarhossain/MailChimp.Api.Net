@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MailChimp.Api.Net.Domain.Reports;
 using MailChimp.Api.Net.Enum;
+using MailChimp.Api.Net.Helper;
 using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Reports
@@ -24,27 +25,8 @@ namespace MailChimp.Api.Net.Services.Reports
         internal async Task<EmailActivity> GetEmailActivityAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.email_activity, SubTargetType.not_applicable, campaignId);
-            
-            //Temporary start
-            endpoint = String.Format("{0}?count={1}", endpoint, 423);
-            //Temporary end 
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }  
-            }
-
-            return JsonConvert.DeserializeObject<EmailActivity>(content);
+            return await BaseOperation.GetAsync<EmailActivity>(endpoint);
         }
 
         /// <summary>
@@ -56,22 +38,7 @@ namespace MailChimp.Api.Net.Services.Reports
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.email_activity, SubTargetType.not_applicable, campaignId, subscriber_hash);
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    throw;
-                } 
-            }
-
-            return JsonConvert.DeserializeObject<EmailActivity>(content);
+            return await BaseOperation.GetAsync<EmailActivity>(endpoint);
         }
     }
 }

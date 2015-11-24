@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 
 using MailChimp.Api.Net.Enum;
 using MailChimp.Api.Net.Domain.Reports;
+using MailChimp.Api.Net.Helper;
 
 namespace MailChimp.Api.Net.Services.Reports
 {
@@ -27,23 +28,7 @@ namespace MailChimp.Api.Net.Services.Reports
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.not_applicable, SubTargetType.not_applicable);
 
-            //string content = MailChimpWorker.Execute(Method.Get, endpoint).Result;
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {       
-                    throw ex;
-                } 
-            }
-
-            return JsonConvert.DeserializeObject<ReportOverview>(content);
+            return await BaseOperation.GetAsync<ReportOverview>(endpoint);
         }
 
         /// <summary>
@@ -53,22 +38,8 @@ namespace MailChimp.Api.Net.Services.Reports
         internal async Task<ReportOverview_CampaignSpecific> CampaignSpecificOverviewAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.not_applicable, SubTargetType.not_applicable, campaignId);
-          
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
 
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {  
-                    throw ex;
-                }              
-            }
-            return JsonConvert.DeserializeObject<ReportOverview_CampaignSpecific>(content);
+            return await BaseOperation.GetAsync<ReportOverview_CampaignSpecific>(endpoint);
         }
     }
 }

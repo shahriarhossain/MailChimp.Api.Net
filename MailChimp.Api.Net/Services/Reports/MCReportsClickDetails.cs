@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MailChimp.Api.Net.Domain.Reports;
 using MailChimp.Api.Net.Enum;
+using MailChimp.Api.Net.Helper;
 using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Reports
@@ -25,22 +26,7 @@ namespace MailChimp.Api.Net.Services.Reports
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.click_details, SubTargetType.not_applicable, campaignId);
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {  
-                    throw ex;
-                }
-            }
-
-            return JsonConvert.DeserializeObject<ClickReports>(content);
+            return await BaseOperation.GetAsync<ClickReports>(endpoint);
         }
 
         /// <summary>
@@ -52,22 +38,7 @@ namespace MailChimp.Api.Net.Services.Reports
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.click_details, SubTargetType.not_applicable, campaignId, linkId);
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }   
-            }
-
-            return JsonConvert.DeserializeObject<ClickReports>(content);
+            return await BaseOperation.GetAsync<ClickReports>(endpoint);
         }
 
         /// <summary>
@@ -79,22 +50,7 @@ namespace MailChimp.Api.Net.Services.Reports
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.click_details, SubTargetType.members, campaignId, linkId);
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }             
-            }
-
-            return JsonConvert.DeserializeObject<ClickReports>(content);
+            return await BaseOperation.GetAsync<ClickReports>(endpoint);
         }
 
         /// <summary>
@@ -108,22 +64,7 @@ namespace MailChimp.Api.Net.Services.Reports
             string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.click_details, SubTargetType.members, campaignId, linkId);
             endpoint = String.Format("{0}/{1}", endpoint, subscriber_hash);
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-
-            return JsonConvert.DeserializeObject<ClickReports>(content);
+            return await BaseOperation.GetAsync<ClickReports>(endpoint);
         }
     }
 }
