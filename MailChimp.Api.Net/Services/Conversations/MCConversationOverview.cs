@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MailChimp.Api.Net.Domain.Conversations;
 using MailChimp.Api.Net.Enum;
+using MailChimp.Api.Net.Helper;
 using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Conversations
@@ -24,15 +25,7 @@ namespace MailChimp.Api.Net.Services.Conversations
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.conversations, SubTargetType.not_applicable, SubTargetType.not_applicable);
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                Authenticate.ClientAuthentication(client);
-
-                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-            }
-
-            return JsonConvert.DeserializeObject<RootConversation>(content);
+            return await BaseOperation.GetAsync<RootConversation>(endpoint);
         }
 
 
@@ -44,15 +37,7 @@ namespace MailChimp.Api.Net.Services.Conversations
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.conversations, SubTargetType.not_applicable, SubTargetType.not_applicable, conversation_id);
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                Authenticate.ClientAuthentication(client);
-
-                content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-            }
-
-            return JsonConvert.DeserializeObject<Conversation>(content);
+            return await BaseOperation.GetAsync<Conversation>(endpoint);
         }
     }
 }
