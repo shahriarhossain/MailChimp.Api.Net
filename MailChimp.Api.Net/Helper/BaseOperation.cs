@@ -48,7 +48,7 @@ namespace MailChimp.Api.Net.Helper
                 {
                     Authenticate.ClientAuthentication(client);
 
-                    result = await client.DeleteAsync(endpoint).ConfigureAwait(false);
+                    result = await client.DeleteAsync(endpoint);
                 }
                 catch (Exception ex)
                 {
