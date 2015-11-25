@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MailChimp.Api.Net.Domain.CampaignFolder;
 using MailChimp.Api.Net.Enum;
+using MailChimp.Api.Net.Helper;
 using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Campaigns
@@ -24,23 +25,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaign_folders, SubTargetType.not_applicable, SubTargetType.not_applicable);
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
-            }
-
-            return JsonConvert.DeserializeObject<RootCampaignFolder>(content);
+            return await BaseOperation.GetAsync<RootCampaignFolder>(endpoint);
         }
 
         /// <summary>
@@ -51,23 +36,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaign_folders, SubTargetType.not_applicable, SubTargetType.not_applicable, folder_id);
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
-            }
-
-            return JsonConvert.DeserializeObject<CampaignFolder>(content);
+            return await BaseOperation.GetAsync<CampaignFolder>(endpoint);
         }
 
         /// <summary>
@@ -78,22 +47,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaign_folders, SubTargetType.not_applicable, SubTargetType.not_applicable, folder_id);
 
-            HttpResponseMessage result;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    result = await client.DeleteAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-
-            return result;
+            return await BaseOperation.DeleteAsync(endpoint);
         }
 
     }

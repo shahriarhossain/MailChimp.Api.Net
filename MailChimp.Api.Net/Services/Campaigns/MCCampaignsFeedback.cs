@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MailChimp.Api.Net.Domain.Feedback;
 using MailChimp.Api.Net.Enum;
+using MailChimp.Api.Net.Helper;
 using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Campaigns
@@ -24,23 +25,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.feedback, SubTargetType.not_applicable, campaignId);
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    
-                    throw ex;
-                }
-            }
-
-            return JsonConvert.DeserializeObject<RootFeedback>(content);
+            return await BaseOperation.GetAsync<RootFeedback>(endpoint);
         }
 
         /// <summary>
@@ -52,23 +37,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.feedback, SubTargetType.not_applicable, campaignId, feedback_id);
 
-            string content;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    content = await client.GetStringAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    
-                    throw ex;
-                }    
-            }
-
-            return JsonConvert.DeserializeObject<Feedback>(content);
+            return await BaseOperation.GetAsync<Feedback>(endpoint);
         }
 
         /// <summary>
@@ -80,23 +49,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.feedback, SubTargetType.not_applicable, campaignId, feedback_id);
 
-            HttpResponseMessage result;
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    Authenticate.ClientAuthentication(client);
-
-                    result = await client.DeleteAsync(endpoint).ConfigureAwait(false);
-                }
-                catch (Exception ex)
-                {
-                    
-                    throw ex;
-                }
-            }
-
-            return result;
+            return await BaseOperation.DeleteAsync(endpoint);
         }
     }
 }
