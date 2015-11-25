@@ -14,7 +14,7 @@ namespace MailChimp.Api.Net.Domain.Campaigns
         public string reply_to { get; set; }
         public bool use_conversation { get; set; }
         public string to_name { get; set; }
-        public int folder_id { get; set; }
+        public int? folder_id { get; set; }
         public bool authenticate { get; set; }
         public bool auto_footer { get; set; }
         public bool inline_css { get; set; }

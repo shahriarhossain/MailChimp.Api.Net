@@ -14,7 +14,7 @@ namespace MailChimp.Api.Net.Domain.Campaigns
         public string create_time { get; set; }
         public string archive_url { get; set; }
         public string status { get; set; }
-        public int emails_sent { get; set; }
+        public int? emails_sent { get; set; }
         public string send_time { get; set; }
         public string content_type { get; set; }
         public Recipients recipients { get; set; }
