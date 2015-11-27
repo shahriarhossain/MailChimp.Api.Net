@@ -23,6 +23,5 @@ namespace MailChimp.Api.Net.Domain.Campaigns
         public DeliveryStatus delivery_status { get; set; }
         public List<Link> _links { get; set; }
         public ReportSummary report_summary { get; set; }
-        public bool PostStatus { get; set; }
     }
 }
