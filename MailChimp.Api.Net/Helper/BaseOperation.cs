@@ -62,16 +62,16 @@ namespace MailChimp.Api.Net.Helper
             return result;
         }
 
-
         /// <summary>
         /// Create something
         /// <param name="endpoint">The url where we want to hit to get result</param>
         /// </summary>
-        public static async Task<dynamic>
-            PostAsync<T>(string endpoint, T myContent) where T : class
+        public static async Task<ResultWrapper<T>>
+          PostAsync<T>(string endpoint, T myContent) where T : class
         {
             HttpResponseMessage response;
-            CustomError customeError = new CustomError();
+            
+            ResultWrapper<T> wrapper;
 
             using (var client = new HttpClient())
             {
@@ -82,10 +82,10 @@ namespace MailChimp.Api.Net.Helper
                     var settings = new JsonSerializerSettings
                     {
                         NullValueHandling = NullValueHandling.Ignore
-
                     };
 
                     var myContentJson = JsonConvert.SerializeObject(myContent, settings);
+
                     response = await client.PostAsync(endpoint,
                                    new StringContent(myContentJson.ToString(),
                                    Encoding.UTF8, "application/json"));
@@ -96,18 +96,15 @@ namespace MailChimp.Api.Net.Helper
 
                         var responseMapped = JsonConvert.DeserializeObject<T>(responseContent.Result);
 
-                        //objName.GetType().GetProperty("nameOfProperty").SetValue(objName, objValue, null)
-                        responseMapped.GetType().GetProperty("PostStatus").SetValue(responseMapped, true, null);
+                        wrapper = new ResultWrapper<T>(responseMapped, false);
 
-                        return responseMapped;
+                        return wrapper;
                     }
                     else
                     {
-                        customeError.ReasonPhrase = response.ReasonPhrase;
-                        customeError.RequestMessage = response.RequestMessage;
-                        customeError.StatusCode = response.StatusCode;
-                        customeError.PostStatus = false;
-                        return customeError;
+                        wrapper = new ResultWrapper<T>(response, true);
+
+                        return wrapper;
                     }
 
                 }

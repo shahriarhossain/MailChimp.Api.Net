@@ -12,6 +12,7 @@ using MailChimp.Api.Net.Domain.Reports;
 using MailChimp.Api.Net.Services.Campaigns;
 using MailChimp.Api.Net.Domain.Campaigns;
 using Newtonsoft.Json;
+using MailChimp.Api.Net.Domain;
 
 namespace MailChimp.Api.Net
 {
@@ -68,8 +69,8 @@ namespace MailChimp.Api.Net
 
                 Settings campaignSettings = new Settings()
                 {
-                  // subject_line="This is another Subject line ",
-                     title="habijabi#4",
+                    subject_line = "This is another Subject line ",
+                    title = "habijabi#4",
                     from_name = "Shahriar Hossain",
                     reply_to = "shossain@desme.com",
                     template_id = 18073,
@@ -83,23 +84,19 @@ namespace MailChimp.Api.Net
                     text_clicks = true
                 };
 
-                var campaignCreationResult = overview.CreateCampaignAsync(Enum.CampaignType.regular, recipients, campaignSettings, campaignTracking).Result;
+                ResultWrapper<Campaign> campaignCreationResult = overview.CreateCampaignAsync(Enum.CampaignType.regular, recipients, campaignSettings, campaignTracking).Result;
 
-
-                if (campaignCreationResult.PostStatus == true)
+                if (campaignCreationResult.ErrorOccured == false)
                 {
                     MCCampaignsCheckList mccheckList = new MCCampaignsCheckList();
-                    var checkListResult = mccheckList.GetCampaignContentAsync(campaignCreationResult.id).Result;
+                    var checkListResult = mccheckList.GetCampaignContentAsync(campaignCreationResult.Result.id).Result;
                 }
                 else
                 {
-                    String.Format("Muri Khao!");
+                    String.Format("Best of Luck :p !");
                 }
-                
-               
 
                 Console.Read();
-
             }
             catch (Exception ex)
             {
