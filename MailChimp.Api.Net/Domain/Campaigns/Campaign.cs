@@ -7,7 +7,7 @@ using MailChimp.Api.Net.Domain.Reports;
 
 namespace MailChimp.Api.Net.Domain.Campaigns
 {
-    public class Campaign
+    public class Campaign 
     {
         public string id { get; set; }
         public string type { get; set; }
@@ -23,5 +23,6 @@ namespace MailChimp.Api.Net.Domain.Campaigns
         public DeliveryStatus delivery_status { get; set; }
         public List<Link> _links { get; set; }
         public ReportSummary report_summary { get; set; }
+        public bool PostStatus { get; set; }
     }
 }
