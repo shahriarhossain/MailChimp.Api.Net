@@ -52,6 +52,10 @@ namespace MailChimp.Api.Net.Services.Campaigns
 
         /// <summary>
         /// Create a new campaign
+        /// <param name="campaignType">Possible Value : regular, plaintext, absplit, rss, variate </param>
+        /// <param name="CampaignRecipient"></param>
+        /// <param name="campaignTracking"></param>
+        /// <param name="campaignTracking"></param>
         /// </summary>
         internal async Task<dynamic> CreateCampaignAsync(CampaignType campaignType, 
                                                                     Recipients CampaignRecipient, 
@@ -76,17 +80,23 @@ namespace MailChimp.Api.Net.Services.Campaigns
         /// Cancel a campaign
         /// <param name="campaignId">Unique id for the campaign</param>
         /// </summary>
-        internal async Task<HttpResponseMessage> CancelCampaignByIdAsync(string campaignId)
+        internal async Task<dynamic> CancelCampaignAsync(string campaignId)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.action3, SubTargetType.not_applicable, campaignId);
 
-            HttpResponseMessage message = new HttpResponseMessage();
-            StringContent tempMsg = new StringContent("NOT IMPLEMENTED YET");
-            message.Content = tempMsg;
-            return message;
-
+            return await BaseOperation.PostAsync(endpoint);
         }
 
+        /// <summary>
+        /// Send a campaign
+        /// <param name="campaignId">Unique id for the campaign</param>
+        /// </summary>
+        internal async Task<dynamic> SendCampaignAsync(string campaignId)
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.action6, SubTargetType.not_applicable, campaignId);
+
+            return await BaseOperation.PostAsync(endpoint);
+        }
 
     }
 }

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using MailChimp.Api.Net.Services;
 using Newtonsoft.Json;
 using System.Net;
-using MailChimp.Api.Net.Domain.Error;
 using MailChimp.Api.Net.Domain;
 
 namespace MailChimp.Api.Net.Helper
@@ -65,6 +64,7 @@ namespace MailChimp.Api.Net.Helper
         /// <summary>
         /// Create something
         /// <param name="endpoint">The url where we want to hit to get result</param>
+        /// <param name="myContent">The content that you want to send</param>
         /// </summary>
         public static async Task<ResultWrapper<T>>
           PostAsync<T>(string endpoint, T myContent) where T : class
@@ -107,6 +107,38 @@ namespace MailChimp.Api.Net.Helper
                         return wrapper;
                     }
 
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Create something
+        /// <param name="endpoint">The url where we want to hit to get result</param>
+        /// </summary>
+        public static async Task<HttpResponseMessage> PostAsync(string endpoint)
+        {
+            HttpResponseMessage response;
+
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    Authenticate.ClientAuthentication(client);
+
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore
+                    };
+
+                    response = await client.PostAsync(endpoint,
+                                   new StringContent(String.Empty,
+                                   Encoding.UTF8, "application/json"));
+                   
+                    return response;
                 }
                 catch (Exception ex)
                 {

@@ -33,7 +33,8 @@ namespace MailChimp.Api.Net.Mapper
                 {SubTargetType.action2, "actions/pause"},
                 {SubTargetType.action3, "actions/cancel-send"},
                 {SubTargetType.action4, "actions/start-all-emails"},
-                {SubTargetType.action5, "actions/pause-all-emails"}
+                {SubTargetType.action5, "actions/pause-all-emails"},
+                {SubTargetType.action6, "actions/send"}
             };
 
             return actionMapper.TryGetValue(actionType, out mapValue) ? mapValue : actionType.ToString(); 

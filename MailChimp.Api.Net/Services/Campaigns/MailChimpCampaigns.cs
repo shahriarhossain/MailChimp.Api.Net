@@ -54,7 +54,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         /// </summary>
         public async Task<HttpResponseMessage> CancelCampaignByIdAsync(string campaignId)
         {
-            return await overview.CancelCampaignByIdAsync(campaignId);
+            return await overview.CancelCampaignAsync(campaignId);
         }
 
 

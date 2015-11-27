@@ -59,42 +59,50 @@ namespace MailChimp.Api.Net
                 //var k = templates.DeleteATemplateAsync("18085").Result;
                 //var kk = templates.GetSpecificTemplateAsync("18085").Result;
 
+                #region CampaignCreation
+                //MCCampaignsOverview overview = new MCCampaignsOverview();
+
+                //Recipients recipients = new Recipients()
+                //{
+                //    list_id = "0a84a63afc"
+                //};
+
+                //Settings campaignSettings = new Settings()
+                //{
+                //    subject_line = "This is another Subject line ",
+                //    title = "habijabi#4",
+                //    from_name = "Shahriar Hossain",
+                //    reply_to = "shossain@desme.com",
+                //    template_id = 18073,
+                //    authenticate = true,
+                //    auto_footer = false
+                //};
+                //Tracking campaignTracking = new Tracking()
+                //{
+                //    opens = true,
+                //    html_clicks = true,
+                //    text_clicks = true
+                //};
+
+                //ResultWrapper<Campaign> campaignCreationResult = overview.CreateCampaignAsync(Enum.CampaignType.regular, recipients, campaignSettings, campaignTracking).Result;
+
+                //if (campaignCreationResult.HasError == false)
+                //{
+                //    MCCampaignsCheckList mccheckList = new MCCampaignsCheckList();
+                //    var checkListResult = mccheckList.GetCampaignContentAsync(campaignCreationResult.Result.id).Result;
+                //}
+                //else
+                //{
+                //    String.Format("Best of Luck :p !");
+                //}
+                #endregion CampaignCreation
 
                 MCCampaignsOverview overview = new MCCampaignsOverview();
+                var x = overview.SendCampaignAsync("52bea31f02").Result;
 
-                Recipients recipients = new Recipients()
-                {
-                    list_id = "0a84a63afc"
-                };
 
-                Settings campaignSettings = new Settings()
-                {
-                    subject_line = "This is another Subject line ",
-                    title = "habijabi#4",
-                    from_name = "Shahriar Hossain",
-                    reply_to = "shossain@desme.com",
-                    template_id = 18073,
-                    authenticate = true,
-                    auto_footer = false
-                };
-                Tracking campaignTracking = new Tracking()
-                {
-                    opens = true,
-                    html_clicks = true,
-                    text_clicks = true
-                };
 
-                ResultWrapper<Campaign> campaignCreationResult = overview.CreateCampaignAsync(Enum.CampaignType.regular, recipients, campaignSettings, campaignTracking).Result;
 
-                if (campaignCreationResult.ErrorOccured == false)
-                {
-                    MCCampaignsCheckList mccheckList = new MCCampaignsCheckList();
-                    var checkListResult = mccheckList.GetCampaignContentAsync(campaignCreationResult.Result.id).Result;
-                }
-                else
-                {
-                    String.Format("Best of Luck :p !");
-                }
 
                 Console.Read();
             }
