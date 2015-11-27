@@ -49,6 +49,29 @@ namespace MailChimp.Api.Net.Services.Campaigns
             return await BaseOperation.DeleteAsync(endpoint);
         }
 
+
+        /// <summary>
+        /// Create a new campaign
+        /// </summary>
+        internal async Task<dynamic> CreateCampaignAsync(CampaignType campaignType, 
+                                                                    Recipients CampaignRecipient, 
+                                                                    Settings campaignSettings,
+                                                                    Tracking campaignTracking )
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.not_applicable, SubTargetType.not_applicable);
+
+            Campaign campaignObject = new Campaign()
+            {
+                type = campaignType.ToString(),
+                recipients = CampaignRecipient,
+                settings= campaignSettings,
+                tracking= campaignTracking
+            };
+
+            return await BaseOperation.PostAsync<Campaign>(endpoint, campaignObject);
+        }
+
+
         /// <summary>
         /// Cancel a campaign
         /// <param name="campaignId">Unique id for the campaign</param>
@@ -58,10 +81,10 @@ namespace MailChimp.Api.Net.Services.Campaigns
             string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.action3, SubTargetType.not_applicable, campaignId);
 
             HttpResponseMessage message = new HttpResponseMessage();
-            StringContent tempMsg= new StringContent("NOT IMPLEMENTED YET");
+            StringContent tempMsg = new StringContent("NOT IMPLEMENTED YET");
             message.Content = tempMsg;
             return message;
-           
+
         }
 
 
