@@ -10,19 +10,19 @@ namespace MailChimp.Api.Net.Domain
     public class ResultWrapper<T> 
     {
         public T Result { get; set; }
-        public bool ErrorOccured { get; set; }
+        public bool HasError { get; set; }
         public HttpResponseMessage ErrorObject { get; set; }
         
-        public ResultWrapper(T content, bool status)
+        public ResultWrapper(T content, bool hasError)
         {
             Result = content;
-            ErrorOccured = status; 
+            HasError = hasError; 
         }
 
-        public ResultWrapper(HttpResponseMessage errorObj, bool status)
+        public ResultWrapper(HttpResponseMessage errorObj, bool hasError)
         {
             ErrorObject = errorObj;
-            ErrorOccured = status;
+            HasError = hasError;
         }
 
     }
