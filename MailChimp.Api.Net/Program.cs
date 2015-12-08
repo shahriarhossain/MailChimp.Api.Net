@@ -13,6 +13,7 @@ using MailChimp.Api.Net.Services.Campaigns;
 using MailChimp.Api.Net.Domain.Campaigns;
 using Newtonsoft.Json;
 using MailChimp.Api.Net.Domain;
+using MailChimp.Api.Net.Domain.Lists.Post;
 
 namespace MailChimp.Api.Net
 {
@@ -97,10 +98,26 @@ namespace MailChimp.Api.Net
                 //}
                 #endregion CampaignCreation
 
-                MCCampaignsOverview overview = new MCCampaignsOverview();
-                var x = overview.SendCampaignAsync("52bea31f02").Result;
+                //MCCampaignsOverview overview = new MCCampaignsOverview();
+                //ResultWrapper sendRes = overview.SendCampaignAsync("d009b4d8de").Result;
 
 
+
+                ListMemberBase ob1 = new ListMemberBase()
+                    {
+                        email_address= "shahriar_cse@desme.com",
+                        email_type = "html",
+                        language = "English",
+                        status = "subscribed"
+                    };
+
+                ListMemberBase ob2 = new ListMemberBase()
+                {
+                    email_address = "shossain@desme.com",
+                    email_type = "html",
+                    language = "English",
+                    status = "subscribed"
+                };
 
 
 

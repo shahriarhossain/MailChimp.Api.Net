@@ -70,7 +70,7 @@ namespace MailChimp.Api.Net.Helper
           PostAsync<T>(string endpoint, T myContent) where T : class
         {
             HttpResponseMessage response;
-            
+
             ResultWrapper<T> wrapper;
 
             using (var client = new HttpClient())
@@ -115,11 +115,12 @@ namespace MailChimp.Api.Net.Helper
             }
         }
 
-        /// <summary>
-        /// Create something
-        /// <param name="endpoint">The url where we want to hit to get result</param>
-        /// </summary>
-        public static async Task<HttpResponseMessage> PostAsync(string endpoint)
+
+        //<summary>
+        //Create something
+        //<param name="endpoint">The url where we want to hit to get result</param>
+        //</summary>
+        public static async Task<ResultWrapper> PostAsync(string endpoint)
         {
             HttpResponseMessage response;
 
@@ -137,8 +138,18 @@ namespace MailChimp.Api.Net.Helper
                     response = await client.PostAsync(endpoint,
                                    new StringContent(String.Empty,
                                    Encoding.UTF8, "application/json"));
-                   
-                    return response;
+
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        return new ResultWrapper(false);
+                    }
+                    else
+                    {
+                        var wrappedResult =  new ResultWrapper(response, true);
+
+                        return wrappedResult;
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -146,5 +157,17 @@ namespace MailChimp.Api.Net.Helper
                 }
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
