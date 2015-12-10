@@ -33,11 +33,11 @@ Campaigns:
 - You can Get the send checklist for a campaign
 
 Conversations:
-====
+---
 - Conversation section is implemented except one feature. *Post a new conversation message* feature is not implemented yet.
 
 Automation:
-===
+---
 Right now you can do only following task: 
 - You can Get a list of Automation
 - You can Get a list of automated emails .
@@ -49,4 +49,6 @@ HOW TO USE
 You can download it via nuget package.
 
 **PM> Install-Package MailChimp.Api.Net**
+
+For details on how to use check the wiki https://github.com/shahriarhossain/MailChimp.Api.Net/wiki/Initial-Setup
 
