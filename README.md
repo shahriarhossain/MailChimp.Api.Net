@@ -7,7 +7,7 @@ Current Status:
 ====
 Reports:
 ---
-The Reports sections are good to go! 
+The Reports sections are good to go!  You  can retrieve all sorts of mailChimp campaign report. 
 
 - Reports Overview
 - Campaign Advice
