@@ -22,7 +22,6 @@ namespace MailChimp.Api.Net.Services.Reports
     {
         /// <summary>
         /// Get campaign reports
-        /// <param name="campaignId">Campaign Id</param>
         /// </summary>
         internal async Task<ReportOverview> OverviewAsync()
         {
