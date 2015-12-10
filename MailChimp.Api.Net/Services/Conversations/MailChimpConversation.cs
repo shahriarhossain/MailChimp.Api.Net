@@ -24,6 +24,7 @@ namespace MailChimp.Api.Net.Services.Conversations
             msg = new MCConversationsMessages();
         }
 
+        #region overview
         /// <summary>
         /// Get a list of conversations
         /// </summary>
@@ -36,11 +37,13 @@ namespace MailChimp.Api.Net.Services.Conversations
         /// Get information about a conversation
         /// <param name="conversation_id">Unique id for the campaign</param>
         /// </summary>
-        public async Task<Conversation> GetConversationByIdAsync(string conversation_id)
+        public async Task<Conversation> GetSpecificConversationAsync(string conversation_id)
         {
             return await overview.GetConversationByIdAsync(conversation_id);
         }
+        #endregion overview
 
+        #region msg
         /// <summary>
         /// Get conversation messages
         /// <param name="conversation_id">Unique id for the campaign</param>
@@ -59,5 +62,6 @@ namespace MailChimp.Api.Net.Services.Conversations
         {
             return await msg.GetMessageByIdAsync(conversation_id, message_id);
         }
+        #endregion msg
     }
 }

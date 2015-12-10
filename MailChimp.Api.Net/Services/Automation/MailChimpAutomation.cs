@@ -26,7 +26,7 @@ namespace MailChimp.Api.Net.Services.Automation
             removedSubscriber = new MCAutomationsRemoveSubscriber();
         }
 
-
+        #region overview
         /// <summary>
         /// Get a list of Automations
         /// </summary>
@@ -44,8 +44,9 @@ namespace MailChimp.Api.Net.Services.Automation
             return await overview.GetInfoByWorkflowIdAsync(workflow_id);
         }
 
+        #endregion overview
 
-
+        #region automationsemails
         /// <summary>
         /// Get a list of automated emails in a workflow
         /// <param name="workflow_id">Unique id for the Automation workflow</param>
@@ -64,9 +65,9 @@ namespace MailChimp.Api.Net.Services.Automation
         {
             return await automationsemails.GetInfoForSpecificWorkflowEmailAsync(workflow_id, workflow_email_id);
         }
+        #endregion automationsemails
 
-
-
+        #region emailQueue
         /// <summary>
         /// View queued subscribers for an automated email
         /// <param name="workflow_id">Unique id for the Automation workflow</param>
@@ -88,8 +89,9 @@ namespace MailChimp.Api.Net.Services.Automation
             return await emailQueue.GetSpecificSubscriberInQueueAsync(workflow_id, workflow_email_id, subscriber_hash);
         }
 
+        #endregion emailQueue
 
-
+        #region removedSubscriber
         /// <summary>
         /// View all subscribers removed from a workflow
         /// <param name="workflow_id">Unique id for the Automation workflow</param>
@@ -98,6 +100,6 @@ namespace MailChimp.Api.Net.Services.Automation
         {
             return await removedSubscriber.GetRemovedSubscriberListAsync(workflow_id);
         }
-
+        #endregion removedSubscriber
     }
 }
