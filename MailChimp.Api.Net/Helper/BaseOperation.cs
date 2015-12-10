@@ -159,6 +159,59 @@ namespace MailChimp.Api.Net.Helper
         }
 
 
+        /// <summary>
+        /// Put something
+        /// <param name="endpoint">The url where we want to hit to get result</param>
+        /// <param name="myContent">The content that you want to send</param>
+        /// </summary>
+        public static async Task<ResultWrapper<T>>
+          PutAsync<T>(string endpoint, T myContent) where T : class
+        {
+            HttpResponseMessage response;
+
+            ResultWrapper<T> wrapper;
+
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    Authenticate.ClientAuthentication(client);
+
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore
+                    };
+
+                    var myContentJson = JsonConvert.SerializeObject(myContent, settings);
+
+                    response = await client.PutAsync(endpoint,
+                                   new StringContent(myContentJson.ToString(),
+                                   Encoding.UTF8, "application/json"));
+
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        var responseContent = response.Content.ReadAsStringAsync();
+
+                        var responseMapped = JsonConvert.DeserializeObject<T>(responseContent.Result);
+
+                        wrapper = new ResultWrapper<T>(responseMapped, false);
+
+                        return wrapper;
+                    }
+                    else
+                    {
+                        wrapper = new ResultWrapper<T>(response, true);
+
+                        return wrapper;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
 
 
 
