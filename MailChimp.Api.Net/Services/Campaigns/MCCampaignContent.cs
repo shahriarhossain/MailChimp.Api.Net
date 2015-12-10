@@ -18,15 +18,32 @@ namespace MailChimp.Api.Net.Services.Campaigns
 
     internal class MCCampaignContent
     {
-         ///<summary>
-         ///Get campaign content
-         ///</summary>
-        
+        ///<summary>
+        ///Get campaign content
+        ///</summary>
         internal async Task<RootContent> GetCampaignContentAsync(string campaign_id)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.content, SubTargetType.not_applicable, campaign_id);
 
             return await BaseOperation.GetAsync<RootContent>(endpoint);
+        }
+
+        ///<summary>
+        ///Set campaign content
+        ///</summary>
+        internal async Task<dynamic> SetCampaignContentAsync(string campaign_id, ContentSetting setting, ContentTemplate contentTemplate)
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.content, SubTargetType.not_applicable, campaign_id);
+
+            RootContent content = new RootContent()
+            {
+                template = contentTemplate,
+                plain_text = setting.plain_text,
+                html =  setting.html,
+                url = setting.url
+            };
+
+            return await BaseOperation.PutAsync<RootContent>(endpoint, content);
         }
 
     }
