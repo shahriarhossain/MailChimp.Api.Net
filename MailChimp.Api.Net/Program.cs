@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using MailChimp.Api.Net.Services.Reports;
 using MailChimp.Api.Net.Services.Templates;
-
-
 using MailChimp.Api.Net.Domain.Reports;
 using MailChimp.Api.Net.Services.Campaigns;
 using MailChimp.Api.Net.Domain.Campaigns;
@@ -53,7 +50,7 @@ namespace MailChimp.Api.Net
                 //List<Timesery> listOfPerfmance = performance.ToList<Timesery>();
                 //var templates = new MailChimpTemplates();
 
-                // var z = reports.GetOverviewByCampaignAsync("3709ea682b").Result;
+                //var z = reports.GetOverviewByCampaignAsync("3709ea682b").Result;
 
                 //  var f = templates.GetTemplatesAsync().Result;
 
@@ -70,8 +67,8 @@ namespace MailChimp.Api.Net
 
                 Settings campaignSettings = new Settings()
                 {
-                    subject_line = "This is another Subject line ",
-                    title = "habijabi#7",
+                    subject_line = "Ready For action ",
+                    title = "Ready !!!!",
                     from_name = "Shahriar Hossain",
                     reply_to = "shossain@desme.com",
                     template_id = 18073,
@@ -89,8 +86,24 @@ namespace MailChimp.Api.Net
 
                 if (campaignCreationResult.HasError == false)
                 {
+                    ContentTemplate template = new ContentTemplate()
+                    {
+                        id = "18073"
+                    }; 
+
+                    ContentSetting cSetting = new ContentSetting(); 
+
+                    MCCampaignContent campaignContent = new MCCampaignContent();
+                    var setContentStatus = campaignContent.SetCampaignContentAsync(campaignCreationResult.Result.id, cSetting, template).Result; 
+
+
                     MCCampaignsCheckList mccheckList = new MCCampaignsCheckList();
                     var checkListResult = mccheckList.GetCampaignContentAsync(campaignCreationResult.Result.id).Result;
+
+                    if (checkListResult.is_ready)
+                    {
+                        var sendStatus = overview.SendCampaignAsync(campaignCreationResult.Result.id).Result;
+                    }
                 }
                 else
                 {
@@ -98,28 +111,27 @@ namespace MailChimp.Api.Net
                 }
                 #endregion CampaignCreation
 
-                //MCCampaignsOverview overview = new MCCampaignsOverview();
-                //ResultWrapper sendRes = overview.SendCampaignAsync("d009b4d8de").Result;
+                
 
 
-                //Add people to List
-                ListMemberBase ob1 = new ListMemberBase()
-                    {
-                        email_address= "shahriar_cse@desme.com",
-                        email_type = "html",
-                        language = "English",
-                        status = "subscribed"
-                    };
+                #region Add people to List
+                //ListMemberBase ob1 = new ListMemberBase()
+                //    {
+                //        email_address = "shahriar_cse@desme.com",
+                //        email_type = "html",
+                //        language = "English",
+                //        status = "subscribed"
+                //    };
 
-                ListMemberBase ob2 = new ListMemberBase()
-                {
-                    email_address = "shossain@desme.com",
-                    email_type = "html",
-                    language = "English",
-                    status = "subscribed"
-                };
-
-
+                //ListMemberBase ob2 = new ListMemberBase()
+                //{
+                //    email_address = "shossain@desme.com",
+                //    email_type = "html",
+                //    language = "English",
+                //    status = "subscribed"
+                //};
+                //
+                #endregion Add people to List
 
                 Console.Read();
             }
