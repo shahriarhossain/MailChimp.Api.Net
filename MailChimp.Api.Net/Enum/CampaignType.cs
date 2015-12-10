@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MailChimp.Api.Net.Enum
 {
-    internal enum CampaignType
+    public enum CampaignType
     {
         regular,
         plaintext,
