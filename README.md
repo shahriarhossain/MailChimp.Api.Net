@@ -36,7 +36,13 @@ Conversations:
 ====
 - Conversation section is implemented except one feature. *Post a new conversation message* feature is not implemented yet.
 
-
+Automation:
+===
+Right now you can do only following task: 
+- You can Get a list of Automation
+- You can Get a list of automated emails .
+- You can View all subscribers removed from a workflow. 
+Other feature involved with Automation will be implemented later.
 
 HOW TO USE
 ===
