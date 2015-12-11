@@ -148,7 +148,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         /// Get information about a specific campaign
         /// <param name="campaignId">Unique id for the campaign</param>
         /// </summary>
-        internal async Task<RootCheckList> GetCampaignContentAsync(string campaign_id)
+        public async Task<RootCheckList> GetCampaignContentAsync(string campaign_id)
         {
             return await checkList.GetCampaignContentAsync(campaign_id);
         }
