@@ -8,8 +8,8 @@ namespace MailChimp.Api.Net.Domain.Reports
 {
     public class Bounces
     {
-        public int hard_bounces { get; set; }
-        public int soft_bounces { get; set; }
-        public int syntax_errors { get; set; }
+        public double hard_bounces { get; set; }
+        public double soft_bounces { get; set; }
+        public double syntax_errors { get; set; }
     }
 }
