@@ -105,10 +105,29 @@ namespace MailChimp.Api.Net.Services.Campaigns
         ///<summary>
         ///Set campaign content
         ///</summary>
+        [Obsolete("Use other overloaded version of SetCampaignContentAsync()", true)]
         public async Task<dynamic> SetCampaignContentAsync(string campaign_id, ContentSetting setting, ContentTemplate contentTemplate)
         {
             return await campaignContent.SetCampaignContentAsync(campaign_id, setting, contentTemplate);
         }
+
+
+        ///<summary>
+        ///Set campaign content
+        ///</summary>
+        public async Task<dynamic> SetCampaignContentAsync(string campaign_id, ContentSetting setting)
+        {
+            return await campaignContent.SetCampaignContentAsync(campaign_id, setting);
+        }
+
+        ///<summary>
+        ///Set campaign content
+        ///</summary>
+        public async Task<dynamic> SetCampaignContentAsync(string campaign_id, ContentTemplate contentTemplate)
+        {
+            return await campaignContent.SetCampaignContentAsync(campaign_id, contentTemplate);
+        }
+
 
         #endregion campaignContent
 

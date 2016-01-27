@@ -11,10 +11,12 @@ using MailChimp.Api.Net.Domain.Campaigns;
 using Newtonsoft.Json;
 using MailChimp.Api.Net.Domain;
 using MailChimp.Api.Net.Domain.Lists.Post;
+using System.IO;
+using MailChimp.Api.Net.Helper; 
 
 namespace MailChimp.Api.Net
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
@@ -58,6 +60,7 @@ namespace MailChimp.Api.Net
                 //var kk = templates.GetSpecificTemplateAsync("18085").Result;
 
                 #region CampaignCreation
+                MailChimpCampaigns campaign = new MailChimpCampaigns();
                 MCCampaignsOverview overview = new MCCampaignsOverview();
 
                 Recipients recipients = new Recipients()
@@ -67,8 +70,8 @@ namespace MailChimp.Api.Net
 
                 Settings campaignSettings = new Settings()
                 {
-                    subject_line = "Ready For action ",
-                    title = "Ready !!!!",
+                    subject_line = "GoBantiGo ",
+                    title = "Banti !!!!",
                     from_name = "Shahriar Hossain",
                     reply_to = "shossain@desme.com",
                     template_id = 18073,
@@ -89,13 +92,15 @@ namespace MailChimp.Api.Net
                     ContentTemplate template = new ContentTemplate()
                     {
                         id = "18073"
-                    }; 
+                    };
 
-                    ContentSetting cSetting = new ContentSetting(); 
+                    ContentSetting cSetting = new ContentSetting();
+                    string path = @"C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\EmailTemplates\raw_email_01.txt";
+                    FileParser parser = new FileParser();
+                    cSetting.html = parser.EmailParser(path);
 
                     MCCampaignContent campaignContent = new MCCampaignContent();
-                    var setContentStatus = campaignContent.SetCampaignContentAsync(campaignCreationResult.Result.id, cSetting, template).Result; 
-
+                    var setContentStatus = campaignContent.SetCampaignContentAsync(campaignCreationResult.Result.id, cSetting).Result;
 
                     MCCampaignsCheckList mccheckList = new MCCampaignsCheckList();
                     var checkListResult = mccheckList.GetCampaignContentAsync(campaignCreationResult.Result.id).Result;
@@ -110,9 +115,6 @@ namespace MailChimp.Api.Net
                     String.Format("Best of Luck :p !");
                 }
                 #endregion CampaignCreation
-
-                
-
 
                 #region Add people to List
                 //ListMemberBase ob1 = new ListMemberBase()
@@ -140,6 +142,8 @@ namespace MailChimp.Api.Net
 
                 throw ex;
             }
+
+
 
             Console.Read();
         }

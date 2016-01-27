@@ -31,6 +31,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         ///<summary>
         ///Set campaign content
         ///</summary>
+        [Obsolete("Use other overloaded version of SetCampaignContentAsync()")]
         internal async Task<dynamic> SetCampaignContentAsync(string campaign_id, ContentSetting setting, ContentTemplate contentTemplate)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.content, SubTargetType.not_applicable, campaign_id);
@@ -46,5 +47,36 @@ namespace MailChimp.Api.Net.Services.Campaigns
             return await BaseOperation.PutAsync<RootContent>(endpoint, content);
         }
 
+        ///<summary>
+        ///Set campaign content
+        ///</summary>
+        internal async Task<dynamic> SetCampaignContentAsync(string campaign_id, ContentSetting setting)
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.content, SubTargetType.not_applicable, campaign_id);
+
+            RootContent content = new RootContent()
+            {
+                plain_text = setting.plain_text,
+                html = setting.html,
+                url = setting.url
+            };
+
+            return await BaseOperation.PutAsync<RootContent>(endpoint, content);
+        }
+
+        ///<summary>
+        ///Set campaign content
+        ///</summary>
+        internal async Task<dynamic> SetCampaignContentAsync(string campaign_id, ContentTemplate contentTemplate)
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.campaigns, SubTargetType.content, SubTargetType.not_applicable, campaign_id);
+
+            RootContent content = new RootContent()
+            {
+                template = contentTemplate,
+            };
+
+            return await BaseOperation.PutAsync<RootContent>(endpoint, content);
+        }
     }
 }

@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+<table align="center" cellpadding="0" cellspacing="0" style="width:600px; margin:0 auto; font-family:Arial, Helvetica, sans-serif; border-collapse:collapse; border:0;">
+  <tr>
+    	<td colspan="2"><img src="http://tryrolls.com/Email_Template/images/banner.png" /></td>
+    </tr>
+      <tr>
+    	<td colspan="2" style="background-color:#f9f9f9; padding:33px; font-size:18px; color:#262626;">
+       	     <p style="font-size:20px; margin-top:0; font-weight:bold;">Dear Willington,</p>
+            <p style="font-size:16px; margin-top:0; font-weight:bold;">There has been a slight delay in our opening.  We are finalizing some minor tweaks and U will be the first to know when we are ready to rock and roll!</p>
+            <p style="font-size:16px; margin-top:0; font-weight:bold;">We've extended our coupon to expire on 10/31/2030 so everyone has time to use it!</p>
+            <p style="font-size:16px; margin-top:0; font-weight:bold;">Be sure to like us on Instagram, Facebook and Twitter for the most up-to-date info.</p>
+			<p style="font-size:16px; margin-top:0; font-weight:bold;">See you soon,</p>
+			<p style="font-size:16px; margin-top:0; font-weight:bold;">Dummy Restaurant </p>
+        </td>
+    </tr>
+  <tr>
+    <td><table width="100%" align="center" cellpadding="0" cellspacing="0"  style="padding-left:33px;padding-right:33px;padding-top:16px;padding-bottom:16px;background-color:#d69999;color:#fff;font-size:14px;font-weight:bold">
+      <tr>
+        <td> XXX Loream Ipsom, Loream, VA XXXX, United States</td>
+        <td><a href="https://www.facebook.com/"><img src="https://learnwithshahriar.files.wordpress.com/2016/01/facebook.png" alt="facebook"/></a><span><img src="http://www.tryrolls.com/Email_Template/images/gap-icon.png"></span>
+		<a href="https://twitter.com"><img src="https://learnwithshahriar.files.wordpress.com/2016/01/twitter.png" alt="facebook"/></a><span><img src="http://www.tryrolls.com/Email_Template/images/gap-icon.png"></span>
+		<a href="https://instagram.com/"><img src="https://learnwithshahriar.files.wordpress.com/2016/01/instagram.png" alt="facebook"/></a></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<style scoped>
+@media (min-width: 0px) and (max-width: 720px) {
+    table, img{
+width:100% !important;
+}
+}
+</style>
+</body> 
+</html>
