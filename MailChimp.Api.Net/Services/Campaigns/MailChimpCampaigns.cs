@@ -21,6 +21,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
         private MCCampaignContent campaignContent;
         private MCCampaignsFeedback feedback;
         private MCCampaignsCheckList checkList;
+        private MCCampaignSchedule scheduleCampaign;
         
         public MailChimpCampaigns()
         {
@@ -28,6 +29,7 @@ namespace MailChimp.Api.Net.Services.Campaigns
             campaignContent = new MCCampaignContent();
             feedback = new MCCampaignsFeedback();
             checkList = new MCCampaignsCheckList();
+            scheduleCampaign = new MCCampaignSchedule();
         }
 
         #region overview
@@ -172,6 +174,18 @@ namespace MailChimp.Api.Net.Services.Campaigns
             return await checkList.GetCampaignContentAsync(campaign_id);
         }
         #endregion checkList
+
+        #region schedule 
+        /// <summary>
+        /// Schedule Campaign Blast time
+        /// <param name="campaignId">Unique id for the campaign</param>
+        /// <param name="dateTime">Schedule time in UTC format</param>
+        /// </summary>
+        public async Task<dynamic> ScheduleCampaignAsync(string campaign_id, DateTime dateTime)
+        {
+            return await scheduleCampaign.ScheduleCampaignAsync(campaign_id, dateTime);
+        }
+        #endregion schedule 
 
     }
 }

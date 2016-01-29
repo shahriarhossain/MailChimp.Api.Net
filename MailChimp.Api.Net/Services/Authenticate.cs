@@ -109,6 +109,24 @@ namespace MailChimp.Api.Net.Services
             }
         }
 
+
+        /// <summary>
+        /// Return the endpoint to caller method
+        /// <param name="type">v2.0 Mailchimp EndPoint targetType, example: campaign, lists etc</param>
+        /// <param name="subType" optional></param>
+        /// </summary>
+        public static string LegacyEndPoint(TargetTypes type, SubTargetType subType)
+        {
+            string targetType = EnumMapper.MapTarget(type);
+            
+            string subCategory = EnumMapper.Map(subType);
+            
+            var dataCenter = GetDatacenterPrefix();
+
+            return String.Format("https://{0}.api.mailchimp.com/2.0/{1}/{2}", dataCenter, targetType, subCategory);
+        }
+
+
         /// <summary>
         /// Return the endpoint to caller method
         /// <param name="id" optional>Expects id for particular list/campaign etc</param>

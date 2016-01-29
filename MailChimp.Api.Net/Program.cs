@@ -70,8 +70,8 @@ namespace MailChimp.Api.Net
 
                 Settings campaignSettings = new Settings()
                 {
-                    subject_line = "GoBantiGo ",
-                    title = "Banti !!!!",
+                    subject_line = "Schedule Mail Subject ",
+                    title = "Schedule Mail!!! ",
                     from_name = "Shahriar Hossain",
                     reply_to = "shossain@desme.com",
                     template_id = 18073,
@@ -107,7 +107,11 @@ namespace MailChimp.Api.Net
 
                     if (checkListResult.is_ready)
                     {
-                        var sendStatus = overview.SendCampaignAsync(campaignCreationResult.Result.id).Result;
+                       // var sendStatus = overview.SendCampaignAsync(campaignCreationResult.Result.id).Result;
+
+                        DateTime dt = new DateTime(2016, 01, 29, 10, 28, 00, DateTimeKind.Utc);
+
+                        var schedule = campaign.ScheduleCampaignAsync(campaignCreationResult.Result.id, dt).Result;
                     }
                 }
                 else
@@ -134,6 +138,10 @@ namespace MailChimp.Api.Net
                 //};
                 //
                 #endregion Add people to List
+
+                #region CampaignScheduler
+            
+                #endregion CampaignScheduler
 
                 Console.Read();
             }

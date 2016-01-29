@@ -8,6 +8,7 @@ using MailChimp.Api.Net.Services;
 using Newtonsoft.Json;
 using System.Net;
 using MailChimp.Api.Net.Domain;
+using Newtonsoft.Json.Converters;
 
 namespace MailChimp.Api.Net.Helper
 {
@@ -81,7 +82,16 @@ namespace MailChimp.Api.Net.Helper
 
                     var settings = new JsonSerializerSettings
                     {
-                        NullValueHandling = NullValueHandling.Ignore
+                        NullValueHandling = NullValueHandling.Ignore,
+
+                        Converters = new List<JsonConverter> 
+                        { 
+                            new IsoDateTimeConverter()
+                            {
+                                DateTimeFormat= "yyyy-MM-dd HH:mm:ss"
+                            }
+                        }
+
                     };
 
                     var myContentJson = JsonConvert.SerializeObject(myContent, settings);
@@ -93,7 +103,7 @@ namespace MailChimp.Api.Net.Helper
                     if (response.IsSuccessStatusCode == true)
                     {
                         var responseContent = response.Content.ReadAsStringAsync();
-
+                        
                         var responseMapped = JsonConvert.DeserializeObject<T>(responseContent.Result);
 
                         wrapper = new ResultWrapper<T>(responseMapped, false);
