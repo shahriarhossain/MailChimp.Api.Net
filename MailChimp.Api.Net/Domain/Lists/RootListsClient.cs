@@ -7,7 +7,7 @@ using MailChimp.Api.Net.Domain.Reports;
 
 namespace MailChimp.Api.Net.Domain.Lists
 {
-    class RootListsClient
+    public class RootListsClient
     {
         public List<MCClient> clients { get; set; }
         public string list_id { get; set; }

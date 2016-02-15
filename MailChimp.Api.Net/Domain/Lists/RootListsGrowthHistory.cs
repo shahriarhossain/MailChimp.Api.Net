@@ -7,7 +7,7 @@ using MailChimp.Api.Net.Domain.Reports;
 
 namespace MailChimp.Api.Net.Domain.Lists
 {
-    class RootListsGrowthHistory
+    public class RootListsGrowthHistory
     {
         public List<History> history { get; set; }
         public string list_id { get; set; }

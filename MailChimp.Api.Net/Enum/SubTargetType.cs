@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MailChimp.Api.Net.Enum
 {
-    internal enum SubTargetType
+    public enum SubTargetType
     {
         not_applicable,
         advice,
