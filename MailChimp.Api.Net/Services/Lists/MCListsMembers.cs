@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MailChimp.Api.Net.Domain.Lists;
 using MailChimp.Api.Net.Enum;
+using MailChimp.Api.Net.Helper;
 using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Lists
@@ -17,6 +18,19 @@ namespace MailChimp.Api.Net.Services.Lists
 
     internal  class MCListsMembers
     {
+
+        /// <summary>
+        /// Add a new list member
+        /// <param name="list_id">Unique id for the list</param>
+        /// </summary>
+        internal async Task<dynamic> AddMember(MCMember member, string listId)
+        {
+            string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.members, SubTargetType.not_applicable, listId);
+
+            return await BaseOperation.PostAsync<MCMember>(endpoint, member);
+        }
+        
+  
         /// <summary>
         /// Get information about members in a list
         /// <param name="list_id">Unique id for the list</param>
@@ -57,6 +71,7 @@ namespace MailChimp.Api.Net.Services.Lists
             return JsonConvert.DeserializeObject<MCMember>(content);
         }
 
+
         /// <summary>
         /// Remove a list member
         /// <param name="list_id">Unique id for the list</param>
@@ -83,6 +98,7 @@ namespace MailChimp.Api.Net.Services.Lists
             }
             return result;
         }
+
 
 
     }

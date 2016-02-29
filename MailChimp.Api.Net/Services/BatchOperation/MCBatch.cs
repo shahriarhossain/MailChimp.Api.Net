@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MailChimp.Api.Net.Domain.BatchOperation;
+using MailChimp.Api.Net.Domain.Lists;
 using MailChimp.Api.Net.Enum;
 using MailChimp.Api.Net.Helper;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace MailChimp.Api.Net.Services.BatchOperation
 {
@@ -21,5 +24,29 @@ namespace MailChimp.Api.Net.Services.BatchOperation
 
             return await BaseOperation.PostAsync<RootBatch>(endpoint, bundle);
         }
+
+        /// <summary>
+        /// Get the status of a batch operation request
+        /// <param name="batchId">The unique id for the batch operation</param>
+        /// </summary>
+       internal async Task<RootBatch> GetBatchReportById(string batchId)
+       {
+           string endpoint = Authenticate.EndPoint(TargetTypes.batches, SubTargetType.not_applicable, SubTargetType.not_applicable, batchId);
+
+           return await BaseOperation.GetAsync<RootBatch>(endpoint);
+       }
+
+
+
+
+        /// <summary>
+        /// Get a list of batch requests
+        /// </summary>
+        //internal async Task<T> GetAllBatchReport()
+        //{
+        //    string endpoint = Authenticate.EndPoint(TargetTypes.batches, SubTargetType.not_applicable, SubTargetType.not_applicable);
+
+        //    return await BaseOperation.GetAsync<>(endpoint);
+        //}
     }
 }

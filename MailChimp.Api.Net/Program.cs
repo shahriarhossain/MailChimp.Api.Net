@@ -12,7 +12,18 @@ using Newtonsoft.Json;
 using MailChimp.Api.Net.Domain;
 using MailChimp.Api.Net.Domain.Lists.Post;
 using System.IO;
-using MailChimp.Api.Net.Helper; 
+using MailChimp.Api.Net.Helper;
+using MailChimp.Api.Net.Domain.Lists;
+using MailChimp.Api.Net.Enum;
+using MailChimp.Api.Net.Services.Lists;
+using System.Diagnostics;
+using MailChimp.Api.Net.Domain.BatchOperation;
+using Newtonsoft.Json.Converters;
+using MailChimp.Api.Net.Services.BatchOperation;
+using MailChimp.Api.Net.Services;
+using SharpCompress.Reader;
+using SharpCompress.Common;
+using System.Threading;
 
 namespace MailChimp.Api.Net
 {
@@ -60,87 +71,252 @@ namespace MailChimp.Api.Net
                 //var kk = templates.GetSpecificTemplateAsync("18085").Result;
 
                 #region CampaignCreation
-                MailChimpCampaigns campaign = new MailChimpCampaigns();
-                MCCampaignsOverview overview = new MCCampaignsOverview();
+                //MailChimpCampaigns campaign = new MailChimpCampaigns();
+                //MCCampaignsOverview overview = new MCCampaignsOverview();
 
-                Recipients recipients = new Recipients()
-                {
-                    list_id = "0a84a63afc"
-                };
+                //Recipients recipients = new Recipients()
+                //{
+                //    list_id = "0a84a63afc"
+                //};
 
-                Settings campaignSettings = new Settings()
-                {
-                    subject_line = "Schedule Mail Subject ",
-                    title = "Schedule Mail!!! ",
-                    from_name = "Shahriar Hossain",
-                    reply_to = "shossain@desme.com",
-                    template_id = 18073,
-                    authenticate = true,
-                    auto_footer = false
-                };
-                Tracking campaignTracking = new Tracking()
-                {
-                    opens = true,
-                    html_clicks = true,
-                    text_clicks = true
-                };
+                //Settings campaignSettings = new Settings()
+                //{
+                //    subject_line = "Schedule Mail Subject ",
+                //    title = "Schedule Mail!!! ",
+                //    from_name = "Shahriar Hossain",
+                //    reply_to = "shossain@desme.com",
+                //    template_id = 18073,
+                //    authenticate = true,
+                //    auto_footer = false
+                //};
+                //Tracking campaignTracking = new Tracking()
+                //{
+                //    opens = true,
+                //    html_clicks = true,
+                //    text_clicks = true
+                //};
 
-                ResultWrapper<Campaign> campaignCreationResult = overview.CreateCampaignAsync(Enum.CampaignType.regular, recipients, campaignSettings, campaignTracking).Result;
+                //ResultWrapper<Campaign> campaignCreationResult = overview.CreateCampaignAsync(Enum.CampaignType.regular, recipients, campaignSettings, campaignTracking).Result;
 
-                if (campaignCreationResult.HasError == false)
-                {
-                    ContentTemplate template = new ContentTemplate()
-                    {
-                        id = "18073"
-                    };
-
-                    ContentSetting cSetting = new ContentSetting();
-                    string path = @"C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\EmailTemplates\raw_email_01.txt";
-                    FileParser parser = new FileParser();
-                    cSetting.html = parser.EmailParser(path);
-
-                    MCCampaignContent campaignContent = new MCCampaignContent();
-                    var setContentStatus = campaignContent.SetCampaignContentAsync(campaignCreationResult.Result.id, cSetting).Result;
-
-                    MCCampaignsCheckList mccheckList = new MCCampaignsCheckList();
-                    var checkListResult = mccheckList.GetCampaignContentAsync(campaignCreationResult.Result.id).Result;
-
-                    if (checkListResult.is_ready)
-                    {
-                       // var sendStatus = overview.SendCampaignAsync(campaignCreationResult.Result.id).Result;
-
-                        DateTime dt = new DateTime(2016, 01, 29, 10, 28, 00, DateTimeKind.Utc);
-
-                        var schedule = campaign.ScheduleCampaignAsync(campaignCreationResult.Result.id, dt).Result;
-                    }
-                }
-                else
-                {
-                    String.Format("Best of Luck :p !");
-                }
-                #endregion CampaignCreation
-
-                #region Add people to List
-                //ListMemberBase ob1 = new ListMemberBase()
+                //if (campaignCreationResult.HasError == false)
+                //{
+                //    ContentTemplate template = new ContentTemplate()
                 //    {
-                //        email_address = "shahriar_cse@desme.com",
-                //        email_type = "html",
-                //        language = "English",
-                //        status = "subscribed"
+                //        id = "18073"
                 //    };
 
-                //ListMemberBase ob2 = new ListMemberBase()
+                //    ContentSetting cSetting = new ContentSetting();
+                //    string path = @"C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\EmailTemplates\raw_email_01.txt";
+                //    FileParser parser = new FileParser();
+                //    cSetting.html = parser.EmailParser(path);
+
+                //    MCCampaignContent campaignContent = new MCCampaignContent();
+                //    var setContentStatus = campaignContent.SetCampaignContentAsync(campaignCreationResult.Result.id, cSetting).Result;
+
+                //    MCCampaignsCheckList mccheckList = new MCCampaignsCheckList();
+                //    var checkListResult = mccheckList.GetCampaignContentAsync(campaignCreationResult.Result.id).Result;
+
+                //    if (checkListResult.is_ready)
+                //    {
+                //        var sendStatus = overview.SendCampaignAsync(campaignCreationResult.Result.id).Result;
+                //    }
+                //}
+                //else
                 //{
-                //    email_address = "shossain@desme.com",
+                //    String.Format("Best of Luck :p !");
+                //}
+                #endregion CampaignCreation
+
+                #region Add single people to a List
+                //MailChimpList lists = new MailChimpList();
+                //MCMember member = new MCMember()
+                //{
+                //    email_address = String.Format("SHAHRIARTEST@desme.com"),
                 //    email_type = "html",
                 //    language = "English",
-                //    status = "subscribed"
+                //    status = SubscriberStatus.subscribed.ToString()
                 //};
-                //
+                //var x = lists.AddMember(member, "0a84a63afc").Result;
                 #endregion Add people to List
 
+                #region Add multiple members in list with single call
+                RootBatch batchObj = new RootBatch();
+                MCMember member = new MCMember();
+                for (int i = 828; i < 833; i++)
+                {
+                    member.email_address = String.Format("Rifat{0}@test.com", i);
+                    member.email_type = "html";
+                    member.language = "English";
+                    member.status = SubscriberStatus.subscribed.ToString();
+
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+
+                        Converters = new List<JsonConverter> 
+                        { 
+                            new IsoDateTimeConverter()
+                            {
+                                DateTimeFormat= "yyyy-MM-dd HH:mm:ss"
+                            }
+                        }
+                    };
+
+                    var myContentJson = JsonConvert.SerializeObject(member, settings);
+
+                    SingleOperation singleOpt = new SingleOperation();
+                    singleOpt.method = "POST";
+                    singleOpt.path = String.Format("/{0}/{1}/{2}", TargetTypes.lists, "0a84a63afc", SubTargetType.members);
+                    singleOpt.operation_id = String.Format("{0}", i);
+                    singleOpt.body = myContentJson;
+
+                    batchObj.operations.Add(singleOpt);
+                }
+
+                MailChimpBatch goBatch = new MailChimpBatch();
+                var batchResult = goBatch.PostBatchOperationAsync(batchObj).Result;
+                Thread.Sleep(9000);
+                #endregion Add multiple members in list with single call
+
+                #region Get Batch Result for By ID
+                var batchId = batchResult.Result.id;
+                string newFileName = "";
+                if (batchId != null)
+                {
+                    var result = goBatch.GetBatchReportById(batchId).Result;
+                    Thread.Sleep(2000);
+
+                    if (result.errored_operations > 0)
+                    {
+                        string detailsReportForIssueTrackingURL = result.response_body_url.ToString();
+                        newFileName = @"E:\" + batchId + ".tar.gz";
+                        FileDownloader.download(detailsReportForIssueTrackingURL, newFileName);
+                    }
+                    else
+                    {
+                        string detailSuccessReportURL = result.response_body_url.ToString();
+                    }
+                }
+                #endregion Get Batch Result for By ID
+
+                #region decompress tar.gz
+                string logDirectory = @"E:\MailChimpLog";
+                string extractedFileName = "";
+                if (!String.IsNullOrWhiteSpace(newFileName))
+                {
+                    while (true)
+                    {
+                        if (File.Exists(newFileName))
+                        {
+                            using (Stream stream = File.OpenRead(newFileName))
+                            {
+                                var reader = ReaderFactory.Open(stream);
+                                while (reader.MoveToNextEntry())
+                                {
+                                    if (!reader.Entry.IsDirectory)
+                                    {
+                                        extractedFileName = reader.Entry.Key;
+                                        extractedFileName = extractedFileName.Substring(2);
+                                        reader.WriteEntryToDirectory(logDirectory, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+                                    }
+                                }
+                            }
+                            string expectedFileName = String.Format("{0}.json", batchId);
+                          
+                            System.IO.File.Move(
+                                Path.Combine(logDirectory, extractedFileName), 
+                                Path.Combine(logDirectory, expectedFileName));
+                            break;  
+                        }
+                    }
+                }
+                #endregion decompress tar.gz
+
+
+                #region CreateNewList
+                //MailChimpList myList = new MailChimpList();
+                //Contact ct = new Contact()
+                //{
+                //    city = "Dhaka",
+                //    address1 = "This is address1",
+                //    address2 = "This is address2",
+                //    company = "desme",
+                //    country = "Bangladesh",
+                //    phone = "017777",
+                //    state = "NA",
+                //    zip = "96000"
+                //};
+
+                //CampaignDefaults cd = new CampaignDefaults()
+                //{
+                //    from_email = "Shossain@desme.com",
+                //    from_name = "Shahriar",
+                //    language = "English",
+                //    subject = "This is a subject"
+                //};
+
+                //var res = myList.CreateListAsync("mySecondTmpList", ct, "You gave me permission ", cd, false, ListVisibility.prv).Result;
+
+                #endregion CreateNewList
+
                 #region CampaignScheduler
-            
+                //MailChimpCampaigns campaign = new MailChimpCampaigns();
+                //MCCampaignsOverview overview = new MCCampaignsOverview();
+
+                //Recipients recipients = new Recipients()
+                //{
+                //    list_id = "0a84a63afc"
+                //};
+
+                //Settings campaignSettings = new Settings()
+                //{
+                //    subject_line = "Schedule Mail Subject ",
+                //    title = "Schedule Mail!!! ",
+                //    from_name = "Shahriar Hossain",
+                //    reply_to = "shossain@desme.com",
+                //    template_id = 18073,
+                //    authenticate = true,
+                //    auto_footer = false
+                //};
+                //Tracking campaignTracking = new Tracking()
+                //{
+                //    opens = true,
+                //    html_clicks = true,
+                //    text_clicks = true
+                //};
+
+                //ResultWrapper<Campaign> campaignCreationResult = overview.CreateCampaignAsync(Enum.CampaignType.regular, recipients, campaignSettings, campaignTracking).Result;
+
+                //if (campaignCreationResult.HasError == false)
+                //{
+                //    ContentTemplate template = new ContentTemplate()
+                //    {
+                //        id = "18073"
+                //    };
+
+                //    ContentSetting cSetting = new ContentSetting();
+                //    string path = @"C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\EmailTemplates\raw_email_01.txt";
+                //    FileParser parser = new FileParser();
+                //    cSetting.html = parser.EmailParser(path);
+
+                //    MCCampaignContent campaignContent = new MCCampaignContent();
+                //    var setContentStatus = campaignContent.SetCampaignContentAsync(campaignCreationResult.Result.id, cSetting).Result;
+
+                //    MCCampaignsCheckList mccheckList = new MCCampaignsCheckList();
+                //    var checkListResult = mccheckList.GetCampaignContentAsync(campaignCreationResult.Result.id).Result;
+
+                //    if (checkListResult.is_ready)
+                //    {
+                //        DateTime dt = new DateTime(2016, 01, 29, 10, 28, 00, DateTimeKind.Utc);
+
+                //        var schedule = campaign.ScheduleCampaignAsync(campaignCreationResult.Result.id, dt).Result;
+                //    }
+                //}
+                //else
+                //{
+                //    String.Format("Best of Luck :p !");
+                //}
+
                 #endregion CampaignScheduler
 
                 Console.Read();
