@@ -109,7 +109,7 @@ namespace MailChimp.Api.Net.Services.Lists
         /// Add a new list member
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>
-        internal async Task<dynamic> AddMember(MCMember member, string listId)
+        public async Task<dynamic> AddMember(MCMember member, string listId)
         {
             return await listMembers.AddMember(member, listId);
         }
@@ -138,7 +138,7 @@ namespace MailChimp.Api.Net.Services.Lists
         /// <param name="list_id">Unique id for the list</param>
         /// <param name="subscriber_hash">The MD5 hash of the lowercase version of the list member’s email address</param>
         /// </summary>
-        internal async Task<HttpResponseMessage> RemoveMemberAsync(string list_id, string subscriber_hash)
+        public async Task<HttpResponseMessage> RemoveMemberAsync(string list_id, string subscriber_hash)
         {
             return await listMembers.DeleteListMemberAsync(list_id, subscriber_hash);
         }
