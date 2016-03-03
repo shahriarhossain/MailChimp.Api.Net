@@ -118,9 +118,9 @@ namespace MailChimp.Api.Net.Services.Lists
         /// Get information about members in a list
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>
-        public async Task<RootMember> GetAllMemberInfoAsync(string list_id)
+        public async Task<RootMember> GetAllMemberInfoAsync(string list_id, int offset = 0, int count = 10)
         {
-            return await listMembers.GetMemberInfoOfAListAsync(list_id);
+            return await listMembers.GetMemberInfoOfAListAsync(list_id, offset, count);
         }
 
         /// <summary>

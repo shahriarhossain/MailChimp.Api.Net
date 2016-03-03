@@ -16,7 +16,7 @@ namespace MailChimp.Api.Net.Services.Lists
     // PURPOSE     : Manage members of a specific MailChimp list, including currently subscribed, unsubscribed, and bounced members.
     // ==================================================================================================================================
 
-    internal  class MCListsMembers
+    internal class MCListsMembers
     {
 
         /// <summary>
@@ -29,15 +29,16 @@ namespace MailChimp.Api.Net.Services.Lists
 
             return await BaseOperation.PostAsync<MCMember>(endpoint, member);
         }
-        
-  
+
+
         /// <summary>
         /// Get information about members in a list
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>
-        internal async Task<RootMember> GetMemberInfoOfAListAsync(string list_id)
+        internal async Task<RootMember> GetMemberInfoOfAListAsync(string list_id, int offset = 0, int count = 10)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.members, SubTargetType.not_applicable, list_id);
+            endpoint = String.Format("{0}?offset={1}&count={2}", endpoint, offset, count);
 
             string content;
             using (var client = new HttpClient())
