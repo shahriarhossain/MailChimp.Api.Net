@@ -20,10 +20,10 @@ namespace MailChimp.Api.Net.Services.Automation
         /// <summary>
         /// Get a list of Automations
         /// </summary>
-        internal async Task<RootAutomation> GetAllAutomationListsAsync()
+        internal async Task<RootAutomation> GetAllAutomationListsAsync(int count=10)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.automations, SubTargetType.not_applicable, SubTargetType.not_applicable);
-
+            endpoint = String.Format("{0}?count={1}", endpoint, count);
             return await BaseOperation.GetAsync<RootAutomation>(endpoint);
         }
 

@@ -30,9 +30,9 @@ namespace MailChimp.Api.Net.Services.Automation
         /// <summary>
         /// Get a list of Automations
         /// </summary>
-        public async Task<RootAutomation> GetAutomationListAsync()
+        public async Task<RootAutomation> GetAutomationListAsync(int count = 10)
         {
-            return await overview.GetAllAutomationListsAsync();
+            return await overview.GetAllAutomationListsAsync(count);
         }
 
         /// <summary>
