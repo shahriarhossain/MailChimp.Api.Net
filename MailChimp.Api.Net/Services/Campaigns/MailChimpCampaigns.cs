@@ -166,12 +166,22 @@ namespace MailChimp.Api.Net.Services.Campaigns
 
         #region checkList
         /// <summary>
-        /// Get information about a specific campaign
+        /// Get the send checklist for a campaign
         /// <param name="campaignId">Unique id for the campaign</param>
         /// </summary>
+        [Obsolete("MethodName is misleading, USE GetCheckListAsync() instead.")]
         public async Task<RootCheckList> GetCampaignContentAsync(string campaign_id)
         {
             return await checkList.GetCampaignContentAsync(campaign_id);
+        }
+
+        /// <summary>
+        /// Get the send checklist for a campaign
+        /// <param name="campaignId">Unique id for the campaign</param>
+        /// </summary>
+        public async Task<RootCheckList> GetCheckListAsync(string campaign_id)
+        {
+            return await checkList.GetCheckListAsync(campaign_id);
         }
         #endregion checkList
 
