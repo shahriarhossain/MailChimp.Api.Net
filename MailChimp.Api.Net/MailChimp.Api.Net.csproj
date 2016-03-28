@@ -11,6 +11,7 @@
     <AssemblyName>MailChimp.Api.Net</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -55,6 +55,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SharpCompress">
+      <HintPath>..\packages\sharpcompress.0.11.5\lib\net40\SharpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -81,18 +84,23 @@
     <Compile Include="Domain\Automations\Runtime.cs" />
     <Compile Include="Domain\Automations\Subscribers.cs" />
     <Compile Include="Domain\Automations\TriggerSettings.cs" />
+    <Compile Include="Domain\BatchOperation\MultiOperation.cs" />
     <Compile Include="Domain\BatchOperation\RootBatch.cs" />
     <Compile Include="Domain\BatchOperation\SingleOperation.cs" />
     <Compile Include="Domain\CampaignFolder\CampaignFolder.cs" />
     <Compile Include="Domain\CampaignFolder\RootCampaignFolder.cs" />
     <Compile Include="Domain\Campaigns\Campaign.cs" />
+    <Compile Include="Domain\Campaigns\ContentSetting.cs" />
     <Compile Include="Domain\Campaigns\Condition.cs" />
+    <Compile Include="Domain\Campaigns\ContentArchive.cs" />
+    <Compile Include="Domain\Campaigns\ContentTemplate.cs" />
     <Compile Include="Domain\Campaigns\Item.cs" />
     <Compile Include="Domain\Campaigns\Recipients.cs" />
     <Compile Include="Domain\Campaigns\ReportSummary.cs" />
     <Compile Include="Domain\Campaigns\RootCampaign.cs" />
     <Compile Include="Domain\Campaigns\RootCheckList.cs" />
     <Compile Include="Domain\Campaigns\RootContent.cs" />
+    <Compile Include="Domain\Campaigns\Schedule.cs" />
     <Compile Include="Domain\Campaigns\SegmentOpts.cs" />
     <Compile Include="Domain\Campaigns\Settings.cs" />
     <Compile Include="Domain\Campaigns\Tracking.cs" />
@@ -172,12 +180,18 @@
     <Compile Include="Domain\Templates\Template.cs" />
     <Compile Include="Enum\CampaignType.cs" />
     <Compile Include="Enum\CommandProperty.cs" />
+    <Compile Include="Enum\ListVisibility.cs" />
     <Compile Include="Enum\Method.cs" />
+    <Compile Include="Enum\SubscriberStatus.cs" />
     <Compile Include="Enum\SubTargetType.cs" />
     <Compile Include="Enum\TargetTypes.cs" />
     <Compile Include="ErrorMessages\MailChimpExceptionMessage.cs" />
     <Compile Include="Helper\BaseOperation.cs" />
     <Compile Include="Helper\BundleCreation.cs" />
+    <Compile Include="Helper\Class1.cs" />
+    <Compile Include="Helper\FileDownloader.cs" />
+    <Compile Include="Helper\FileParser.cs" />
+    <Compile Include="Helper\RetryManager.cs" />
     <Compile Include="Mapper\EnumMapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -194,16 +208,20 @@
     <Compile Include="Services\Automation\MCAutomationsEmailsQueue.cs" />
     <Compile Include="Services\Automation\MCAutomationsOverview.cs" />
     <Compile Include="Services\Automation\MCAutomationsRemoveSubscriber.cs" />
+    <Compile Include="Services\BatchOperation\BatchOperation.cs" />
+    <Compile Include="Services\BatchOperation\MailChimpBatch.cs" />
     <Compile Include="Services\BatchOperation\MCBatch.cs" />
     <Compile Include="Services\Campaigns\MailChimpCampaigns.cs" />
     <Compile Include="Services\Campaigns\MCCampaignContent.cs" />
     <Compile Include="Services\Campaigns\MCCampaignFolder.cs" />
+    <Compile Include="Services\Campaigns\MCCampaignSchedule.cs" />
     <Compile Include="Services\Campaigns\MCCampaignsFeedback.cs" />
     <Compile Include="Services\Campaigns\MCCampaignsOverview.cs" />
     <Compile Include="Services\Campaigns\MCCampaignsCheckList.cs" />
     <Compile Include="Services\Conversations\MailChimpConversation.cs" />
     <Compile Include="Services\Conversations\MCConversationOverview.cs" />
     <Compile Include="Services\Conversations\MCConversationsMessages.cs" />
+    <Compile Include="Services\Lists\MailChimpList.cs" />
     <Compile Include="Services\Lists\MCListsAbuseReports.cs" />
     <Compile Include="Services\Lists\MCListsActivity.cs" />
     <Compile Include="Services\Lists\MCListsClient.cs" />
@@ -216,7 +234,6 @@
     <Compile Include="Services\Lists\MCListsMergeFields.cs" />
     <Compile Include="Services\Lists\MCListsOverview.cs" />
     <Compile Include="Services\Lists\MCListsSegments.cs" />
-    <Compile Include="Services\MailChimpWorker.cs" />
     <Compile Include="Services\Reports\MailChimpReports.cs" />
     <Compile Include="Services\Reports\MCReportsCampaignAdvice.cs" />
     <Compile Include="Services\Reports\MCReportsClickDetails.cs" />
@@ -253,6 +270,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmailTemplates\raw_email_01.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

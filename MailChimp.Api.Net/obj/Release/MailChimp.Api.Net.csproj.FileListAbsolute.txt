@@ -1,0 +1,7 @@
+C:\Users\Wahid\documents\visual studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Release\MailChimp.Api.Net.exe.config
+C:\Users\Wahid\documents\visual studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Release\MailChimp.Api.Net.exe
+C:\Users\Wahid\documents\visual studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Release\MailChimp.Api.Net.pdb
+C:\Users\Wahid\documents\visual studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Release\Newtonsoft.Json.dll
+C:\Users\Wahid\documents\visual studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Release\Newtonsoft.Json.xml
+C:\Users\Wahid\documents\visual studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\obj\Release\MailChimp.Api.Net.exe
+C:\Users\Wahid\documents\visual studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\obj\Release\MailChimp.Api.Net.pdb

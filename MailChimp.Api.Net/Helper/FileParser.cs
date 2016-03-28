@@ -5,6 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// =====================================================
+// AUTHOR      : Shahriar Hossain, Microsoft Azure MVP
+// PURPOSE     : Parse file
+// =====================================================
+
 namespace MailChimp.Api.Net.Helper
 {
     public class FileParser

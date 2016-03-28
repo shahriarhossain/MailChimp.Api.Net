@@ -12,6 +12,11 @@ using Newtonsoft.Json.Converters;
 
 namespace MailChimp.Api.Net.Helper
 {
+    // =================================================================================================
+    // AUTHOR      : Shahriar Hossain, Microsoft Azure MVP
+    // PURPOSE     : Perform core operation
+    // =================================================================================================
+
     internal static class BaseOperation
     {
         /// <summary>

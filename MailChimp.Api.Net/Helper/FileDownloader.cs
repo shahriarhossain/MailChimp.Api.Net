@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace MailChimp.Api.Net.Helper
 {
+    // ======================================================
+    // AUTHOR      : Shahriar Hossain, Microsoft Azure MVP
+    // PURPOSE     : Download file
+    // ======================================================
+
     public static class FileDownloader
     {
         public static void download(string inputFileURL, string outputDirectory)
