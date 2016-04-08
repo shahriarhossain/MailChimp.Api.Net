@@ -90,6 +90,7 @@
     <Compile Include="Domain\CampaignFolder\CampaignFolder.cs" />
     <Compile Include="Domain\CampaignFolder\RootCampaignFolder.cs" />
     <Compile Include="Domain\Campaigns\Campaign.cs" />
+    <Compile Include="Domain\Campaigns\Combination.cs" />
     <Compile Include="Domain\Campaigns\ContentSetting.cs" />
     <Compile Include="Domain\Campaigns\Condition.cs" />
     <Compile Include="Domain\Campaigns\ContentArchive.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Domain\Campaigns\SegmentOpts.cs" />
     <Compile Include="Domain\Campaigns\Settings.cs" />
     <Compile Include="Domain\Campaigns\Tracking.cs" />
+    <Compile Include="Domain\Campaigns\VariateSettings.cs" />
     <Compile Include="Domain\Conversations\Conversation.cs" />
     <Compile Include="Domain\Conversations\ConversationMessage.cs" />
     <Compile Include="Domain\Conversations\LastMessage.cs" />

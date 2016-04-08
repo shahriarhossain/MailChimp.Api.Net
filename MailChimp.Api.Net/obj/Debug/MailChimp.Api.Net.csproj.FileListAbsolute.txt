@@ -1,9 +1,8 @@
+C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Debug\MailChimp.Api.Net.exe.config
+C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Debug\MailChimp.Api.Net.exe
 C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Debug\MailChimp.Api.Net.pdb
 C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Debug\SharpCompress.dll
 C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\obj\Debug\MailChimp.Api.Net.pdb
-C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\obj\Debug\MailChimp.Api.Net.csprojResolveAssemblyReference.cache
-C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Debug\MailChimp.Api.Net.exe.config
-C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\bin\Debug\MailChimp.Api.Net.exe
 C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\obj\Debug\MailChimp.Api.Net.exe
+C:\Users\Wahid\Documents\Visual Studio 2012\Projects\MailChimp.Api.Net\MailChimp.Api.Net\obj\Debug\MailChimp.Api.Net.pdb

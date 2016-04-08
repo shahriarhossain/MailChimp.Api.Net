@@ -15,7 +15,8 @@ namespace MailChimp.Api.Net.Domain.Lists
         public string email_type { get; set; }
         public string status { get; set; }
         public string status_if_new { get; set; }
-        public MergeFields merge_fields { get; set; }
+        //public MergeFields merge_fields { get; set; }
+        public Dictionary<string, object> merge_fields { get; set; }
         public Interests interests { get; set; }
         public Stats stats { get; set; }
         public string ip_signup { get; set; }
