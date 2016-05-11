@@ -32,6 +32,20 @@ namespace MailChimp.Api.Net.Services.Lists
 
 
         /// <summary>
+        /// Update a list member
+        /// <param name="list_id">Unique id for the list</param>
+        /// </summary>
+        internal async Task<dynamic> UpdateMember(MCMember member, string listId)
+        {
+            if (member.id == null)
+                throw (new Exception("Member ID must not be null"));
+
+            string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.members, SubTargetType.not_applicable, listId, member.id);
+
+            return await BaseOperation.PutAsync<MCMember>(endpoint, member);
+        }
+
+        /// <summary>
         /// Get information about members in a list
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>

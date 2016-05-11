@@ -113,7 +113,16 @@ namespace MailChimp.Api.Net.Services.Lists
         {
             return await listMembers.AddMember(member, listId);
         }
-        
+
+        /// <summary>
+        /// Update a list member
+        /// <param name="list_id">Unique id for the list</param>
+        /// </summary>
+        public async Task<dynamic> UpdateMember(MCMember member, string listId)
+        {
+            return await listMembers.UpdateMember(member, listId);
+        }
+
         /// <summary>
         /// Get information about members in a list
         /// <param name="list_id">Unique id for the list</param>
