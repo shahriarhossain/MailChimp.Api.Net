@@ -3,6 +3,10 @@ MailChimp v3.0 .Net wrapper
 
 As the name says **MailChimp.Api.Net** is a .Net wrapper that expose a very simple yet elegant wrapper around the MailChimp RESTful JSON API version 3.0 documented at https://kb.mailchimp.com/api 
 
+Support
+=====
+Search issues(https://github.com/shahriarhossain/MailChimp.Api.Net/issues) and pull requests to see if your issue/request already exists. If it does, please leave a comment or a reaction. This helps me priortize what I work on next. Create a new issue if you can't find what you're looking for. :)
+
 Current Status:
 ====
 Reports:
