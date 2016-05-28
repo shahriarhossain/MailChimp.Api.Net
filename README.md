@@ -1,5 +1,12 @@
-# MailChimp.Api.Net
+# <img src="https://learnwithshahriar.files.wordpress.com/2015/11/mailchimp-api-net.png" width="50" height="50" />MailChimp.Api.Net
 MailChimp v3.0 .Net wrapper
+
+## Status
+
+![Build status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)
+![Nuget status](https://img.shields.io/badge/nuget-v1.2.0.5-blue.svg)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
+
 
 As the name says **MailChimp.Api.Net** is a .Net wrapper that expose a very simple yet elegant wrapper around the MailChimp RESTful JSON API version 3.0 documented at https://kb.mailchimp.com/api 
 
