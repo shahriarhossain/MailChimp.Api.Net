@@ -190,9 +190,9 @@ namespace MailChimp.Api.Net.Services.Lists
         /// <summary>
         /// Get information about all lists
         /// </summary>
-        public async Task<RootMCLists> GetAllListsAsync()
+        public async Task<RootMCLists> GetAllListsAsync(int offset = 0, int count = 10)
         {
-            return await listOverview.GetAllListsAsync();
+            return await listOverview.GetAllListsAsync(offset, count);
         }
 
         /// <summary>

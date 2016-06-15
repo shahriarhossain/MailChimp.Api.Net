@@ -21,9 +21,10 @@ namespace MailChimp.Api.Net.Services.Lists
         /// <summary>
         /// Get information about all lists
         /// </summary>
-        internal async Task<RootMCLists> GetAllListsAsync()
+        internal async Task<RootMCLists> GetAllListsAsync(int offset = 0, int count = 10)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.not_applicable, SubTargetType.not_applicable);
+            endpoint = String.Format("{0}?offset={1}&count={2}", endpoint, offset, count);
 
             string content;
             using (var client = new HttpClient())
