@@ -60,7 +60,7 @@ namespace MailChimp.Api.Net.Services.Lists
         /// Delete a list
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>
-        internal async Task<HttpResponseMessage> DeleteTemplateByIdAsync(string list_id)
+        internal async Task<HttpResponseMessage> DeleteListAsync(string list_id)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.not_applicable, SubTargetType.not_applicable, list_id);
 

@@ -208,9 +208,9 @@ namespace MailChimp.Api.Net.Services.Lists
         /// Delete a list
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>
-        public async Task<HttpResponseMessage> DeleteTemplateByIdAsync(string list_id)
+        public async Task<HttpResponseMessage> DeleteListAsync(string list_id)
         {
-            return await listOverview.DeleteTemplateByIdAsync(list_id);
+            return await listOverview.DeleteListAsync(list_id);
         }
 
         /// <summary>
