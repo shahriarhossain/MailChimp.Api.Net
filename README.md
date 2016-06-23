@@ -4,7 +4,7 @@ MailChimp v3.0 .Net wrapper
 ## Status
 
 ![Build status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)
-![Nuget status](https://img.shields.io/badge/nuget-v1.2.0.7-blue.svg)
+![Nuget status](https://img.shields.io/badge/nuget-v1.2.0.8-blue.svg)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)]()
 
 
