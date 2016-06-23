@@ -15,6 +15,7 @@ namespace MailChimp.Api.Net.Enum
         automations,
         lists,
         campaign_folders,
-        batches
+        batches,
+        template_folders
     }
 }
