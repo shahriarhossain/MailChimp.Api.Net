@@ -313,6 +313,7 @@ namespace MailChimp.Api.Net.Helper
             HttpResponseMessage response = new HttpResponseMessage();
             try
             {
+                client.DefaultRequestHeaders.ExpectContinue = false;
                 response = await client.SendAsync(request);
             }
             catch (TaskCanceledException ex)
