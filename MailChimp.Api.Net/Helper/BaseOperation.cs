@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -129,8 +129,7 @@ namespace MailChimp.Api.Net.Helper
                 }
             }
         }
-
-
+        
         //<summary>
         //Create something
         //<param name="endpoint">The url where we want to hit to get result</param>
@@ -172,8 +171,7 @@ namespace MailChimp.Api.Net.Helper
                 }
             }
         }
-
-
+        
         /// <summary>
         /// Put something
         /// <param name="endpoint">The url where we want to hit to get result</param>
@@ -227,15 +225,103 @@ namespace MailChimp.Api.Net.Helper
                 }
             }
         }
+        
+        /// <summary>
+        /// Patch something
+        /// <param name="endpoint">The url where we want to hit to get result</param>
+        /// <param name="myContent">The content that you want to send</param>
+        /// </summary>
+        public static async Task<ResultWrapper<T>>
+          PatchAsync<T>(string endpoint, T myContent) where T : class
+        {
+            ResultWrapper<T> wrapper;
 
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    Authenticate.ClientAuthentication(client);
 
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
 
+                        Converters = new List<JsonConverter> 
+                        { 
+                            new IsoDateTimeConverter()
+                            {
+                                DateTimeFormat= "yyyy-MM-dd HH:mm:ss"
+                            }
+                        }
 
+                    };
 
+                    var myContentJson = JsonConvert.SerializeObject(myContent, settings);
 
+                    Uri uri = new Uri(endpoint);
+                    HttpContent content = new StringContent(myContentJson.ToString(), Encoding.UTF8, "application/json");
 
+                    var response = await HttpClientExtensions.PatchAsync(client, uri, content);
 
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        var responseContent = response.Content.ReadAsStringAsync();
 
+                        var responseMapped = JsonConvert.DeserializeObject<T>(responseContent.Result);
+
+                        wrapper = new ResultWrapper<T>(responseMapped, false);
+
+                        return wrapper;
+                    }
+                    else
+                    {
+                        wrapper = new ResultWrapper<T>(response, true);
+
+                        return wrapper;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
 
     }
+
+    /// <summary>
+    /// Static class for HTTP-Patch method missing in System.Net.Http
+    /// </summary>
+    public static class HttpClientExtensions
+    {
+        /// <summary>
+        /// Patch something
+        /// <param name="client">System.Net.Http.HttpClient client</param>
+        /// <param name="requestUri">System.Uri requestUri</param>
+        /// <param name="iContent">System.Net.HttpContent iContent</param>
+        /// <param name="httpMethod">System.Net.Http.HttpMethod httpMethod</param>
+        /// </summary>
+        public static async Task<HttpResponseMessage> PatchAsync(HttpClient client, Uri requestUri, HttpContent iContent, string httpMethod = "PATCH")
+        {
+            HttpMethod method = new HttpMethod(httpMethod);  
+          
+            var request = new HttpRequestMessage(method, requestUri)
+            {
+                Content = iContent
+            };
+
+            HttpResponseMessage response = new HttpResponseMessage();
+            try
+            {
+                client.DefaultRequestHeaders.ExpectContinue = false;
+                response = await client.SendAsync(request);
+            }
+            catch (TaskCanceledException ex)
+            {
+                throw ex;
+            }
+            return response;
+        }
+    }
+
 }

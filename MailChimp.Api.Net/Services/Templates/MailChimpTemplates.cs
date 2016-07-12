@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -24,7 +24,7 @@ namespace MailChimp.Api.Net.Services.Templates
         /// <param name="html">The raw HTML for the template. We support the MailChimp Template Language in any HTML code passed via the API</param>
         /// <param name="folder_id" optional>The id of the folder the template is currently in</param> 
         /// </summary>
-        public async Task<dynamic> CreateTemplateAsync(string templateName, string html, string folder_id)
+        public async Task<dynamic> CreateTemplateAsync(string templateName, string html, string folder_id = null)
         {
           string endpoint = Authenticate.EndPoint(TargetTypes.templates, SubTargetType.not_applicable, SubTargetType.not_applicable);
 
@@ -41,9 +41,10 @@ namespace MailChimp.Api.Net.Services.Templates
         /// <summary>
         /// Get all templates
         /// </summary>
-        public async Task<RootTemplate> GetAllTemplatesAsync()
+        public async Task<RootTemplate> GetAllTemplatesAsync(int offset = 0, int count = 10)
         {
             string endpoint = Authenticate.EndPoint(TargetTypes.templates, SubTargetType.not_applicable, SubTargetType.not_applicable);
+            endpoint = String.Format("{0}?offset={1}&count={2}", endpoint, offset, count);
 
             return await BaseOperation.GetAsync<RootTemplate>(endpoint);
         }
@@ -69,5 +70,30 @@ namespace MailChimp.Api.Net.Services.Templates
 
             return await BaseOperation.DeleteAsync(endpoint);
         }
+                
+        /// <summary>
+        /// Update specific template
+        /// <param name="name">The new name of the template</param>
+        /// <param name="html">The new HTML of the template</param>
+        /// <param name="folder_id">The folder Id of the template</param>
+        /// <param name="templateId">The template identifier</param>        
+        /// </summary>        
+        public async Task<dynamic> UpdateTemplateAsync(string name, string html, string templateId, string folder_id = null)
+        {
+            if (templateId == null)
+                throw (new Exception("Template ID must not be null"));
+
+            string endpoint = Authenticate.EndPoint(TargetTypes.templates, SubTargetType.not_applicable, SubTargetType.not_applicable, templateId);
+
+            Template templateObject = new Template()
+            {
+                name = name,
+                folder_id = folder_id,
+                html = html
+            };
+
+            return await BaseOperation.PatchAsync<Template>(endpoint, templateObject);            
+        }
+    
     }
 }
