@@ -143,13 +143,13 @@ namespace MailChimp.Api.Net.Services.Lists
         }
 
         /// <summary>
-        /// Remove a list member
+        /// Delete a list member
         /// <param name="list_id">Unique id for the list</param>
         /// <param name="subscriber_hash">The MD5 hash of the lowercase version of the list member’s email address</param>
         /// </summary>
-        public async Task<HttpResponseMessage> RemoveMemberAsync(string list_id, string subscriber_hash)
+        public async Task<HttpResponseMessage> DeleteMemberAsync(string list_id, string subscriber_hash)
         {
-            return await listMembers.DeleteListMemberAsync(list_id, subscriber_hash);
+            return await listMembers.DeleteMemberAsync(list_id, subscriber_hash);
         }
 
         #endregion Members
@@ -179,9 +179,9 @@ namespace MailChimp.Api.Net.Services.Lists
         /// <param name="list_id">Unique id for the list</param>
         /// <param name="merge_id">The id for the merge field</param>
         /// </summary>
-        public async Task<HttpResponseMessage> DeleteListMemberAsync(string list_id, string merge_id)
+        public async Task<HttpResponseMessage> DeleteMergeFieldAsync(string list_id, string merge_id)
         {
-            return await listMergeFields.DeleteListMemberAsync(list_id, merge_id);
+          return await listMergeFields.DeleteMergeFieldAsync(list_id, merge_id);
         }
 
         #endregion MergeFields
