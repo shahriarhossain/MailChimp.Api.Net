@@ -183,6 +183,7 @@
     <Compile Include="Enum\CampaignType.cs" />
     <Compile Include="Enum\CommandProperty.cs" />
     <Compile Include="Enum\ListVisibility.cs" />
+    <Compile Include="Enum\MergeFieldType.cs" />
     <Compile Include="Enum\Method.cs" />
     <Compile Include="Enum\SubscriberStatus.cs" />
     <Compile Include="Enum\SubTargetType.cs" />

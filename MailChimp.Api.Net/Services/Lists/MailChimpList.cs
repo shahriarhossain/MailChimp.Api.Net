@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using MailChimp.Api.Net.Domain.Lists;
 using MailChimp.Api.Net.Enum;
@@ -107,20 +103,22 @@ namespace MailChimp.Api.Net.Services.Lists
         #region Members
         /// <summary>
         /// Add a new list member
+        /// <param name="member">Member to be added to the list</param>  
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>
-        public async Task<dynamic> AddMember(MCMember member, string listId)
+        public async Task<dynamic> AddMember(MCMember member, string list_id)
         {
-            return await listMembers.AddMember(member, listId);
+            return await listMembers.AddMember(member, list_id);
         }
 
         /// <summary>
         /// Update a list member
+        /// <param name="member">Member to be updated in the list</param> 
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>
-        public async Task<dynamic> UpdateMember(MCMember member, string listId)
+        public async Task<dynamic> UpdateMember(MCMember member, string list_id)
         {
-            return await listMembers.UpdateMember(member, listId);
+            return await listMembers.UpdateMember(member, list_id);
         }
 
         /// <summary>
@@ -156,6 +154,25 @@ namespace MailChimp.Api.Net.Services.Lists
 
         #region MergeFields
         /// <summary>
+        /// Add a new list merge field
+        /// <param name="mergeField">The name of the merge field.</param>
+        /// </summary>
+        public async Task<dynamic> AddMergeField(MergeField mergeField, string list_id)
+        {
+          return await listMergeFields.AddMergeField(mergeField, list_id);
+        }
+      
+        /// <summary>
+        /// Update a list merge field
+        /// <param name="mergeField">Merge field to update</param>
+        /// <param name="list_id">Unique id for the list</param>
+        /// </summary>
+        public async Task<dynamic> UpdateMergeField(MergeField mergeField, string list_id)
+        {
+            return await listMergeFields.UpdateMergeField(mergeField, list_id);
+        }
+
+        /// <summary>
         /// Get all merge fields for a list
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>
@@ -169,9 +186,9 @@ namespace MailChimp.Api.Net.Services.Lists
         /// <param name="list_id">Unique id for the list</param>
         /// <param name="merge_id">The id for the merge field</param>
         /// </summary>
-        public async Task<MergeField> GetAllMergeFieldsAsync(string list_id, string merge_id)
+        public async Task<MergeField> GetMergeFieldAsync(string list_id, string merge_id)
         {
-            return await listMergeFields.GetAllMergeFieldsAsync(list_id, merge_id);
+            return await listMergeFields.GetMergeFieldAsync(list_id, merge_id);
         }
 
         /// <summary>

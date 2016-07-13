@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using MailChimp.Api.Net.Domain.Reports;
+using MailChimp.Api.Net.Enum;
 
 namespace MailChimp.Api.Net.Domain.Lists
 {
@@ -12,7 +9,7 @@ namespace MailChimp.Api.Net.Domain.Lists
         public int merge_id { get; set; }
         public string tag { get; set; }
         public string name { get; set; }
-        public string type { get; set; }
+        public MergeFieldType type { get; set; }
         public bool required { get; set; }
         public string default_value { get; set; }
         public bool @public { get; set; }

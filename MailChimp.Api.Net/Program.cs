@@ -140,122 +140,197 @@ namespace MailChimp.Api.Net
                 #endregion Add people to List
 
                 #region Add multiple members in list with single call
-                RootBatch batchObj = new RootBatch();
-                MCMember member = new MCMember();
-                for (int i = 828; i < 833; i++)
-                {
-                    member.email_address = String.Format("Rifat{0}@test.com", i);
-                    member.email_type = "html";
-                    member.language = "English";
-                    member.status = SubscriberStatus.subscribed.ToString();
+                //RootBatch batchObj = new RootBatch();
+                //MCMember member = new MCMember();
+                //for (int i = 828; i < 833; i++)
+                //{
+                //    member.email_address = String.Format("Rifat{0}@test.com", i);
+                //    member.email_type = "html";
+                //    member.language = "English";
+                //    member.status = SubscriberStatus.subscribed.ToString();
 
-                    var settings = new JsonSerializerSettings
-                    {
-                        NullValueHandling = NullValueHandling.Ignore,
+                //    var settings = new JsonSerializerSettings
+                //    {
+                //        NullValueHandling = NullValueHandling.Ignore,
 
-                        Converters = new List<JsonConverter> 
-                        { 
-                            new IsoDateTimeConverter()
-                            {
-                                DateTimeFormat= "yyyy-MM-dd HH:mm:ss"
-                            }
-                        }
-                    };
+                //        Converters = new List<JsonConverter> 
+                //        { 
+                //            new IsoDateTimeConverter()
+                //            {
+                //                DateTimeFormat= "yyyy-MM-dd HH:mm:ss"
+                //            }
+                //        }
+                //    };
 
-                    var myContentJson = JsonConvert.SerializeObject(member, settings);
+                //    var myContentJson = JsonConvert.SerializeObject(member, settings);
 
-                    SingleOperation singleOpt = new SingleOperation();
-                    singleOpt.method = "POST";
-                    singleOpt.path = String.Format("/{0}/{1}/{2}", TargetTypes.lists, "0a84a63afc", SubTargetType.members);
-                    singleOpt.operation_id = String.Format("{0}", i);
-                    singleOpt.body = myContentJson;
+                //    SingleOperation singleOpt = new SingleOperation();
+                //    singleOpt.method = "POST";
+                //    singleOpt.path = String.Format("/{0}/{1}/{2}", TargetTypes.lists, "0a84a63afc", SubTargetType.members);
+                //    singleOpt.operation_id = String.Format("{0}", i);
+                //    singleOpt.body = myContentJson;
 
-                    batchObj.operations.Add(singleOpt);
-                }
+                //    batchObj.operations.Add(singleOpt);
+                //}
 
-                MailChimpBatch goBatch = new MailChimpBatch();
-                var batchResult = goBatch.PostBatchOperationAsync(batchObj).Result;
-                Thread.Sleep(9000);
+                //MailChimpBatch goBatch = new MailChimpBatch();
+                //var batchResult = goBatch.PostBatchOperationAsync(batchObj).Result;
+                //Thread.Sleep(9000);
                 #endregion Add multiple members in list with single call
 
                 #region Get Batch Result for By ID
-                var batchId = batchResult.Result.id;
-                string newFileName = "";
-                if (batchId != null)
-                {
-                    var result = goBatch.GetBatchReportById(batchId).Result;
-                    Thread.Sleep(2000);
+                //var batchId = batchResult.Result.id;
+                //string newFileName = "";
+                //if (batchId != null)
+                //{
+                //    var result = goBatch.GetBatchReportById(batchId).Result;
+                //    Thread.Sleep(2000);
 
-                    if (result.errored_operations > 0)
-                    {
-                        string detailsReportForIssueTrackingURL = result.response_body_url.ToString();
-                        newFileName = @"E:\" + batchId + ".tar.gz";
-                        FileDownloader.download(detailsReportForIssueTrackingURL, newFileName);
-                    }
-                    else
-                    {
-                        string detailSuccessReportURL = result.response_body_url.ToString();
-                    }
-                }
+                //    if (result.errored_operations > 0)
+                //    {
+                //        string detailsReportForIssueTrackingURL = result.response_body_url.ToString();
+                //        newFileName = @"E:\" + batchId + ".tar.gz";
+                //        FileDownloader.download(detailsReportForIssueTrackingURL, newFileName);
+                //    }
+                //    else
+                //    {
+                //        string detailSuccessReportURL = result.response_body_url.ToString();
+                //    }
+                //}
                 #endregion Get Batch Result for By ID
 
                 #region decompress tar.gz
-                string logDirectory = @"E:\MailChimpLog";
-                string extractedFileName = "";
-                if (!String.IsNullOrWhiteSpace(newFileName))
-                {
-                    while (true)
-                    {
-                        if (File.Exists(newFileName))
-                        {
-                            using (Stream stream = File.OpenRead(newFileName))
-                            {
-                                var reader = ReaderFactory.Open(stream);
-                                while (reader.MoveToNextEntry())
-                                {
-                                    if (!reader.Entry.IsDirectory)
-                                    {
-                                        extractedFileName = reader.Entry.Key;
-                                        extractedFileName = extractedFileName.Substring(2);
-                                        reader.WriteEntryToDirectory(logDirectory, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
-                                    }
-                                }
-                            }
-                            string expectedFileName = String.Format("{0}.json", batchId);
-                          
-                            System.IO.File.Move(
-                                Path.Combine(logDirectory, extractedFileName), 
-                                Path.Combine(logDirectory, expectedFileName));
-                            break;  
-                        }
-                    }
-                }
+              //string logDirectory = @"E:\MailChimpLog";
+              //string extractedFileName = "";
+              //if (!String.IsNullOrWhiteSpace(newFileName))
+              //{
+              //  while (true)
+              //  {
+              //    if (File.Exists(newFileName))
+              //    {
+              //      using (Stream stream = File.OpenRead(newFileName))
+              //      {
+              //        var reader = ReaderFactory.Open(stream);
+              //        while (reader.MoveToNextEntry())
+              //        {
+              //          if (!reader.Entry.IsDirectory)
+              //          {
+              //            extractedFileName = reader.Entry.Key;
+              //            extractedFileName = extractedFileName.Substring(2);
+              //            reader.WriteEntryToDirectory(logDirectory, ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+              //          }
+              //        }
+              //      }
+              //      string expectedFileName = String.Format("{0}.json", batchId);
+
+              //      System.IO.File.Move(
+              //          Path.Combine(logDirectory, extractedFileName),
+              //          Path.Combine(logDirectory, expectedFileName));
+              //      break;
+              //    }
+              //  }
+              //}
                 #endregion decompress tar.gz
-
-
+              
                 #region CreateNewList
-                //MailChimpList myList = new MailChimpList();
-                //Contact ct = new Contact()
-                //{
-                //    city = "Dhaka",
-                //    address1 = "This is address1",
-                //    address2 = "This is address2",
-                //    company = "desme",
-                //    country = "Bangladesh",
-                //    phone = "017777",
-                //    state = "NA",
-                //    zip = "96000"
-                //};
+                MailChimpList myList = new MailChimpList();
+                Contact ct = new Contact()
+                {
+                  city = "Dhaka",
+                  address1 = "This is address1",
+                  address2 = "This is address2",
+                  company = "desme",
+                  country = "Bangladesh",
+                  phone = "017777",
+                  state = "NA",
+                  zip = "96000"
+                };
 
-                //CampaignDefaults cd = new CampaignDefaults()
-                //{
-                //    from_email = "Shossain@desme.com",
-                //    from_name = "Shahriar",
-                //    language = "English",
-                //    subject = "This is a subject"
-                //};
+                CampaignDefaults cd = new CampaignDefaults()
+                {
+                  from_email = "Shossain@desme.com",
+                  from_name = "Shahriar",
+                  language = "English",
+                  subject = "This is a subject"
+                };
 
-                //var res = myList.CreateListAsync("mySecondTmpList", ct, "You gave me permission ", cd, false, ListVisibility.prv).Result;
+                Random r = new Random();
+                var listResult = myList.CreateListAsync("myTmpList#" + r.Next(0, 100), ct, "You gave me permission ", cd, false, ListVisibility.prv).Result;
+              
+                #region Create Merge Field              
+                Thread.Sleep(2000);
+
+                MergeField mergeField = new MergeField
+                {
+                  name = "Company",
+                  tag = "CNAME",
+                  type = MergeFieldType.text,
+                  default_value = "",
+                  list_id = listResult.Result.id
+                };
+
+                var mergeFieldResult = myList.AddMergeField(mergeField, listResult.Result.id).Result;
+
+                MergeField mergeFieldUpdate = new MergeField
+                {
+                  name = "Company Name",
+                  tag = "CNAME",
+                  type = MergeFieldType.text,
+                  default_value = "",
+                  list_id = listResult.Result.id,
+                  merge_id = mergeFieldResult.Result.merge_id,
+                  display_order = 3,
+                  help_text = "Company Name",
+                  @public = true
+                };
+
+                var mergeFieldUpdateResult = myList.UpdateMergeField(mergeFieldUpdate, listResult.Result.id);
+
+                if (mergeFieldUpdateResult != null)
+                {
+
+                }
+
+                MCMember member = new MCMember()
+                {
+                    email_address = String.Format("SHAHRIARTEST@desme.com"),
+                    email_type = "html",
+                    language = "English",
+                    status = SubscriberStatus.subscribed.ToString(),
+                    merge_fields = new Dictionary<string, object>
+                      {
+                        {"FNAME", "first"},
+                        {"LNAME", "last"},
+                        {"CNAME", "company"}
+                      }
+                };
+                var memberAddResult = myList.AddMember(member, listResult.Result.id).Result;
+
+                if (!memberAddResult.HasError)
+                {
+                  MCMember updateMember = new MCMember()
+                  {
+                    email_address = String.Format("SHAHRIARTEST@desme.com"),
+                    email_type = "html",
+                    language = "English",
+                    status = SubscriberStatus.subscribed.ToString(),
+                    id = memberAddResult.Result.id,
+                    merge_fields = new Dictionary<string, object>
+                      {
+                        {"FNAME", "FIRST"},
+                        {"LNAME", "LAST"},
+                        {"CNAME", "Company Name"}
+                      }
+                  };
+                  var memberUpdateResult = myList.UpdateMember(updateMember, listResult.Result.id).Result;
+
+                  if (!memberUpdateResult.HasError)
+                  {
+
+                  }
+                }
+
+                #endregion
 
                 #endregion CreateNewList
 
