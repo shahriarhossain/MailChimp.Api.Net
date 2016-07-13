@@ -3,3 +3,10 @@ MailChimp.Api.Net/bin/Debug/MailChimp.Api.Net.exe
 MailChimp.Api.Net/bin/Debug/MailChimp.Api.Net.exe.config
 MailChimp.Api.Net/bin/Debug/MailChimp.Api.Net.vshost.exe.config
 MailChimp.Api.Net/obj/Release/DesignTimeResolveAssemblyReferencesInput.cache
+
+*.suo
+*.user
+
+.vs
+bin
+obj
