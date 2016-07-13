@@ -6,6 +6,7 @@ MailChimp.Api.Net/obj/Release/DesignTimeResolveAssemblyReferencesInput.cache
 
 *.suo
 *.user
+*.pdb
 
 .vs
 bin
