@@ -23,9 +23,9 @@ namespace MailChimp.Api.Net.Services.Lists
         /// Add a new list member
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>
-        internal async Task<dynamic> AddMember(MCMember member, string listId)
+        internal async Task<dynamic> AddMember(MCMember member, string list_id)
         {
-            string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.members, SubTargetType.not_applicable, listId);
+            string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.members, SubTargetType.not_applicable, list_id);
 
             return await BaseOperation.PostAsync<MCMember>(endpoint, member);
         }
@@ -35,12 +35,12 @@ namespace MailChimp.Api.Net.Services.Lists
         /// Update a list member
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>
-        internal async Task<dynamic> UpdateMember(MCMember member, string listId)
+        internal async Task<dynamic> UpdateMember(MCMember member, string list_id)
         {
             if (member.id == null)
                 throw (new Exception("Member ID must not be null"));
 
-            string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.members, SubTargetType.not_applicable, listId, member.id);
+            string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.members, SubTargetType.not_applicable, list_id, member.id);
 
             return await BaseOperation.PutAsync<MCMember>(endpoint, member);
         }

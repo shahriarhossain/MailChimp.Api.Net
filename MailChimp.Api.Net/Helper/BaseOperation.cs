@@ -94,9 +94,9 @@ namespace MailChimp.Api.Net.Helper
                             new IsoDateTimeConverter()
                             {
                                 DateTimeFormat= "yyyy-MM-dd HH:mm:ss"
-                            }
+                            },
+                            new StringEnumConverter()
                         }
-
                     };
 
                     var myContentJson = JsonConvert.SerializeObject(myContent, settings);
@@ -130,10 +130,10 @@ namespace MailChimp.Api.Net.Helper
             }
         }
         
-        //<summary>
-        //Create something
-        //<param name="endpoint">The url where we want to hit to get result</param>
-        //</summary>
+        /// <summary>
+        /// Create something
+        /// <param name="endpoint">The url where we want to hit to get result</param>
+        /// </summary>
         public static async Task<ResultWrapper> PostAsync(string endpoint)
         {
             HttpResponseMessage response;
@@ -146,7 +146,11 @@ namespace MailChimp.Api.Net.Helper
 
                     var settings = new JsonSerializerSettings
                     {
-                        NullValueHandling = NullValueHandling.Ignore
+                      NullValueHandling = NullValueHandling.Ignore,
+                      Converters = new List<JsonConverter> 
+                        { 
+                            new StringEnumConverter()
+                        }
                     };
 
                     response = await client.PostAsync(endpoint,
@@ -192,7 +196,11 @@ namespace MailChimp.Api.Net.Helper
 
                     var settings = new JsonSerializerSettings
                     {
-                        NullValueHandling = NullValueHandling.Ignore
+                      NullValueHandling = NullValueHandling.Ignore,
+                      Converters = new List<JsonConverter> 
+                        { 
+                            new StringEnumConverter()
+                        }
                     };
 
                     var myContentJson = JsonConvert.SerializeObject(myContent, settings);
@@ -251,7 +259,8 @@ namespace MailChimp.Api.Net.Helper
                             new IsoDateTimeConverter()
                             {
                                 DateTimeFormat= "yyyy-MM-dd HH:mm:ss"
-                            }
+                            },
+                            new StringEnumConverter()
                         }
 
                     };
