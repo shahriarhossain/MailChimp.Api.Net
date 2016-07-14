@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MailChimp.Api.Net.Domain.BatchOperation;
-using MailChimp.Api.Net.Domain.Lists.Post;
-using MailChimp.Api.Net.Enum;
-using MailChimp.Api.Net.Services;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
-namespace MailChimp.Api.Net.Helper
+﻿namespace MailChimp.Api.Net.Helper
 {
     internal static class  BundleCreation
     {

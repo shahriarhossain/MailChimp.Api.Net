@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using MailChimp.Api.Net.Services;
 using Newtonsoft.Json;
-using System.Net;
 using MailChimp.Api.Net.Domain;
 using Newtonsoft.Json.Converters;
 
