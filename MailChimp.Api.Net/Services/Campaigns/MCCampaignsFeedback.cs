@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using MailChimp.Api.Net.Domain.Feedback;
 using MailChimp.Api.Net.Enum;
 using MailChimp.Api.Net.Helper;
-using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.Campaigns
 {

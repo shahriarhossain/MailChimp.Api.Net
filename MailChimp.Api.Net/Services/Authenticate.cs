@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using MailChimp.Api.Net.ErrorMessages;
 using MailChimp.Api.Net.Enum;
 using System.Net.Http;

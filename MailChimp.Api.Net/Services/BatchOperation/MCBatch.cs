@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MailChimp.Api.Net.Domain.BatchOperation;
-using MailChimp.Api.Net.Domain.Lists;
 using MailChimp.Api.Net.Enum;
 using MailChimp.Api.Net.Helper;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace MailChimp.Api.Net.Services.BatchOperation
 {
