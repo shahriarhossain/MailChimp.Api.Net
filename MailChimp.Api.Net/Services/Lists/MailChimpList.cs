@@ -216,9 +216,9 @@ namespace MailChimp.Api.Net.Services.Lists
         /// Get information about a specific list
         /// <param name="list_id">Unique id for the list</param>
         /// </summary>
-        public async Task<MCLists> GetAllListsAsync(string list_id)
+        public async Task<MCLists> GetListAsync(string list_id)
         {
-            return await listOverview.GetAllListsAsync(list_id);
+            return await listOverview.GetListAsync(list_id);
         }
 
         /// <summary>
@@ -244,7 +244,26 @@ namespace MailChimp.Api.Net.Services.Lists
             ListVisibility listVisibility = ListVisibility.pub)
         {
             return await listOverview.CreateListAsync(listName, contactForCampaignFotter, permissionReminderText, defaultValue, emailTypeOption, listVisibility);
+        }        
+
+        /// <summary>
+        /// Update a list
+        /// <param name="list_id">Unique id for the list</param> 
+        /// <param name="listName">The name of the list </param>
+        /// <param name="contactForCampaignFotter">Contact information displayed in campaign footers to comply with international spam laws</param>
+        /// <param name="permissionReminderText">The permission reminder for the list</param>
+        /// <param name="defaultValue">Default values for campaigns created for this list</param>
+        /// <param name="emailTypeOption">Whether the list supports multiple formats for emails.</param>
+        /// <param name="listVisibility">Whether this list is public or private</param>
+        /// </summary>
+        public async Task<dynamic> UpdateList(string list_id, string listName, Contact contactForCampaignFotter,
+                                              string permissionReminderText, CampaignDefaults defaultValue,
+                                              bool emailTypeOption = false,
+                                              ListVisibility listVisibility = ListVisibility.pub)
+        {
+          return await listOverview.UpdateList(list_id, listName, contactForCampaignFotter, permissionReminderText, defaultValue, emailTypeOption, listVisibility);
         }
+
         #endregion Overview
 
         #region Segments

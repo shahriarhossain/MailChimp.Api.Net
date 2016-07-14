@@ -34,7 +34,15 @@ The Reports sections are good to go!  You  can retrieve all sorts of mailChimp c
 
 Templates:
 ---
-The Templates sections are good to go! 
+- You can Create, Read, Delete, and Update Templates. Only issue is MailChimp API does not provide the HTML Property when Reading a Template
+The work around is to assign the Template to a campaign and then you can get the campaign content. We have contacted MailChimp and they have responded 
+but need some more convincing to include this property or another method to get the Template HTML / Content.
+
+Lists:
+---
+- You can Create, Read, Delete, and Update Lists.
+- You can Create, Read, Delete, and Update List Merge Fields
+- You can Create, Read, Delete, and Update List Members as well as Member Merge Fields
 
 Campaigns: 
 ---
