@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MailChimp.Api.Net.Domain.Lists.Post
+﻿namespace MailChimp.Api.Net.Domain.Lists.Post
 {
     public class ListMemberBase
     {

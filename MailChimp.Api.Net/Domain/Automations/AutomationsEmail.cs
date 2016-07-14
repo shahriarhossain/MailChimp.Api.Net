@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using MailChimp.Api.Net.Domain.Campaigns;
 using MailChimp.Api.Net.Domain.Reports;
 
