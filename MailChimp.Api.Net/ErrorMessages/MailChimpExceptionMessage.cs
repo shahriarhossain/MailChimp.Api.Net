@@ -14,10 +14,5 @@ namespace MailChimp.Api.Net.ErrorMessages
         {
             return String.Format("{0} is Invalid", command.ToString());
         }
-
-        //public static Exception UnknownExceptionMessage(Exception ex)
-        //{
-        //   // return String.Format("Exception Occured : {0}", ex.ToString());
-        //}
     }
 }
