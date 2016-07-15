@@ -20,7 +20,7 @@ namespace MailChimp.Api.Net.Services
         {
             try
             {
-                string apiKey = ConfigurationManager.AppSettings["MailChimpApiKey"].ToString();
+                string apiKey = ConfigurationManager.AppSettings["MailChimpApiKey"];
                 if (!String.IsNullOrEmpty(apiKey))
                 {
                     return apiKey;
@@ -33,12 +33,12 @@ namespace MailChimp.Api.Net.Services
             }
             catch (NullReferenceException ex)
             {
-                string message = String.Format("MailChimp API Key missing! To resolve Add a key named 'MailChimpApiKey' in your config and SET its value with your mailchimp API key!");
+                string message = "MailChimp API Key missing! To resolve Add a key named \'MailChimpApiKey\' in your config and SET its value with your mailchimp API key!";
                 throw new MailChimpExceptions(message);
             }
             catch (Exception ex)
             {
-                throw new MailChimpExceptions(ex.Message.ToString());
+                throw new MailChimpExceptions(ex.Message);
             }
         }
 
