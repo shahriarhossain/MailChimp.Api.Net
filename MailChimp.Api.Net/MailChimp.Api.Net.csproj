@@ -190,8 +190,6 @@
     <Compile Include="Enum\TargetTypes.cs" />
     <Compile Include="ErrorMessages\MailChimpExceptionMessage.cs" />
     <Compile Include="Helper\BaseOperation.cs" />
-    <Compile Include="Helper\BundleCreation.cs" />
-    <Compile Include="Helper\Class1.cs" />
     <Compile Include="Helper\FileDownloader.cs" />
     <Compile Include="Helper\FileParser.cs" />
     <Compile Include="Helper\RetryManager.cs" />
@@ -211,7 +209,6 @@
     <Compile Include="Services\Automation\MCAutomationsEmailsQueue.cs" />
     <Compile Include="Services\Automation\MCAutomationsOverview.cs" />
     <Compile Include="Services\Automation\MCAutomationsRemoveSubscriber.cs" />
-    <Compile Include="Services\BatchOperation\BatchOperation.cs" />
     <Compile Include="Services\BatchOperation\MailChimpBatch.cs" />
     <Compile Include="Services\BatchOperation\MCBatch.cs" />
     <Compile Include="Services\Campaigns\MailChimpCampaigns.cs" />
