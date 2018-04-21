@@ -5,7 +5,6 @@ using MailChimp.Api.Net.ErrorMessages;
 using MailChimp.Api.Net.Enum;
 using System.Net.Http;
 using System.Net.Http.Headers;
-
 using MailChimp.Api.Net.Mapper;
 using MailChimp.Api.Net.CustomException;
 
@@ -32,7 +31,8 @@ namespace MailChimp.Api.Net.Services {
 					throw new MailChimpExceptions(msg);
 				}
 			} catch (NullReferenceException ex) {
-				string message = "MailChimp API Key missing! To resolve Add a key named \'MailChimpApiKey\' in your config and SET its value with your mailchimp API key!";
+				string message = "MailChimp API Key missing! To resolve Add a key named \'MailChimpApiKey\' in your config and SET its value with your mailchimp API key!  " + ex.Message ;
+
 				throw new MailChimpExceptions(message);
 			} catch (Exception ex) {
 				throw new MailChimpExceptions(ex.Message);
@@ -127,10 +127,11 @@ namespace MailChimp.Api.Net.Services {
 				_apiAuthenticator = value;
 			}
 		}
-		/// <summary>
+
+    /// <summary>
 		/// Retrieve the API key from App.Config and check if its valid
 		/// </summary>
-		public static string FeatchApiKey() {
+		public static string FetchApiKey() {
 			return APIAuthenticator.FetchApiKey();
 		}
 

@@ -1,8 +1,8 @@
 ﻿namespace MailChimp.Api.Net.Enum
 {
-    public enum ListVisibility
-    {
-        pub,
-        prv
-    }
+  public enum ListVisibility
+  {
+    pub,
+    prv
+  }
 }

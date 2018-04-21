@@ -1,10 +1,10 @@
 ﻿namespace MailChimp.Api.Net.Enum
 {
-    public enum SubscriberStatus
-    {
-        subscribed,
-        unsubscribed,
-        cleaned,
-        pending
-    }
+  public enum SubscriberStatus
+  {
+    subscribed,
+    unsubscribed,
+    cleaned,
+    pending
+  }
 }

@@ -5,22 +5,23 @@ using MailChimp.Api.Net.Helper;
 
 namespace MailChimp.Api.Net.Services.Reports
 {
-    // ===================================================================================
-    // AUTHOR      : Shahriar Hossain
-    // PURPOSE     : Get a summary of social activity for the campaign, tracked by EepURL. 
-    // ====================================================================================
+  // ===================================================================================
+  // AUTHOR      : Shahriar Hossain
+  // PURPOSE     : Get a summary of social activity for the campaign, tracked by EepURL. 
+  // ====================================================================================
 
-    internal class MCReportsEepURL
+  internal class MCReportsEepURL
+  {
+    /// <summary>
+    /// Return a summary of social activity for the campaign, tracked by EepURL.
+    /// <param name="campaignId">Unique id for campaign</param>
+    /// </summary>
+    internal async Task<Eepurl> GetEepUrlActivityAsync(string campaignId)
     {
-        /// <summary>
-        /// Return a summary of social activity for the campaign, tracked by EepURL.
-        /// <param name="campaignId">Unique id for campaign</param>
-        /// </summary>
-        internal async Task<Eepurl> GetEepUrlActivityAsync(string campaignId)
-        {
-            string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.eepurl, SubTargetType.not_applicable, campaignId);
+      string endpoint = Authenticate.EndPoint(TargetTypes.reports, SubTargetType.eepurl, SubTargetType.not_applicable,
+                                              campaignId);
 
-            return await BaseOperation.GetAsync<Eepurl>(endpoint);
-        }
+      return await BaseOperation.GetAsync<Eepurl>(endpoint);
     }
+  }
 }

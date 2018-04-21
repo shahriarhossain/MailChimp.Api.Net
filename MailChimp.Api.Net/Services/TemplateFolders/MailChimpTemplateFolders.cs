@@ -1,70 +1,69 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using MailChimp.Api.Net.Domain.TemplateFolders;
-using MailChimp.Api.Net.Enum;
-using MailChimp.Api.Net.Helper;
-using Newtonsoft.Json;
 
 namespace MailChimp.Api.Net.Services.TemplateFolders
 {
-    // =====================================================
-    // AUTHOR      : Keith Fimreite
-    // PURPOSE     : Organize your templates using folders
-    // =====================================================
+  // =====================================================
+  // AUTHOR      : Keith Fimreite, Enkode LLC
+  // PURPOSE     : Organize your templates using folders
+  // =====================================================
 
-    public class MailChimpTemplateFolders
+  public class MailChimpTemplateFolders
+  {
+    private MCTemplateFolderOverview mcTemplateFolderOverview;
+
+    public MailChimpTemplateFolders()
     {
-        /// <summary>
-        /// Create a new template folder
-        /// <param name="folderName">The name of the folder</param>
-        /// </summary>
-        public async Task<dynamic> CreateTemplateFolderAsync(string folderName)
-        {
-          string endpoint = Authenticate.EndPoint(TargetTypes.template_folders, SubTargetType.not_applicable, SubTargetType.not_applicable);
-
-          TemplateFolder templateFolderObject = new TemplateFolder()
-          {
-            name = folderName
-          };
-
-          return await BaseOperation.PostAsync<TemplateFolder>(endpoint, templateFolderObject);
-        }
-
-        /// <summary>
-        /// Get all template folders
-        /// </summary>
-        public async Task<RootTemplateFolder> GetAllTemplateFoldersAsync()
-        {
-            string endpoint = Authenticate.EndPoint(TargetTypes.template_folders, SubTargetType.not_applicable, SubTargetType.not_applicable);
-
-            return await BaseOperation.GetAsync<RootTemplateFolder>(endpoint);
-        }
-
-        /// <summary>
-        /// Get a specific template folder
-        /// <param name="folder_id">Unique id for the template folder</param>
-        /// </summary>
-        public async Task<TemplateFolder> GetTemplateFolderAsync(string folder_id)
-        {
-            string endpoint = Authenticate.EndPoint(TargetTypes.template_folders, SubTargetType.not_applicable, SubTargetType.not_applicable, folder_id);
-
-            return await BaseOperation.GetAsync<TemplateFolder>(endpoint);
-        }
-
-        /// <summary>
-        /// Delete a template folder
-        /// <param name="folder_id">Unique id for the template folder</param>
-        /// </summary>
-        public async Task<HttpResponseMessage> DeleteTemplateFolderAsync(string folder_id)
-        {
-            string endpoint = Authenticate.EndPoint(TargetTypes.template_folders, SubTargetType.not_applicable, SubTargetType.not_applicable, folder_id);
-
-            return await BaseOperation.DeleteAsync(endpoint);
-        }
-
+      mcTemplateFolderOverview = new MCTemplateFolderOverview();
     }
+    
+    /// <summary>
+    /// Create a new template folder
+    /// <param name="folderName">The name of the folder</param>
+    /// </summary>
+    public async Task<dynamic> AddTemplateFolderAsync(string folderName)
+    {
+      return await mcTemplateFolderOverview.AddTemplateFolderAsync(folderName);
+    }
+
+    /// <summary>
+    /// Update a campaign folder
+    /// <param name="name">Name to associate with the folder.</param>
+    /// <param name="folder_id">Unique id for the list</param>
+    /// </summary>
+    public async Task<dynamic> UpdateTemplateFolderAsync(string name, string folder_id)
+    {
+      return await mcTemplateFolderOverview.UpdateTemplateFolderAsync(name, folder_id);
+    }
+
+    /// <summary>
+    /// Get all template folders
+    /// <param name="offset">The number of records from a collection to skip. Iterating over large collections with this parameter can be slow</param>
+    /// <param name="count">The number of records to return.</param>    
+    /// </summary>
+    public async Task<RootTemplateFolder> GetAllTemplateFoldersAsync(int offset = 0, int count = 10)
+    {
+      return await mcTemplateFolderOverview.GetAllTemplateFoldersAsync(offset = 0, count = 10);
+    }
+
+    /// <summary>
+    /// Get a specific template folder
+    /// <param name="folder_id">Unique id for the template folder</param>
+    /// </summary>
+    public async Task<TemplateFolder> GetTemplateFolderAsync(string folder_id)
+    {
+      return await mcTemplateFolderOverview.GetTemplateFolderAsync(folder_id);
+    }
+
+    /// <summary>
+    /// Delete a template folder
+    /// <param name="folder_id">Unique id for the template folder</param>
+    /// </summary>
+    public async Task<HttpResponseMessage> DeleteTemplateFolderAsync(string folder_id)
+    {
+      return await mcTemplateFolderOverview.DeleteTemplateFolderAsync(folder_id);
+    }
+
+  }
 }

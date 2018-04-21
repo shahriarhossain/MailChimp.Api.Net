@@ -8,29 +8,29 @@ using System.IO;
 
 namespace MailChimp.Api.Net.Helper
 {
-    public class FileParser
+  public class FileParser
+  {
+    public string EmailParser(string path)
     {
-        public string EmailParser(string path)
-        {
-            string templateContent = "";
+      string templateContent = "";
 
-            if (File.Exists(path))
-            {
-                try
-                {
-                    StreamReader reader = new StreamReader(path);
-                    templateContent = reader.ReadToEnd();
-                    reader.Close();
-                    
-                    //templateContent = templateContent.Replace("<##FirstName##>", registeredUser.Member.FirstName);
-                    return templateContent;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                } 
-            }
-            return templateContent;
+      if (File.Exists(path))
+      {
+        try
+        {
+          StreamReader reader = new StreamReader(path);
+          templateContent = reader.ReadToEnd();
+          reader.Close();
+
+          //templateContent = templateContent.Replace("<##FirstName##>", registeredUser.Member.FirstName);
+          return templateContent;
         }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+      }
+      return templateContent;
     }
+  }
 }

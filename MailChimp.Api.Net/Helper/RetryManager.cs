@@ -3,66 +3,56 @@ using System.Threading;
 
 namespace MailChimp.Api.Net.Helper
 {
-    public class RetryManager
+  public class RetryManager
+  {
+    private const int RetryCount = 3;
+    private const int TimeToWait = 5000;
+
+    public void RetryExecute(Action action)
     {
-        private const int RetryCount = 3;
-        private const int TimeToWait = 5000;
-
-        public void RetryExecute(Action action)
+      int retryCountLeft = RetryCount;
+      do
+      {
+        try
         {
-            int retryCountLeft = RetryCount;
-            do
-            {
-                try
-                {
-                    if (action != null)
-                    {
-                        action();
-                        return;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                catch (TimeoutException ex)
-                {
-                    if (retryCountLeft == 0)
-                    {
-                        throw;
-                    }
-                    Thread.Sleep(TimeToWait);
-                }
-            } while (retryCountLeft-- > 0);
+          if (action != null)
+          {
+            action();
+            return;
+          }
+          return;
         }
-
-        public T RetryExecute<T>(Func<T> action)
+        catch (TimeoutException)
         {
-            int retryCountLeft = RetryCount;
-            do
-            {
-                try
-                {
-                    if (action != null)
-                    {
-                        return action();
-                    }
-                    else
-                    {
-                        return default(T);
-                    }
-                }
-                catch (TimeoutException ex)
-                {
-                    if (retryCountLeft == 0)
-                    {
-                        throw;
-                    }
-                    Thread.Sleep(TimeToWait);
-                }
-            } while (retryCountLeft-- > 0);
-
-            return default(T);
+          if (retryCountLeft == 0)
+          {
+            throw;
+          }
+          Thread.Sleep(TimeToWait);
         }
+      } while (retryCountLeft-- > 0);
     }
+
+    public T RetryExecute<T>(Func<T> action)
+    {
+      int retryCountLeft = RetryCount;
+      do
+      {
+        try
+        {
+          return action != null ? action() : default(T);
+        }
+        catch (TimeoutException)
+        {
+          if (retryCountLeft == 0)
+          {
+            throw;
+          }
+          Thread.Sleep(TimeToWait);
+        }
+      } while (retryCountLeft-- > 0);
+
+      return default(T);
+    }
+  }
 }
