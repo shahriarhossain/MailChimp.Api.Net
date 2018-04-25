@@ -26,10 +26,13 @@ namespace MailChimp.Api.Net.Services.Automation
 
     /// <summary>
     /// Get a summary of an account’s Automations
+    /// <param name="offset">The number of records from a collection to skip. Iterating over large collections with this parameter can be slow</param>
+    /// <param name="count">The number of records to return.</param>
     /// </summary>
-    public async Task<RootAutomation> GetAllAutomationsAsync()
+    public async Task<RootAutomation> GetAllAutomationsAsync(int offset = 0, int count = 10)
     {
-      return await overview.GetAllAutomationsAsync();
+      return await overview.GetAllAutomationsAsync(offset, count);
+
     }
 
     /// <summary>

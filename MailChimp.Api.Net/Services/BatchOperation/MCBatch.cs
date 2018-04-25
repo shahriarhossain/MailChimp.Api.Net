@@ -35,10 +35,11 @@ namespace MailChimp.Api.Net.Services.BatchOperation
     /// <summary>
     /// Get a list of batch requests
     /// </summary>
-    //internal async Task<T> GetAllBatchReportAsync()
+    //internal async Task<T> GetAllBatchReportAsync(int offset = 0, int count = 10)
     //{
     //    string endpoint = Authenticate.EndPoint(TargetTypes.batches, SubTargetType.not_applicable, SubTargetType.not_applicable);
-
+    //
+    //    endpoint = String.Format("{0}?offset={1}&count={2}", endpoint, offset, count);
     //    return await BaseOperation.GetAsync<>(endpoint);
     //}*/
   }

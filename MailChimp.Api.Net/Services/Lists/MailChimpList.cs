@@ -189,10 +189,12 @@ namespace MailChimp.Api.Net.Services.Lists
     /// <summary>
     /// Get all merge fields for a list
     /// <param name="list_id">Unique id for the list</param>
+    /// <param name="offset">The number of records from a collection to skip. Iterating over large collections with this parameter can be slow</param>
+    /// <param name="count">The number of records to return.</param>
     /// </summary>
-    public async Task<RootMergeField> GetAllMergeFieldsAsync(string list_id)
+    public async Task<RootMergeField> GetAllMergeFieldsAsync(string list_id, int offset = 0, int count = 10)
     {
-      return await listMergeFields.GetAllMergeFieldsAsync(list_id);
+      return await listMergeFields.GetAllMergeFieldsAsync(list_id, offset, count);
     }
 
     /// <summary>

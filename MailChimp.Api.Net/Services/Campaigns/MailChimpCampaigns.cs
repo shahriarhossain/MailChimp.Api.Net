@@ -64,13 +64,15 @@ namespace MailChimp.Api.Net.Services.Campaigns
     {
       return await overview.UpdateCampaignAsync(campaign_id,  recipients, settings, tracking);
     }
-    
+
     /// <summary>
-    /// Get all campaigns
+    /// Get campaigns
+    /// <param name="offset">The number of records from a collection to skip. Iterating over large collections with this parameter can be slow</param>
+    /// <param name="count">The number of records to return.</param>
     /// </summary>
-    public async Task<RootCampaign> GetAllCampaignsAsync()
+    public async Task<RootCampaign> GetAllCampaignsAsync(int offset = 0, int count = 10)
     {
-      return await overview.GetAllCampaignsAsync();
+      return await overview.GetAllCampaignsAsync(offset, count);
     }
 
     /// <summary>

@@ -49,11 +49,14 @@ namespace MailChimp.Api.Net.Services.Lists
     /// <summary>
     /// Get all merge fields for a list
     /// <param name="list_id">Unique id for the list</param>
+    /// <param name="offset">The number of records from a collection to skip. Iterating over large collections with this parameter can be slow</param>
+    /// <param name="count">The number of records to return.</param>
     /// </summary>
-    internal async Task<RootMergeField> GetAllMergeFieldsAsync(string list_id)
+    internal async Task<RootMergeField> GetAllMergeFieldsAsync(string list_id, int offset = 0, int count = 10)
     {
       string endpoint = Authenticate.EndPoint(TargetTypes.lists, SubTargetType.merge_fields,
                                               SubTargetType.not_applicable, list_id);
+      endpoint = String.Format("{0}?offset={1}&count={2}", endpoint, offset, count);
 
       string content;
       using (var client = new HttpClient())

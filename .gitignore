@@ -8,6 +8,8 @@ MailChimp.Api.Net/obj/Release/DesignTimeResolveAssemblyReferencesInput.cache
 *.user
 *.pdb
 
+.idea
 .vs
-bin
-obj
+
+bin/
+obj/
